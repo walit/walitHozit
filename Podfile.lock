@@ -1,0 +1,62 @@
+PODS:
+  - Alamofire (4.8.1)
+  - AlamofireImage (3.5.0):
+    - Alamofire (~> 4.8)
+  - CountryPickerView (2.2.1)
+  - LocationPicker (1.2.0)
+  - NVActivityIndicatorView (4.6.1):
+    - NVActivityIndicatorView/Presenter (= 4.6.1)
+  - NVActivityIndicatorView/Presenter (4.6.1)
+  - Parchment (1.5.0)
+  - SkyFloatingLabelTextField (3.6.0)
+  - Socket.IO-Client-Swift (14.0.0):
+    - Starscream (~> 3.0.6)
+  - Starscream (3.0.6)
+  - SwiftyContacts (3.0.11):
+    - SwiftyContacts/Core (= 3.0.11)
+  - SwiftyContacts/Core (3.0.11)
+  - SwiftyJSON (4.2.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - AlamofireImage
+  - CountryPickerView
+  - LocationPicker
+  - NVActivityIndicatorView
+  - Parchment
+  - SkyFloatingLabelTextField
+  - Socket.IO-Client-Swift
+  - Starscream
+  - SwiftyContacts
+  - SwiftyJSON
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - AlamofireImage
+    - CountryPickerView
+    - LocationPicker
+    - NVActivityIndicatorView
+    - Parchment
+    - SkyFloatingLabelTextField
+    - Socket.IO-Client-Swift
+    - Starscream
+    - SwiftyContacts
+    - SwiftyJSON
+
+SPEC CHECKSUMS:
+  Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
+  AlamofireImage: 1aea346f4dda2f6c67622fa5a89fcbb80d79cc16
+  CountryPickerView: b21b69a1ed16df0e198b819ad897e885b19f5389
+  LocationPicker: d91f9fe50493d8058391fe1408aa2a8db49a584d
+  NVActivityIndicatorView: 4ca19fccc84595a78957336a086d00a49be6ce61
+  Parchment: 5a8c9c73549a6d73a7c1b606c27246910d2e5720
+  SkyFloatingLabelTextField: 38164979b79512f9ff9288ad8acfc4bbf5d843e3
+  Socket.IO-Client-Swift: 21e6a8a23a7d367d5ddfab6cbbd3c679cf3c25d6
+  Starscream: ef3ece99d765eeccb67de105bfa143f929026cf5
+  SwiftyContacts: 3b38d400d2480e8a2323194f3f8fcf6b317d8147
+  SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
+
+PODFILE CHECKSUM: 6587ffd591753a81b8a54b435f51e37c95801dae
+
+COCOAPODS: 1.6.1
