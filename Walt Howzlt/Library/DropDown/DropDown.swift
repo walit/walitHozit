@@ -170,8 +170,8 @@ public final class DropDown: UIView {
 	}
 
 	//MARK: Constraints
-	fileprivate var heightConstraint: NSLayoutConstraint!
-	fileprivate var widthConstraint: NSLayoutConstraint!
+    public var heightConstraint1: NSLayoutConstraint!
+    public var widthConstraint1: NSLayoutConstraint!
 	fileprivate var xConstraint: NSLayoutConstraint!
 	fileprivate var yConstraint: NSLayoutConstraint!
 
@@ -566,8 +566,8 @@ extension DropDown {
 
 		xConstraint.constant = layout.x
 		yConstraint.constant = layout.y
-		widthConstraint.constant = layout.width
-		heightConstraint.constant = layout.visibleHeight
+		widthConstraint1.constant = layout.width
+		heightConstraint1.constant = layout.visibleHeight
 
 		tableView.isScrollEnabled = layout.offscreenHeight > 0
 
@@ -612,7 +612,7 @@ extension DropDown {
 			constant: 0)
 		addConstraint(yConstraint)
 
-		widthConstraint = NSLayoutConstraint(
+		widthConstraint1 = NSLayoutConstraint(
 			item: tableViewContainer,
 			attribute: .width,
 			relatedBy: .equal,
@@ -620,9 +620,9 @@ extension DropDown {
 			attribute: .notAnAttribute,
 			multiplier: 1,
 			constant: 0)
-		tableViewContainer.addConstraint(widthConstraint)
+		tableViewContainer.addConstraint(widthConstraint1)
 
-		heightConstraint = NSLayoutConstraint(
+		heightConstraint1 = NSLayoutConstraint(
 			item: tableViewContainer,
 			attribute: .height,
 			relatedBy: .equal,
@@ -630,7 +630,7 @@ extension DropDown {
 			attribute: .notAnAttribute,
 			multiplier: 1,
 			constant: 0)
-		tableViewContainer.addConstraint(heightConstraint)
+		tableViewContainer.addConstraint(heightConstraint1)
 
 		// Table view
 		tableViewContainer.addSubview(tableView)

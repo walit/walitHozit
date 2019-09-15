@@ -18,10 +18,12 @@ class ChatListModel: NSObject {
     var date_time : String = ""
     var message_type : String = ""
     var message : String = " "
-    
+    var is_group : String = ""
+    var group_id : String = ""
+    var thumb = String()
     init (json : [String:JSON])
     {
-        
+        thumb = (json["thumb"]?.stringValue)!
         username       = (json["username"]?.stringValue)!
         avatar         = (json["avatar"]?.stringValue)!
         unread_count   = (json["unread_count"]?.stringValue)!
@@ -32,6 +34,8 @@ class ChatListModel: NSObject {
         date_time      = (json["date_time"]?.stringValue)!
         message_type   = (json["message_type"]?.stringValue)!
         message        = (json["message"]?.stringValue)!
+        is_group       = (json["is_group"]?.stringValue)!
+        group_id    =    (json["group_id"]?.stringValue)!
     }
     
 }
@@ -44,6 +48,7 @@ class ChatModel: NSObject {
     var message_type : String = ""
     var message : String = " "
     var is_read : String = ""
+    
     init (json : [String:JSON])
     {
         sender_id      = (json["sender_id"]?.stringValue)!
@@ -53,6 +58,27 @@ class ChatModel: NSObject {
         message_type   = (json["message_type"]?.stringValue)!
         message        = (json["message"]?.stringValue)!
         is_read        = (json["is_read"]?.stringValue)!
+        
     }
     
 }
+//class StatusListModel: NSObject {
+//    var username  : String = ""
+//    var myStatus : MyStatus!
+//
+//    var otherStatus = [OtherStatus]()
+//    init (json : [String:JSON])
+//    {
+//        if let myStatus = (json["mystatus"]?.dictionary){
+//            self.myStatus = MyStatus.init(json: myStatus)
+//        }
+//        if let otherSatus = (json["other_status"]?.array){
+//            for item in otherSatus{
+//                let dict = item.dictionary
+//                self.otherStatus.append(OtherStatus.init(json: dict!))
+//            }
+//
+//        }
+//    }
+//
+//}

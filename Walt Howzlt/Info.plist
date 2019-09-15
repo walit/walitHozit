@@ -30,7 +30,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>1.2</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>walithowzitcustomurl</string>
@@ -42,12 +42,16 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Walit Howzit app media libaray to share audio file in chat.</string>
 	<key>NSCameraUsageDescription</key>
-	<string>App use camera</string>
+	<string>Walit Howzit app use camera libaray to share image and set group profile image.</string>
 	<key>NSContactsUsageDescription</key>
-	<string>app want to access contacts</string>
+	<string>Walit Howzit app use contact list to share contact in chat and synchronization for user contacts.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>app use location for share loaction </string>
+	<string>Walit Howzit app use location to share your current location in chat.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Walit Howzit app use photo libaray to share imagein chat  and set group profile image.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

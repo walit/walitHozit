@@ -9,8 +9,11 @@
 import UIKit
 import SwiftyJSON
 class ContactHandler: NSObject {
+    
     var arrContact = [ContactModel]()
-    func contactHandler(json:[String:Any] ,completion:@escaping (_ json: [ContactModel], _ success: Bool, _ error: Error?)-> Void)
+    
+    
+    func contactHandler(json:[String:AnyObject] ,completion:@escaping (_ json: [ContactModel], _ success: Bool, _ error: Error?)-> Void)
     {
         
         if !Reachability.isConnectedToNetwork()
@@ -22,9 +25,9 @@ class ContactHandler: NSObject {
             StaticNameOfVariable.VACCESSTOKEN: Global.sharedInstance.AccessToken
         ]
         
-        let param = APIParameter.GetContacts(contacts: json).dictionary()
+        let param = json
         
-        APIManager.callApi(API.GetContacts.requestString(), param: param, method:.post, header: headers, encodeType: .default, isLoader: true) { (code, error, json) in
+        APIManager.callApi(API.GetContacts.requestString(), param: param , method:.post, header: headers, encodeType: .default, isLoader: true) { (code, error, json) in
             
             if json != nil
             {
@@ -37,6 +40,7 @@ class ContactHandler: NSObject {
                 {
                     if status == StatusCode.success{
                         let arrData = json.dictionaryValue[StaticNameOfVariable.Vdata]?.arrayValue
+                        self.arrContact.removeAll()
                         for item in arrData!{
                            let dict : [String:JSON] = item.dictionaryValue
                             let contact = ContactModel()

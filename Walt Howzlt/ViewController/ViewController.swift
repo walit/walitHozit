@@ -9,60 +9,71 @@
 import UIKit
 import Parchment
 import SocketIO
-
+import YPImagePicker
 class ViewController: UIViewController {
-    
+    //IBOutlet
     @IBOutlet weak var btnDailPad: UIButton!
     @IBOutlet weak var chooseButton: UIButton!
-   
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var viewSegment: UIView!
     @IBOutlet weak var viewContainer: UIView!
-    var arrCategoryNames = ["CHAT","CALL"]
+    @IBOutlet weak var viewChatOption: UIView!
+    @IBOutlet weak var viewStatusOption: UIView!
+    @IBOutlet weak var btnEdit: UIButton!
+    @IBOutlet weak var btnCamera: UIButton!
+    
+    var arrCategoryNames = ["CHAT","STATUS"]
     var segmentedControl = HMSegmentedControl()
     var chatListHandler = ChatListHandler()
     let chooseDropDown = DropDown()
+    var myStatus : MyStatus!
+    var otherStatus = [OtherStatus]()
     var arrChatList = [ChatListModel]()
+
     let manager = SocketManager.init(socketURL: URL(string:"http://132.148.145.112:2021")!, config: [.log(true), .compress])
+    
     var socket:SocketIOClient!
+    var firstTimeLoadData = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.addSegmentedControl()
-        setupChooseDropDown()
-        self.tableView.isHidden = true
-        tableView.tableFooterView = UIView()
-        socket = manager.defaultSocket
-        socket.connect()
-        socket.on(clientEvent: .connect) { (data, ack) in
-           
-            self.connectSocket()
-        }
-        
+        initSocket()
+        SetUI()
     }
     override func viewDidLayoutSubviews() {
         self.addGradientWithColor()
-        
-        btnDailPad.layer.cornerRadius = btnDailPad.frame.size.height / 2
-        btnDailPad.clipsToBounds = true
+        configreButton()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        self.getChatList(loader: true)
-        
+        self.getChatList(loader: firstTimeLoadData)
+        self.getStatus()
     }
-    func connectSocket(){
+    //MARK: Helper Method
+    func SetUI(){
+        addSegmentedControl()
+        setupChooseDropDown()
         
-        socket.on("recieve message") { (items, ackEmitter) in
-           self.getChatList(loader: false)
+        self.tableView.isHidden = true
+        viewStatusOption.isHidden = true
+        tableView.tableFooterView = UIView()
+        self.tableView.register(UINib(nibName: "SatusTableViewCell", bundle: nil), forCellReuseIdentifier: "SatusTableViewCell")
+      
+    }
+    func initSocket(){
+        socket = manager.defaultSocket
+        socket.connect()
+        socket.on(clientEvent: .connect) { (data, ack) in
+            self.connectSocket()
         }
     }
-    @IBAction func btnDailPad(_ sender: Any) {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ContactViewController") as! ContactViewController
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-    @IBAction func btnShowMenu(_ sender: Any) {
-        chooseDropDown.show()
+    func configreButton(){
+        btnDailPad.layer.cornerRadius = btnDailPad.frame.size.height / 2
+        btnDailPad.clipsToBounds = true
+        btnEdit.layer.cornerRadius = btnEdit.frame.size.height / 2
+        btnEdit.clipsToBounds = true
+        btnCamera.layer.cornerRadius = btnCamera.frame.size.height / 2
+        btnCamera.clipsToBounds = true
     }
     func setupChooseDropDown() {
         chooseDropDown.anchorView = chooseButton
@@ -71,22 +82,78 @@ class ViewController: UIViewController {
         chooseDropDown.bottomOffset = CGPoint(x: 0, y: chooseButton.bounds.height)
         
         chooseDropDown.dataSource = [
-            "New Chat",
-            "Setting",
-            "Logout"
+            "New Group",
+            "Profile"
         ]
         
         // Action triggered on selection
         chooseDropDown.selectionAction = { [weak self] (index, item) in
             self?.chooseButton.setTitle(item, for: .normal)
-            if index == 2{
-                let vc = self?.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+            if index == 0{
+                let vc = self?.storyboard?.instantiateViewController(withIdentifier: "ContactViewController") as! ContactViewController
+                self?.navigationController?.pushViewController(vc, animated: true)
+            }
+            else if index == 1{
+                let vc = self?.storyboard?.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
                 self?.navigationController?.pushViewController(vc, animated: true)
             }
         }
     }
-    
-    
+    func addPhotoStatus(){
+        let picker = YPImagePicker()
+        picker.didFinishPicking { [unowned picker] items, _ in
+            if let photo = items.singlePhoto {
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "CreateImageStatusViewController") as! CreateImageStatusViewController
+                vc.image = photo.image ?? UIImage()
+                self.navigationController?.pushViewController(vc, animated: true)
+                
+            }
+            picker.dismiss(animated: true, completion: nil)
+        }
+        present(picker, animated: true, completion: nil)
+    }
+    func addNoData(message:String)->UIView{
+        let noData:UILabel = UILabel()
+        noData.frame = tableView.bounds
+        noData.textAlignment = .center
+        let attrs = [NSAttributedString.Key.foregroundColor: UIColor.black,
+                     NSAttributedString.Key.font: UIFont(name: "Roboto-Medium", size: 15)!]
+        noData.attributedText = NSAttributedString(string: message, attributes: attrs)
+        return noData
+    }
+    //MARK: IBAction method
+    @IBAction func btnSearch(_ sender: Any) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
+        vc.arrChatList = self.arrChatList
+        self.navigationController?.pushViewController(vc, animated: false)
+    }
+    func connectSocket(){
+        socket.on("recieve message") { (items, ackEmitter) in
+            self.getChatList(loader: false)
+        }
+        
+        let dict = [
+            "userId" : Global.sharedInstance.UserID,
+            ] as? [String: Any]
+        
+        socket.emit("online", dict!)
+        
+    }
+    @IBAction func btnDailPad(_ sender: Any) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ContactViewController") as! ContactViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    @IBAction func btnShowMenu(_ sender: Any) {
+        chooseDropDown.show()
+    }
+    @IBAction func btnAddTextStatus(_ sender: Any) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "CreateTextStatusViewController") as! CreateTextStatusViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    @IBAction func btnCameraStatus(_ sender: Any) {
+        self.addPhotoStatus()
+    }
+   
 }
 extension ViewController{
     func addSegmentedControl()
@@ -105,7 +172,7 @@ extension ViewController{
             NSAttributedString.Key.font : UIFont(name: "HelveticaNeue-Bold", size: 13.0)!
         ]
         segmentedControl.selectionStyle = .fullWidthStripe
-        segmentedControl.selectionIndicatorColor = UIColor.red
+        segmentedControl.selectionIndicatorColor = myColors.gradientLow
         segmentedControl.segmentWidthStyle = .fixed
         segmentedControl.selectionIndicatorLocation = .down
         segmentedControl.selectionIndicatorEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 20)
@@ -113,10 +180,7 @@ extension ViewController{
         segmentedControl.addTarget(self, action: #selector(self.segmentedControlChangedValue), for: .valueChanged)
         //view.addSubview(segmentedControl)
         viewSegment.addSubview(segmentedControl)
-        
-       // self.setArrayOnIndexChange()
-        
-    }
+ }
     
     func addGesture() -> Void {
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
@@ -163,94 +227,39 @@ extension ViewController{
     }
     
     @objc func segmentedControlChangedValue(_ segmentedControls: HMSegmentedControl) {
-        
-        //self.saveTablePosition()
-        
         let selectedSegment = Int(segmentedControls.selectedSegmentIndex)
-        
-//        if selectedSegment > Global.sharedInstance.indexOfHomeSegment {
-//            self.transition(2, controller: viewContainer)
-//        }
-//        else{
-//            self.transition(3, controller: viewContainer)
-//        }
+
+        if selectedSegment == 0 {
+            viewChatOption.isHidden = false
+            viewStatusOption.isHidden = true
+        }else{
+            viewChatOption.isHidden = true
+            viewStatusOption.isHidden = false
+        }
         
         Global.sharedInstance.indexOfHomeSegment = selectedSegment
         self.tableView.reloadData()
       
     }
-    
-}
-extension ViewController: UITableViewDelegate,UITableViewDataSource{
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if Global.sharedInstance.indexOfHomeSegment == 0 {
-            if(self.arrChatList.count == 0)
-            {
-              self.tableView.backgroundView = self.addNoData(message: "No Recents chats available.")
-                
-            }else{
-                self.tableView.backgroundView = nil
-            }
-            return arrChatList.count
-        }else{
-            self.tableView.backgroundView = self.addNoData(message: "No Recents calls available.")
-           return 0
-        }
-       
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var str = "ChatTableViewCell"
-        if Global.sharedInstance.indexOfHomeSegment == 0 {
-           str = "ChatTableViewCell"
-            let cell = tableView.dequeueReusableCell(withIdentifier: str, for: indexPath) as! ChatTableViewCell
-           cell.setChatListData(chatList: arrChatList[indexPath.row])
-            
-            return cell
-        }else{
-           str = "ChatTableViewCell1"
-           let cell = tableView.dequeueReusableCell(withIdentifier: str, for: indexPath) as! ChatTableViewCell
-          return cell
-        }
-       
-    }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
-    }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if Global.sharedInstance.indexOfHomeSegment == 0{
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
-            vc.reciverID = arrChatList[indexPath.row].receiver_id
-            vc.userName = arrChatList[indexPath.row].username
-            vc.image = arrChatList[indexPath.row].avatar
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
-        
-    }
-}
-extension ViewController{
-    
     func getChatList(loader:Bool){
         chatListHandler.chatListHandler(loader:loader, completion: {
             arrChatList,success,_ in
              self.tableView.isHidden = false
             if success == true{
+                self.firstTimeLoadData = false
                 self.arrChatList = arrChatList
                 self.tableView.reloadData()
-            }else{
-                
             }
-            
-            
         })
     }
-    func addNoData(message:String)->UIView{
-        let noData:UILabel = UILabel()
-        noData.frame = tableView.bounds
-        noData.textAlignment = .center
-        let attrs = [NSAttributedString.Key.foregroundColor: UIColor.black,
-                     NSAttributedString.Key.font: UIFont(name: "Roboto-Medium", size: 15)!]
-        noData.attributedText = NSAttributedString(string: message, attributes: attrs)
-        return noData
+    func getStatus(){
+        chatListHandler.getStatus(loader: false, completion: {otherStatus,myStatus,_,_  in
+            DispatchQueue.main.async {
+                self.myStatus = myStatus
+                self.otherStatus = otherStatus
+                self.tableView.reloadData()
+            }
+            
+        })
     }
 }

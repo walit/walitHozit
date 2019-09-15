@@ -55,8 +55,9 @@ class IntroViewController: UIViewController {
                             self.navigationController?.pushViewController(vc, animated: true)
                             
                         }else{
-                          //  self.showAlertFor(alertTitle: "Error", alertMessage: "Please login in main app.")
-                             self.login()
+                            let vc = self.storyboard?.instantiateViewController(withIdentifier: "SignINViewController") as! SignINViewController
+                            self.navigationController?.pushViewController(vc, animated: true)
+                            
                         }
                     })
                 
@@ -78,7 +79,9 @@ class IntroViewController: UIViewController {
                     self.navigationController?.pushViewController(vc, animated: true)
                     
                 }else{
-                    self.login()
+                  
+                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "SignINViewController") as! SignINViewController
+                    self.navigationController?.pushViewController(vc, animated: true)
                 }
             })
         

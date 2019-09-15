@@ -20,7 +20,7 @@ class Global: NSObject
     var UserID = String()
     var UserName = String()
     var UserImage = String()
-
+    var FCMToken = String()
     var AccessToken = String()
     var IsAnswered = true
 

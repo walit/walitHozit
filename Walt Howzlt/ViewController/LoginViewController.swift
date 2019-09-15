@@ -41,6 +41,8 @@ class LoginViewController: UIViewController {
         }
         imgUser.layer.cornerRadius = imgUser.frame.size.width / 2
         imgUser.clipsToBounds = true
+        btnLogin.titleLabel?.adjustsFontSizeToFitWidth = true
+        
     }
     override func viewDidLayoutSubviews() {
         self.addGradientWithColor()

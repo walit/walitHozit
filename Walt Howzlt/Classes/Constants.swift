@@ -50,8 +50,8 @@ struct Padding
 struct myURLs
 {
 
-    static let stagingURL = "http://smtgroup.in/walit/howzitapi/index.php"
-    static let liveURL = "http://smtgroup.in/walit/howzitapi/index.php/"
+    static let stagingURL = "http://walit.net/api/howzit/v1/"
+    static let liveURL = "http://walit.net/api/howzit/v1/"
     
     static let baseSocketURL = "http://35.239.79.227:2021"
 }
@@ -62,6 +62,7 @@ struct ApiNames
     static let VGetContacts = "GetContacts"
     static let VGetMessages = "GetMessages"
     static let VSendMessage = "SendMessage"
+    static let VGetStatus = "GetCurrentStatus"
 }
 
 var strUserName = ""
@@ -165,6 +166,7 @@ extension UIViewController {
     
 }
 
+
 extension Data {
     func hexString() -> String {
         return self.reduce("") { string, byte in
@@ -189,7 +191,8 @@ extension UIViewController {
 extension NSObject {
     
     func makeMyToastActivity() -> Void {
-        
+        UIApplication.shared.beginIgnoringInteractionEvents()
+      
         Global.sharedInstance.activityIndicatorView.color = myColors.AppThemeOrange
         Global.sharedInstance.activityIndicatorView.center = Miscellaneous.APPDELEGATE.window!.center
         Miscellaneous.APPDELEGATE.window!.addSubview(Global.sharedInstance.activityIndicatorView)
@@ -200,7 +203,11 @@ extension NSObject {
         
     }
     func stopMyToastActivity() -> Void {
-        Global.sharedInstance.activityIndicatorView.stopAnimating()
+        DispatchQueue.main.async {
+             UIApplication.shared.endIgnoringInteractionEvents()
+            Global.sharedInstance.activityIndicatorView.stopAnimating()
+        }
+        
     }
     
     
@@ -213,7 +220,10 @@ extension NSObject {
         }
         
         alert.addAction(cameraAction)
-        UIApplication.shared.keyWindow?.rootViewController?.present(alert, animated: true, completion: nil)
+        DispatchQueue.main.async {
+         UIApplication.shared.keyWindow?.rootViewController?.present(alert, animated: true, completion: nil)
+        }
+        
     }
     
     func makeMyExclusiveToast(alertTitle : String, alertMessage : String) -> Void
@@ -486,4 +496,44 @@ public extension UIDevice {
         }
     }
     
+}
+extension Date {
+    /// Returns the amount of years from another date
+    func years(from date: Date) -> Int {
+        return Calendar.current.dateComponents([.year], from: date, to: self).year ?? 0
+    }
+    /// Returns the amount of months from another date
+    func months(from date: Date) -> Int {
+        return Calendar.current.dateComponents([.month], from: date, to: self).month ?? 0
+    }
+    /// Returns the amount of weeks from another date
+    func weeks(from date: Date) -> Int {
+        return Calendar.current.dateComponents([.weekOfMonth], from: date, to: self).weekOfMonth ?? 0
+    }
+    /// Returns the amount of days from another date
+    func days(from date: Date) -> Int {
+        return Calendar.current.dateComponents([.day], from: date, to: self).day ?? 0
+    }
+    /// Returns the amount of hours from another date
+    func hours(from date: Date) -> Int {
+        return Calendar.current.dateComponents([.hour], from: date, to: self).hour ?? 0
+    }
+    /// Returns the amount of minutes from another date
+    func minutes(from date: Date) -> Int {
+        return Calendar.current.dateComponents([.minute], from: date, to: self).minute ?? 0
+    }
+    /// Returns the amount of seconds from another date
+    func seconds(from date: Date) -> Int {
+        return Calendar.current.dateComponents([.second], from: date, to: self).second ?? 0
+    }
+    /// Returns the a custom time interval description from another date
+    func offset(from date: Date) -> String {
+        if years(from: date)   == 1 { return "\(years(from: date)) year"   } else if years(from: date)   > 1 { return "\(years(from: date)) years"   }
+        if months(from: date)  == 1 { return "\(months(from: date)) month"  } else if months(from: date)  > 1 { return "\(months(from: date)) month"  }
+        if weeks(from: date)   == 1 { return "\(weeks(from: date)) week"   } else if weeks(from: date)   > 1 { return "\(weeks(from: date)) weeks"   }
+        if days(from: date)    == 1 { return "\(days(from: date)) day"    } else if days(from: date)    > 1 { return "\(days(from: date)) days"    }
+        if hours(from: date)   == 1 { return "\(hours(from: date)) hour"   } else if hours(from: date)   > 1 { return "\(hours(from: date)) hours"   }
+        if minutes(from: date) == 1 { return "\(minutes(from: date)) minute" } else if minutes(from: date) > 1 { return "\(minutes(from: date)) minutes" }
+        return ""
+    }
 }

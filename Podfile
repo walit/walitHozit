@@ -5,7 +5,7 @@ target 'Walt Howzlt' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 pod 'Parchment'
-#pod 'IQKeyboardManagerSwift'
+pod 'IQKeyboardManagerSwift'
 pod 'Alamofire'
 pod 'SwiftyJSON’
 pod 'CountryPickerView'
@@ -19,4 +19,10 @@ pod 'Starscream'
 pod 'Socket.IO-Client-Swift'
 pod 'LocationPicker'
 #pod 'ImageViewer'
+pod 'OpalImagePicker'
+pod 'Firebase/Analytics'
+pod 'Firebase/Messaging'
+pod 'ISEmojiView'
+pod 'AudioPlayerSwift'
+pod 'YPImagePicker'
 end
