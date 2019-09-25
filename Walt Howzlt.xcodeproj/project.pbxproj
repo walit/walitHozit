@@ -19,6 +19,7 @@
 		6B0E8BA3232C069A0064BBD8 /* ViewController+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0E8BA2232C069A0064BBD8 /* ViewController+TableView.swift */; };
 		6B0E8BA5232C0C770064BBD8 /* Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0E8BA4232C0C770064BBD8 /* Extention.swift */; };
 		6B0E8BA7232D38670064BBD8 /* StatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0E8BA6232D38670064BBD8 /* StatusModel.swift */; };
+		6B100ACC2331D476004C29BC /* SKRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B100ACB2331D476004C29BC /* SKRecordView.swift */; };
 		6B2D150322EC3FF400EC7C11 /* participantsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2D150222EC3FF400EC7C11 /* participantsTableViewCell.swift */; };
 		6B2D150522EC40E500EC7C11 /* GroupInfoHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2D150422EC40E500EC7C11 /* GroupInfoHandler.swift */; };
 		6B2D150722EC4CF500EC7C11 /* MediaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2D150622EC4CF500EC7C11 /* MediaTableViewCell.swift */; };
@@ -40,6 +41,9 @@
 		6B35BB9022B55916004C1867 /* VideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B35BB8E22B55916004C1867 /* VideoTableViewCell.swift */; };
 		6B35BB9122B55916004C1867 /* VideoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B35BB8F22B55916004C1867 /* VideoTableViewCell.xib */; };
 		6B35BB9422B61F9A004C1867 /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B35BB9322B61F9A004C1867 /* CreateGroupViewController.swift */; };
+		6B363658233A8C7A004DD425 /* loadercontact.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6B363657233A8C79004DD425 /* loadercontact.gif */; };
+		6B36365B233A94DB004DD425 /* IncommingContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B363659233A94DB004DD425 /* IncommingContactTableViewCell.swift */; };
+		6B36365C233A94DB004DD425 /* IncommingContactTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B36365A233A94DB004DD425 /* IncommingContactTableViewCell.xib */; };
 		6B6BA19922FFE30E0012A765 /* KeybordConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6BA19822FFE30E0012A765 /* KeybordConstraints.swift */; };
 		6B73D31422B88E87006E4495 /* AddGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B73D31322B88E87006E4495 /* AddGroupViewController.swift */; };
 		6B73D31622BB2936006E4495 /* GroupChatHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B73D31522BB2936006E4495 /* GroupChatHandler.swift */; };
@@ -137,6 +141,7 @@
 		6B0E8BA2232C069A0064BBD8 /* ViewController+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+TableView.swift"; sourceTree = "<group>"; };
 		6B0E8BA4232C0C770064BBD8 /* Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extention.swift; sourceTree = "<group>"; };
 		6B0E8BA6232D38670064BBD8 /* StatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusModel.swift; sourceTree = "<group>"; };
+		6B100ACB2331D476004C29BC /* SKRecordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKRecordView.swift; sourceTree = "<group>"; };
 		6B2D150222EC3FF400EC7C11 /* participantsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = participantsTableViewCell.swift; sourceTree = "<group>"; };
 		6B2D150422EC40E500EC7C11 /* GroupInfoHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupInfoHandler.swift; sourceTree = "<group>"; };
 		6B2D150622EC4CF500EC7C11 /* MediaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaTableViewCell.swift; sourceTree = "<group>"; };
@@ -158,6 +163,9 @@
 		6B35BB8E22B55916004C1867 /* VideoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTableViewCell.swift; sourceTree = "<group>"; };
 		6B35BB8F22B55916004C1867 /* VideoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoTableViewCell.xib; sourceTree = "<group>"; };
 		6B35BB9322B61F9A004C1867 /* CreateGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
+		6B363657233A8C79004DD425 /* loadercontact.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loadercontact.gif; sourceTree = "<group>"; };
+		6B363659233A94DB004DD425 /* IncommingContactTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncommingContactTableViewCell.swift; sourceTree = "<group>"; };
+		6B36365A233A94DB004DD425 /* IncommingContactTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IncommingContactTableViewCell.xib; sourceTree = "<group>"; };
 		6B6BA19822FFE30E0012A765 /* KeybordConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeybordConstraints.swift; sourceTree = "<group>"; };
 		6B73D31322B88E87006E4495 /* AddGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupViewController.swift; sourceTree = "<group>"; };
 		6B73D31522BB2936006E4495 /* GroupChatHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChatHandler.swift; sourceTree = "<group>"; };
@@ -305,6 +313,14 @@
 			path = "New Group";
 			sourceTree = "<group>";
 		};
+		6B100ACD2331D48D004C29BC /* Recording */ = {
+			isa = PBXGroup;
+			children = (
+				6B100ACB2331D476004C29BC /* SKRecordView.swift */,
+			);
+			path = Recording;
+			sourceTree = "<group>";
+		};
 		6B2D14FF22EC3FB200EC7C11 /* Group */ = {
 			isa = PBXGroup;
 			children = (
@@ -349,6 +365,8 @@
 				6BF46CCD22ED78D80036FCE6 /* ParticipantsAddTableViewCell.xib */,
 				6BFAEE182322B05200BF1C92 /* DocTableViewCell.swift */,
 				6BFAEE192322B05200BF1C92 /* DocTableViewCell.xib */,
+				6B363659233A94DB004DD425 /* IncommingContactTableViewCell.swift */,
+				6B36365A233A94DB004DD425 /* IncommingContactTableViewCell.xib */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -480,6 +498,7 @@
 		DC3DDEAA21E0EB9C003809D2 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				6B100ACD2331D48D004C29BC /* Recording */,
 				6B0E8B9D2324DDE50064BBD8 /* New Group */,
 				6B2F93AF232237AF00FFA79C /* statusVC */,
 				0FFA6C59231C245F0087FF91 /* AudioPlayView */,
@@ -545,6 +564,7 @@
 			isa = PBXGroup;
 			children = (
 				6BBC25F322E30DB000AAF77D /* AFFv.gif */,
+				6B363657233A8C79004DD425 /* loadercontact.gif */,
 				DC3DDE9821E0DF7C003809D2 /* Assets.xcassets */,
 				DC3DDE9A21E0DF7C003809D2 /* LaunchScreen.storyboard */,
 				DC3DDE9521E0DF7A003809D2 /* Main.storyboard */,
@@ -697,12 +717,14 @@
 				6BF46CCF22ED78D80036FCE6 /* ParticipantsAddTableViewCell.xib in Resources */,
 				DC3DDED121E242A9003809D2 /* Roboto-Regular.ttf in Resources */,
 				6BBC260222E4B1DD00AAF77D /* MultiImageTableViewCell.xib in Resources */,
+				6B36365C233A94DB004DD425 /* IncommingContactTableViewCell.xib in Resources */,
 				6BFAEE1B2322B05200BF1C92 /* DocTableViewCell.xib in Resources */,
 				6B2F93AA2322107200FFA79C /* SatusTableViewCell.xib in Resources */,
 				6B35BB8D22B55907004C1867 /* AudioTableViewCell.xib in Resources */,
 				DC3DDED221E242A9003809D2 /* Roboto-Thin.ttf in Resources */,
 				DC3DDED321E242A9003809D2 /* Roboto-ThinItalic.ttf in Resources */,
 				6B35BB8922B4ACC9004C1867 /* LocationTableViewCell.xib in Resources */,
+				6B363658233A8C7A004DD425 /* loadercontact.gif in Resources */,
 				DC3DDE9C21E0DF7C003809D2 /* LaunchScreen.storyboard in Resources */,
 				DC3DDE9921E0DF7C003809D2 /* Assets.xcassets in Resources */,
 				DC3DDEA421E0E077003809D2 /* Flare.jpg in Resources */,
@@ -881,6 +903,8 @@
 				DC3DDEDA21E279EF003809D2 /* ContactViewController.swift in Sources */,
 				6B2F93B1232237D100FFA79C /* CreateTextStatusViewController.swift in Sources */,
 				6B7BF67B228A7F0000E9D2B4 /* ChatImageTableViewCell.swift in Sources */,
+				6B36365B233A94DB004DD425 /* IncommingContactTableViewCell.swift in Sources */,
+				6B100ACC2331D476004C29BC /* SKRecordView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1040,7 +1064,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.walitco.WalitHowzlt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = howzit_dev_new;
+				PROVISIONING_PROFILE_SPECIFIER = dev_new_walit;
 				SWIFT_OBJC_BRIDGING_HEADER = "Walt Howzlt/Walt Howzlt-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
@@ -1055,7 +1079,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Walt Howzlt/Walt Howzlt.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = Y3CL89H8DA;
 				INFOPLIST_FILE = "Walt Howzlt/Info.plist";
@@ -1066,7 +1090,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.walitco.WalitHowzlt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = howzit_dev_new;
+				PROVISIONING_PROFILE_SPECIFIER = "app store howzit new";
 				SWIFT_OBJC_BRIDGING_HEADER = "Walt Howzlt/Walt Howzlt-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;

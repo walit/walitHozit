@@ -10,11 +10,10 @@ import UIKit
 
 class AudioPlayView: UIView {
     
+    @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var btnPlay: UIButton!
-    @IBOutlet weak var lblDuration: UILabel!
-    @IBOutlet weak var slider: UISlider!
-    @IBOutlet weak var lblTotolDuration: UILabel!
    
+    var strFileName = String()
     var url = String()
     var callBackFinishPlay: (()->())?
     let audioPlayer = AudioPlayer()
@@ -22,8 +21,8 @@ class AudioPlayView: UIView {
     func initPlayerView(){
         btnPlay.setImage(UIImage(named:"round-pause-button"), for: .normal)
         btnPlay.tag = 1
-        lblDuration.text = "0:00"
-        lblTotolDuration.text = "05:00"
+        lblTitle.text = strFileName
+        
         btnPlay.layer.cornerRadius = 4
         addGradientWithColor()
         audioPlayer.url = self.url
@@ -34,7 +33,7 @@ class AudioPlayView: UIView {
             self.removeFromSuperview()
             self.callBackFinishPlay?()
         }
-        self.audioPlayer.playSound()
+        
     }
     @IBAction func btnPlay(_ sender: Any) {
         if self.audioPlayer.isplay {

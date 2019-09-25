@@ -35,6 +35,9 @@ class ViewController: UIViewController {
     var socket:SocketIOClient!
     var firstTimeLoadData = true
     
+   
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initSocket()
@@ -50,6 +53,7 @@ class ViewController: UIViewController {
         self.getStatus()
     }
     //MARK: Helper Method
+    
     func SetUI(){
         addSegmentedControl()
         setupChooseDropDown()
@@ -263,3 +267,4 @@ extension ViewController{
         })
     }
 }
+

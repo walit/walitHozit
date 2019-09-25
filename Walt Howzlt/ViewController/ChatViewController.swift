@@ -53,7 +53,8 @@ class ChatViewController: UIViewController {
     
     let manager = SocketManager.init(socketURL: URL(string:"http://132.148.145.112:2021")!, config: [.log(true), .compress])
     var socket:SocketIOClient!
-
+    let recordingView = SKRecordView(frame: CGRect(x:0, y:UIScreen.main.bounds.height-100 , width:UIScreen.main.bounds.width , height:100))
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -64,7 +65,27 @@ class ChatViewController: UIViewController {
         getMessage()
         setUI()
     }
+    override func viewWillLayoutSubviews() {
+         self.scrollToBottom()
+    }
+    func setupRecordView()  {
+        recordingView.delegate = self
+        recordingView.recordingImages = [UIImage(named: "rec-1.png")!,UIImage(named: "rec-2.png")!,UIImage(named: "rec-3.png")!,UIImage(named: "rec-4.png")!,UIImage(named: "rec-5.png")!,UIImage(named: "rec-6.png")!]
+        recordingView.normalImage = UIImage(named: "baseline_mic_black_48")!
+        
+        view.addSubview(recordingView)
+        
+        let vConsts = NSLayoutConstraint(item:self.recordingView , attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1.0, constant: 0)
+        
+        let hConsts = NSLayoutConstraint(item: self.recordingView, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailing, multiplier: 1.0, constant: -10)
+        
+        
+        view.addConstraints([hConsts])
+        view.addConstraints([vConsts])
+        ///recordingView.setupRecordingView()
+    }
     func setUI(){
+         setupChooseDropDown()
          tableView.backgroundView = UIImageView(image: UIImage(named: "chat_background"))
         viewAttacment.isHidden = true
         viewHeight.constant  = 60
@@ -86,15 +107,22 @@ class ChatViewController: UIViewController {
     func configureTableView(){
         tableView.estimatedRowHeight = 66
         tableView.rowHeight = UITableView.automaticDimension
+        
         self.tableView.register(UINib(nibName: "MultiImageTableViewCell", bundle: nil), forCellReuseIdentifier: "MultiImageTableViewCell")
+        
         self.tableView.register(UINib(nibName: "GifTableViewCell", bundle: nil), forCellReuseIdentifier: "GifTableViewCell")
         
         self.tableView.register(UINib(nibName: "HelloTableViewCell", bundle: nil), forCellReuseIdentifier: "HelloTableViewCell")
+       
         self.tableView.register(UINib(nibName: "LocationTableViewCell", bundle: nil), forCellReuseIdentifier: "LocationTableViewCell")
+        
+        self.tableView.register(UINib(nibName: "IncommingContactTableViewCell", bundle: nil), forCellReuseIdentifier: "IncommingContactTableViewCell")
         
         self.tableView.register(UINib(nibName: "AudioTableViewCell", bundle: nil), forCellReuseIdentifier: "AudioTableViewCell")
         
         tableView.register(LocationTableViewCell.self, forCellReuseIdentifier: "LocationTableViewCellell")
+        
+       // tableView.register(IncommingContactTableViewCell.self, forCellReuseIdentifier: "IncommingContactTableViewCell")
         
         self.tableView.register(UINib(nibName: "DocTableViewCell", bundle: nil), forCellReuseIdentifier: "DocTableViewCell")
     }
@@ -144,7 +172,22 @@ class ChatViewController: UIViewController {
                 print(items)
                 self.setLastSeen(items)
             }
+            socket.on("typing") { (items, ackEmitter) in
+                print(items)
+              
+                let dict = items[0] as? [String:Any]
+                let receiver_id = dict?["receiver_id"] as? String
+                if receiver_id == Global.sharedInstance.UserID
+                {
+                    self.lblStatus.text = "typing"
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        self.lblStatus.text = "Online"
+                    }
+                }
+                
+            }
         }
+        
         socket.on("recieve message") { (items, ackEmitter) in
            self.receiveMessage(items: items)
         }
@@ -251,7 +294,35 @@ class ChatViewController: UIViewController {
             
         }
     }
+    func setupChooseDropDown() {
+        chooseDropDown.anchorView = chooseButton
+        chooseDropDown.backgroundColor = UIColor.white
+        
+        chooseDropDown.bottomOffset = CGPoint(x: 0, y: chooseButton.bounds.height)
+        
+        chooseDropDown.dataSource = [
+            "View Info",
+            
+        ]
+        
+        // Action triggered on selection
+        chooseDropDown.selectionAction = { [weak self] (index, item) in
+            self?.chooseButton.setTitle(item, for: .normal)
+            if self?.is_group == "1"{
+                let vc = self?.storyboard?.instantiateViewController(withIdentifier: "GroupDetailViewController") as! GroupDetailViewController
+                vc.groupID = self?.group_id ?? ""
+                self?.navigationController?.pushViewController(vc, animated: true)
+            }else{
+                let vc = self?.storyboard?.instantiateViewController(withIdentifier: "UserInfoViewController") as! UserInfoViewController
+                vc.userID = self?.reciverID ?? ""
+                self?.navigationController?.pushViewController(vc, animated: true)
+            }
+            
+        }
+    }
     //MARK: IBAction
+    
+    
     @IBAction func btnShowMenu(_ sender: Any) {
         chooseDropDown.show()
     }
@@ -632,9 +703,11 @@ extension ChatViewController:UIImagePickerControllerDelegate,UINavigationControl
         self.view.addSubview(imageview)
         let dict = convertToArryDictionary(text: strImage)
         if dict == nil {return}
-        let fileName = dict?[0]["file_url"] as! String
+        let file_url = dict?[0]["file_url"] as! String
+        let fileName = dict?[0]["file_name"] as! String
         let myCustomView: AudioPlayView = .fromNib()
-        myCustomView.url = fileName
+        myCustomView.url = file_url
+        myCustomView.strFileName = fileName
         myCustomView.initPlayerView()
         myCustomView.callBackFinishPlay = {
             imageview.removeFromSuperview()
@@ -788,8 +861,18 @@ extension ChatViewController :UIDocumentMenuDelegate,UIDocumentPickerDelegate{
     }
 }
 extension ChatViewController : UITextViewDelegate{
-    func textViewDidChange(_ textView: UITextView) {
     
+    func textViewDidChange(_ textView: UITextView) {
+       
+        let dict = [
+            "sender_id" : Global.sharedInstance.UserID,
+            "receiver_id" : self.reciverID
+            ] as? [String: Any]
+        
+        socket.emit("typing", dict!)
+        
+        
+        
         txtMesageView.isScrollEnabled = false
         if self.txtMesageView.contentSize.height == 0 {
             viewHeight.constant = 60
@@ -804,4 +887,36 @@ extension ChatViewController : UITextViewDelegate{
             self.btnMikeImage.setImage(UIImage(named: "ic_send_black_xxxhdpi"), for: .normal)
         }
     }
+}
+extension ChatViewController:SKRecordViewDelegate{
+    func SKRecordViewDidSelectRecord(_ sender: SKRecordView, button: UIView) {
+        sender.state = .none
+        sender.setupRecordButton(UIImage(named: "baseline_mic_black_48")!)
+        recordingView.audioRecorder?.stop()
+        recordingView.recordButton.imageView?.stopAnimating()
+        
+        print("Cancelled")
+    }
+    
+    func SKRecordViewDidStopRecord(_ sender: SKRecordView, button: UIView) {
+        sender.state = .recording
+        sender.setupRecordButton(UIImage(named: "rec-1.png")!)
+        sender.audioRecorder?.record()
+        recordingView.recordButton.imageView?.startAnimating()
+        
+        print("Began " + NSUUID().uuidString)
+    }
+    
+    func SKRecordViewDidCancelRecord(_ sender: SKRecordView, button: UIView) {
+        recordingView.audioRecorder?.stop()
+        
+        sender.state = .none
+        sender.setupRecordButton(UIImage(named: "baseline_mic_black_48")!)
+        print(recordingView.getFileURL())
+        recordingView.recordButton.imageView?.stopAnimating()
+        
+        print("Done")
+    }
+    
+    
 }

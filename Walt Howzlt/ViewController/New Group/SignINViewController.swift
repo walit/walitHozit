@@ -9,6 +9,7 @@
 import UIKit
 
 class SignINViewController: UIViewController {
+   
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var btnRemeber: UIButton!
     @IBOutlet weak var btnEye: UIButton!
@@ -98,8 +99,11 @@ class SignINViewController: UIViewController {
      let loginHandler =   LoginHandler()
         loginHandler.LoginHandler(email: txtEmail.text ?? "", password: txtPassword.text ?? "", completion: {success,_,_ in
             if success{
-                let vc = self.storyboard?.instantiateViewController(withIdentifier: "ViewController") as! ViewController
-                self.navigationController?.pushViewController(vc, animated: true)
+                DispatchQueue.main.async {
+                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+               
             }
         })
     }

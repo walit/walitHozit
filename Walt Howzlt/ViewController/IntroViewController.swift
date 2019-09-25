@@ -38,7 +38,7 @@ class IntroViewController: UIViewController {
                 let image = dictLogin?[myStrings.KUSERIMAGE] as! String
                 Global.setUserImage(setUserID: image)
                 
-                let vc = self.storyboard?.instantiateViewController(withIdentifier: "ViewController") as! ViewController
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }else{
@@ -55,38 +55,45 @@ class IntroViewController: UIViewController {
                             self.navigationController?.pushViewController(vc, animated: true)
                             
                         }else{
-                            let vc = self.storyboard?.instantiateViewController(withIdentifier: "SignINViewController") as! SignINViewController
-                            self.navigationController?.pushViewController(vc, animated: true)
+                            //
+                            let url = URL(string: "walitapp://")
+                            
+                            if let url = url {
+                                if UIApplication.shared.canOpenURL(url) {
+                                    
+                                    UIApplication.shared.openURL(url)
+                                } else {
+                                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "SignINViewController") as! SignINViewController
+                                    self.navigationController?.pushViewController(vc, animated: true)
+                                }
+                            }
+                            
                             
                         }
                     })
-                
-              
-        
-                
             }
         }
 }
-    func login ()
-    {
-        //let deviceId = UIDevice.current.identifierForVendor?.uuidString
-       let deviceId = keychain.get("device_uuid")
-       
-            self.loginHandler.SignInHandler(deviceID: deviceId ?? "", completion: {isValid,_,_ in
-                if isValid == true{
-                    
-                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-                    self.navigationController?.pushViewController(vc, animated: true)
-                    
-                }else{
-                  
-                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "SignINViewController") as! SignINViewController
-                    self.navigationController?.pushViewController(vc, animated: true)
-                }
-            })
-        
-        
-    }
+//    func login ()
+//    {
+//        //let deviceId = UIDevice.current.identifierForVendor?.uuidString
+//       let deviceId = keychain.get("device_uuid")
+//       
+//            self.loginHandler.SignInHandler(deviceID: deviceId ?? "", completion: {isValid,_,_ in
+//                if isValid == true{
+//                    
+//                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+//                    self.navigationController?.pushViewController(vc, animated: true)
+//                    
+//                }else{
+//                  
+//                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "SignINViewController") as! SignINViewController
+//                    self.navigationController?.pushViewController(vc, animated: true)
+//                }
+//            })
+//        
+//        
+//    }
     func clearAllFile() {
         let fileManager = FileManager.default
         let myDocuments = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!

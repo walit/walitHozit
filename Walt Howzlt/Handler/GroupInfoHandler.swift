@@ -182,6 +182,44 @@ class GroupInfoHandler {
         
         
     }
+    func uplaodUserImage(image:[UIImage],completion:@escaping (_ isDisclaimer: Bool, _ error: String,_ json : JSON)-> Void){
+        
+        if !Reachability.isConnectedToNetwork()
+        {
+            Miscellaneous.APPDELEGATE.window!.showAlertFor(alertTitle: myMessages.ERROR, alertMessage: myMessages.INTERNET_CONNECTIVITY_FAIL)
+            return
+        }
+        Miscellaneous.APPDELEGATE.window!.makeMyToastActivity()
+        
+        
+        
+        let headers = [
+            "ACCESS-TOKEN": Global.sharedInstance.AccessToken,
+            "Content-Type": "multipart/form-data",
+            "cache-control": "no-cache",
+            "Postman-Token": "d347f3d1-7e97-4823-b873-8989c64d5d66"
+        ]
+        
+        let parameters = [
+           
+            
+            :] as [String : AnyObject]
+        
+        self.callMultipartApi("http://walit.net/api/howzit/v1/ProfileImageChange", param: [String:AnyObject](), imageArray: image, method: .post, header: headers, encodeType: .default, videoData: nil, imageNameArray: ["profile_image"], location: true, completionHandler: {code,error,respose in
+            if code == 1{
+                let message  = respose?["message"].string
+                Miscellaneous.APPDELEGATE.window!.stopMyToastActivity()
+                Miscellaneous.APPDELEGATE.window!.showAlertFor(alertTitle: "", alertMessage: message ?? "")
+                completion(true,"",respose!)
+                
+                
+            }
+            
+            
+        })
+        
+        
+    }
     func callMultipartApi(_ strApiName:String,
                           param : [String : AnyObject],
                           imageArray : [UIImage]?,
@@ -216,7 +254,7 @@ class GroupInfoHandler {
                 if(imageArray != nil){
                     
                     for i in imageArray ?? [UIImage()]{
-                        multipartFormData.append(i.jpegData(compressionQuality: 0.1)!, withName:"group_image", fileName: "\(self.randomString(length: 8)).jpeg", mimeType: "image/jpeg")
+                        multipartFormData.append(i.jpegData(compressionQuality: 0.1)!, withName:imageNameArray?[0] ?? "group_image", fileName: "\(self.randomString(length: 8)).jpeg", mimeType: "image/jpeg")
                     }
                 }
                 

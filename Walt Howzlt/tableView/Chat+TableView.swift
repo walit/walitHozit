@@ -9,6 +9,9 @@
 import UIKit
 import SwiftyJSON
 import SafariServices
+import MessageUI
+import Contacts
+import ContactsUI
 extension ChatViewController: UITableViewDelegate,UITableViewDataSource{
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -72,13 +75,26 @@ extension ChatViewController: UITableViewDelegate,UITableViewDataSource{
             cell.configureCell(chatItem: self.arrChatItem[indexPath.row])
             return cell
         }else if arrChatItem[indexPath.row].message_type == "3"{
-            
-            let str = "ChatContactTableViewCell"
-            
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: str, for: indexPath) as! ChatContactTableViewCell
-            cell.configureCell(chatItem: self.arrChatItem[indexPath.row])
-            return cell
+            if self.arrChatItem[indexPath.row].sender_id != Global.sharedInstance.UserID{
+                let str = "IncommingContactTableViewCell"
+                let cell = tableView.dequeueReusableCell(withIdentifier: str, for: indexPath) as! IncommingContactTableViewCell
+                 cell.configureCell(chatItem: self.arrChatItem[indexPath.row])
+                cell.callbackInvite = {
+                    self.sendMessage()
+                }
+                cell.callbackAddConatct = {
+                    self.saveContact(chatItem: self.arrChatItem[indexPath.row])
+                }
+                return cell
+            }else{
+                let str = "ChatContactTableViewCell"
+                
+                
+                let cell = tableView.dequeueReusableCell(withIdentifier: str, for: indexPath) as! ChatContactTableViewCell
+                cell.configureCell(chatItem: self.arrChatItem[indexPath.row])
+                return cell
+            }
+           
             
         }else if arrChatItem[indexPath.row].message_type == "4"{
             
@@ -92,7 +108,7 @@ extension ChatViewController: UITableViewDelegate,UITableViewDataSource{
             let dict = convertToArryDictionary(text: strImage)
             let filetype = dict![0]["file_type"] as? String
             
-             if filetype == "audio"{
+             if filetype == "audio" || filetype == "recording"{
                 let str = "AudioTableViewCell"
                 let cell = tableView.dequeueReusableCell(withIdentifier: str, for: indexPath) as! AudioTableViewCell
                 cell.cofigureCell(item: self.arrChatItem[indexPath.row])
@@ -149,7 +165,7 @@ extension ChatViewController: UITableViewDelegate,UITableViewDataSource{
             let strImage = self.arrChatItem[indexPath.row].message
             let dict = convertToArryDictionary(text: strImage)
             let filetype = dict![0]["file_type"] as? String
-            if filetype == "audio"{
+            if filetype == "audio" || filetype == "recording"{
                 return 60
             }else if filetype == "photo"{
                return 200
@@ -189,4 +205,49 @@ extension ChatViewController: UITableViewDelegate,UITableViewDataSource{
     }
 
     
+}
+extension ChatViewController : MFMessageComposeViewControllerDelegate{
+    func sendMessage(){
+        if (MFMessageComposeViewController.canSendText()) {
+            let controller = MFMessageComposeViewController()
+            controller.body = "Share with the people want to get in touch. Get it to free at https://apps.apple.com/us/app/walit/id1475413727?ls=1"
+            controller.recipients = [""]
+            controller.messageComposeDelegate = self
+            self.present(controller, animated: true, completion: nil)
+        }
+    }
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        //... handle sms screen actions
+        self.dismiss(animated: true, completion: nil)
+    }
+    func saveContact(chatItem:ChatModel){
+        let strImage = chatItem.message
+        let dict = convertToDictionary(text: strImage)
+        let name  = (dict!["name"] as! String)
+        let number  = (dict!["phone"] as! String)
+        let con = CNMutableContact()
+        con.givenName = name
+        con.familyName = ""
+        con.phoneNumbers.append(CNLabeledValue(
+            label: name, value: CNPhoneNumber(stringValue: number)))
+        let unkvc = CNContactViewController(forUnknownContact: con)
+        unkvc.message = ""
+        unkvc.contactStore = CNContactStore()
+       // unkvc.delegate = self
+        unkvc.allowsActions = false
+        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.pushViewController(unkvc, animated: true)
+    }
+}
+extension ChatViewController{
+    func convertToDictionary(text: String) -> [String: Any]? {
+        if let data = text.data(using: .utf8) {
+            do {
+                return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        return nil
+    }
 }

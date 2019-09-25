@@ -26,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walt Howzlt/Handler/GroupInfoHandler.swift"
-            timestampString = "589454704.6681449"
+            timestampString = "590469172.1669869"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "129"
@@ -154,12 +154,12 @@
                   moduleName = "Walt Howzlt"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/kavita/Desktop/Walt%20HowzltLatest/Walt%20Howzlt/ViewController/Group/AddGroupViewController.swift"
-                  timestampString = "590166654.47788"
+                  timestampString = "591074329.690739"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "45"
                   endingLineNumber = "45"
-                  offsetFromSymbolStart = "48">
+                  offsetFromSymbolStart = "44">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -169,12 +169,12 @@
                   moduleName = "Walt Howzlt"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/kavita/Desktop/Walt%20HowzltLatest/Walt%20Howzlt/ViewController/Group/AddGroupViewController.swift"
-                  timestampString = "590166654.480691"
+                  timestampString = "591074329.694481"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "45"
                   endingLineNumber = "45"
-                  offsetFromSymbolStart = "552">
+                  offsetFromSymbolStart = "501">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -202,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walt Howzlt/Handler/GroupInfoHandler.swift"
-            timestampString = "589454704.668445"
+            timestampString = "590469172.167418"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "509"
-            endingLineNumber = "509"
+            startingLineNumber = "547"
+            endingLineNumber = "547"
             landmarkName = "addGroupMember(group_id:group_member:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -218,11 +218,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walt Howzlt/Handler/GroupInfoHandler.swift"
-            timestampString = "589454704.668528"
+            timestampString = "590469172.167509"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "382"
-            endingLineNumber = "382"
+            startingLineNumber = "420"
+            endingLineNumber = "420"
             landmarkName = "dismissGroupName(group_id:member_id:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -234,11 +234,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walt Howzlt/ViewController/ChatViewController.swift"
-            timestampString = "590167657.020885"
+            timestampString = "591074581.601176"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "684"
-            endingLineNumber = "684"
+            startingLineNumber = "757"
+            endingLineNumber = "757"
             landmarkName = "sendContact(name:contact:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -330,11 +330,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walt Howzlt/ViewController/ChatViewController.swift"
-            timestampString = "590167657.0210789"
+            timestampString = "591074581.601853"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "753"
-            endingLineNumber = "753"
+            startingLineNumber = "826"
+            endingLineNumber = "826"
             landmarkName = "ChatViewController"
             landmarkType = "21">
          </BreakpointContent>
@@ -346,11 +346,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walt Howzlt/ViewController/ChatViewController.swift"
-            timestampString = "590167657.021139"
+            timestampString = "591074581.602252"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "753"
-            endingLineNumber = "753"
+            startingLineNumber = "826"
+            endingLineNumber = "826"
             landmarkName = "ChatViewController"
             landmarkType = "21">
          </BreakpointContent>
@@ -362,11 +362,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walt Howzlt/ViewController/ChatViewController.swift"
-            timestampString = "590167657.021194"
+            timestampString = "591074581.602596"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "753"
-            endingLineNumber = "753"
+            startingLineNumber = "826"
+            endingLineNumber = "826"
             landmarkName = "ChatViewController"
             landmarkType = "21">
          </BreakpointContent>
@@ -425,13 +425,121 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Walt Howzlt/ViewController/ChatViewController.swift"
-            timestampString = "590167657.02134"
+            filePath = "Walt Howzlt/ViewController/Group/EditGroupImageViewController.swift"
+            timestampString = "590347942.3930531"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "800"
-            endingLineNumber = "800"
-            landmarkName = "textViewDidChange(_:)"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "EditGroupImageViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Walt_Howzlt.EditGroupImageViewController.imagePicker.getter : __C.UIImagePickerController"
+                  moduleName = "Walt Howzlt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kavita/Desktop/Walt%20HowzltLatest/Walt%20Howzlt/ViewController/Group/EditGroupImageViewController.swift"
+                  timestampString = "591074329.767418"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "114">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Walt_Howzlt.EditGroupImageViewController.imagePicker.setter : __C.UIImagePickerController"
+                  moduleName = "Walt Howzlt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kavita/Desktop/Walt%20HowzltLatest/Walt%20Howzlt/ViewController/Group/EditGroupImageViewController.swift"
+                  timestampString = "591074329.7696511"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "128">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Walt_Howzlt.EditGroupImageViewController.imagePicker.modify : __C.UIImagePickerController"
+                  moduleName = "Walt Howzlt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kavita/Desktop/Walt%20HowzltLatest/Walt%20Howzlt/ViewController/Group/EditGroupImageViewController.swift"
+                  timestampString = "591074329.771979"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "18">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Walt_Howzlt.EditGroupImageViewController.imagePicker.modify : __C.UIImagePickerController with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "Walt Howzlt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kavita/Desktop/Walt%20HowzltLatest/Walt%20Howzlt/ViewController/Group/EditGroupImageViewController.swift"
+                  timestampString = "591074329.774236"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Walt_Howzlt.EditGroupImageViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; Walt_Howzlt.EditGroupImageViewController"
+                  moduleName = "Walt Howzlt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kavita/Desktop/Walt%20HowzltLatest/Walt%20Howzlt/ViewController/Group/EditGroupImageViewController.swift"
+                  timestampString = "591074329.776728"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "710">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Walt_Howzlt.EditGroupImageViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Walt_Howzlt.EditGroupImageViewController&gt;"
+                  moduleName = "Walt Howzlt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kavita/Desktop/Walt%20HowzltLatest/Walt%20Howzlt/ViewController/Group/EditGroupImageViewController.swift"
+                  timestampString = "591074329.779138"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "624">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/Handler/GroupInfoHandler.swift"
+            timestampString = "590469172.168557"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "210"
+            endingLineNumber = "210"
+            landmarkName = "uplaodUserImage(image:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -441,12 +549,236 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Walt Howzlt/ViewController/ContactViewController.swift"
-            timestampString = "589657124.882925"
+            filePath = "Walt Howzlt/Handler/GroupInfoHandler.swift"
+            timestampString = "590469172.168635"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
+            landmarkName = "uplaodUserImage(image:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/ViewController/Profile/ProfileViewController.swift"
+            timestampString = "590469172.16871"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
+            landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/ViewController/Profile/ProfileViewController.swift"
+            timestampString = "590469172.168766"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
+            landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/ViewController/Profile/ProfileViewController.swift"
+            timestampString = "590469172.168834"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
+            landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/Handler/GroupInfoHandler.swift"
+            timestampString = "590469172.168903"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "241"
+            endingLineNumber = "241"
+            landmarkName = "callMultipartApi(_:param:imageArray:method:header:encodeType:videoData:imageNameArray:location:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/Handler/GroupInfoHandler.swift"
+            timestampString = "590469172.16896"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "275"
+            endingLineNumber = "275"
+            landmarkName = "callMultipartApi(_:param:imageArray:method:header:encodeType:videoData:imageNameArray:location:completionHandler:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Alamofire.SessionManager.MultipartFormDataEncodingResult) -&gt; () in Walt_Howzlt.GroupInfoHandler.callMultipartApi(_: Swift.String, param: Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;, imageArray: Swift.Optional&lt;Swift.Array&lt;__C.UIImage&gt;&gt;, method: Alamofire.HTTPMethod, header: Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.String&gt;&gt;, encodeType: Alamofire.URLEncoding, videoData: Swift.Optional&lt;__C.NSURL&gt;, imageNameArray: Swift.Optional&lt;Swift.Array&lt;Swift.String&gt;&gt;, location: Swift.Bool, completionHandler: (Swift.Int, Swift.Optional&lt;__C.NSError&gt;, Swift.Optional&lt;SwiftyJSON.JSON&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Walt Howzlt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kavita/Desktop/Walt%20HowzltLatest/Walt%20Howzlt/Handler/GroupInfoHandler.swift"
+                  timestampString = "591074329.837535"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "275"
+                  endingLineNumber = "275"
+                  offsetFromSymbolStart = "467">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Alamofire.DataResponse&lt;Any&gt;) -&gt; () in closure #2 (Alamofire.SessionManager.MultipartFormDataEncodingResult) -&gt; () in Walt_Howzlt.GroupInfoHandler.callMultipartApi(_: Swift.String, param: Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;, imageArray: Swift.Optional&lt;Swift.Array&lt;__C.UIImage&gt;&gt;, method: Alamofire.HTTPMethod, header: Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.String&gt;&gt;, encodeType: Alamofire.URLEncoding, videoData: Swift.Optional&lt;__C.NSURL&gt;, imageNameArray: Swift.Optional&lt;Swift.Array&lt;Swift.String&gt;&gt;, location: Swift.Bool, completionHandler: (Swift.Int, Swift.Optional&lt;__C.NSError&gt;, Swift.Optional&lt;SwiftyJSON.JSON&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Walt Howzlt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kavita/Desktop/Walt%20HowzltLatest/Walt%20Howzlt/Handler/GroupInfoHandler.swift"
+                  timestampString = "591074329.841114"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "276"
+                  endingLineNumber = "276"
+                  offsetFromSymbolStart = "205">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/Handler/GroupInfoHandler.swift"
+            timestampString = "590469172.169023"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "271"
+            endingLineNumber = "271"
+            landmarkName = "callMultipartApi(_:param:imageArray:method:header:encodeType:videoData:imageNameArray:location:completionHandler:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Alamofire.SessionManager.MultipartFormDataEncodingResult) -&gt; () in Walt_Howzlt.GroupInfoHandler.callMultipartApi(_: Swift.String, param: Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;, imageArray: Swift.Optional&lt;Swift.Array&lt;__C.UIImage&gt;&gt;, method: Alamofire.HTTPMethod, header: Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.String&gt;&gt;, encodeType: Alamofire.URLEncoding, videoData: Swift.Optional&lt;__C.NSURL&gt;, imageNameArray: Swift.Optional&lt;Swift.Array&lt;Swift.String&gt;&gt;, location: Swift.Bool, completionHandler: (Swift.Int, Swift.Optional&lt;__C.NSError&gt;, Swift.Optional&lt;SwiftyJSON.JSON&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Walt Howzlt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kavita/Desktop/Walt%20HowzltLatest/Walt%20Howzlt/Handler/GroupInfoHandler.swift"
+                  timestampString = "591074329.852888"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "271"
+                  endingLineNumber = "271"
+                  offsetFromSymbolStart = "354">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__C.NSProgress) -&gt; () in closure #2 (Alamofire.SessionManager.MultipartFormDataEncodingResult) -&gt; () in Walt_Howzlt.GroupInfoHandler.callMultipartApi(_: Swift.String, param: Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;, imageArray: Swift.Optional&lt;Swift.Array&lt;__C.UIImage&gt;&gt;, method: Alamofire.HTTPMethod, header: Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.String&gt;&gt;, encodeType: Alamofire.URLEncoding, videoData: Swift.Optional&lt;__C.NSURL&gt;, imageNameArray: Swift.Optional&lt;Swift.Array&lt;Swift.String&gt;&gt;, location: Swift.Bool, completionHandler: (Swift.Int, Swift.Optional&lt;__C.NSError&gt;, Swift.Optional&lt;SwiftyJSON.JSON&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Walt Howzlt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kavita/Desktop/Walt%20HowzltLatest/Walt%20Howzlt/Handler/GroupInfoHandler.swift"
+                  timestampString = "591074329.857404"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "273"
+                  endingLineNumber = "273"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/Handler/GroupInfoHandler.swift"
+            timestampString = "590469172.169073"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "269"
+            endingLineNumber = "269"
+            landmarkName = "callMultipartApi(_:param:imageArray:method:header:encodeType:videoData:imageNameArray:location:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/Handler/GroupInfoHandler.swift"
+            timestampString = "590469172.169136"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "290"
+            endingLineNumber = "290"
+            landmarkName = "callMultipartApi(_:param:imageArray:method:header:encodeType:videoData:imageNameArray:location:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/Handler/GroupInfoHandler.swift"
+            timestampString = "590469172.169185"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "299"
+            endingLineNumber = "299"
+            landmarkName = "callMultipartApi(_:param:imageArray:method:header:encodeType:videoData:imageNameArray:location:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/ViewController/IntroViewController.swift"
+            timestampString = "591074581.603228"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -457,46 +789,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Walt Howzlt/ViewController/IntroViewController.swift"
-            timestampString = "590167657.021415"
+            filePath = "Walt Howzlt/cell/Chat/IncommingContactTableViewCell.swift"
+            timestampString = "591074581.603325"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
-            landmarkName = "login()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Bool, Swift.Bool, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Walt_Howzlt.IntroViewController.login() -&gt; ()"
-                  moduleName = "Walt Howzlt"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kavita/Desktop/Walt%20HowzltLatest/Walt%20Howzlt/ViewController/IntroViewController.swift"
-                  timestampString = "590166654.554597"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "78"
-                  endingLineNumber = "78"
-                  offsetFromSymbolStart = "124">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Bool, Swift.Bool, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Walt_Howzlt.IntroViewController.login() -&gt; ()"
-                  moduleName = "Walt Howzlt"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kavita/Desktop/Walt%20HowzltLatest/Walt%20Howzlt/ViewController/IntroViewController.swift"
-                  timestampString = "590166654.556623"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "78"
-                  endingLineNumber = "78"
-                  offsetFromSymbolStart = "1136">
-               </Location>
-            </Locations>
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "IncommingContactTableViewCell"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -505,46 +805,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Walt Howzlt/ViewController/IntroViewController.swift"
-            timestampString = "590167657.021468"
+            filePath = "Walt Howzlt/cell/Chat/LocationTableViewCell.swift"
+            timestampString = "591074581.603386"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
-            landmarkName = "login()"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
+            landmarkName = "convertToDictionary(text:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Bool, Swift.Bool, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Walt_Howzlt.IntroViewController.login() -&gt; ()"
-                  moduleName = "Walt Howzlt"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kavita/Desktop/Walt%20HowzltLatest/Walt%20Howzlt/ViewController/IntroViewController.swift"
-                  timestampString = "590166654.561792"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "83"
-                  endingLineNumber = "83"
-                  offsetFromSymbolStart = "624">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Bool, Swift.Bool, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Walt_Howzlt.IntroViewController.login() -&gt; ()"
-                  moduleName = "Walt Howzlt"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kavita/Desktop/Walt%20HowzltLatest/Walt%20Howzlt/ViewController/IntroViewController.swift"
-                  timestampString = "590166654.56385"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "83"
-                  endingLineNumber = "83"
-                  offsetFromSymbolStart = "1144">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

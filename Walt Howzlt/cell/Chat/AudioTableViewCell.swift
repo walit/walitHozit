@@ -44,14 +44,8 @@ class AudioTableViewCell: UITableViewCell {
     func cofigureCell(item :ChatModel){
         if item.message_type == "2" {
             if item.sender_id != Global.sharedInstance.UserID{
-                self.imgStatus.isHidden = false
-                if item.is_read == "1"{
-                    self.imgStatus.image = UIImage(named: "ic_done_black_1024dp")
-                }else if item.is_read == "2" {
-                    self.imgStatus.image = UIImage(named: "right")
-                }else{
-                    self.imgStatus.image = UIImage(named: "ic_done_all_black_48dp")
-                }
+                
+               
                 let strImage = item.message
                 
                 let dict = convertToArryDictionary(text: strImage)
@@ -62,6 +56,8 @@ class AudioTableViewCell: UITableViewCell {
                 self.lblSize.text = size
                 leadingConstaint.priority = UILayoutPriority(rawValue: 999)
                  trailingConstaint.priority = UILayoutPriority(rawValue: 250)
+                imgStatus.isHidden = true
+                
             }else{
                 self.imgStatus.isHidden = false
                 if item.is_read == "1"{

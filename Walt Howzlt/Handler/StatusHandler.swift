@@ -65,7 +65,7 @@ class StatusHandler: NSObject {
         }
     }
     func callMultipartApi(_ strApiName:String,
-                          param : [String : AnyObject],
+                          param : [String : AnyObject]?,
                           imageArray : [UIImage]?,
                           method: HTTPMethod,
                           header:[String : String]?,
@@ -102,9 +102,10 @@ class StatusHandler: NSObject {
                     }
                 }
                 
-                
-                for (key, value) in param {
-                    multipartFormData.append(value.data(using: String.Encoding.utf8.rawValue)!, withName: key)
+                if let param = param{
+                    for (key, value) in param {
+                        multipartFormData.append(value.data(using: String.Encoding.utf8.rawValue)!, withName: key)
+                    }
                 }
             }, to:strApiName,headers: header)
             { (result) in

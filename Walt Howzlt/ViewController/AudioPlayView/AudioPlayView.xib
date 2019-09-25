@@ -27,22 +27,6 @@
                         <action selector="btnPlay:" destination="i5M-Pr-FkT" eventType="touchUpInside" id="HuZ-PC-AQj"/>
                     </connections>
                 </button>
-                <slider hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="hEw-MV-VPC">
-                    <rect key="frame" x="83" y="50" width="449" height="31"/>
-                    <color key="tintColor" red="0.94417470690000005" green="0.58055394890000001" blue="0.2003090978" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                </slider>
-                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:12" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EBd-xH-LtY">
-                    <rect key="frame" x="85" y="80" width="38.5" height="18"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gia-a0-MQ7">
-                    <rect key="frame" x="491" y="80" width="39" height="18"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3xd-7n-DwX">
                     <rect key="frame" x="510" y="0.0" width="40" height="40"/>
                     <constraints>
@@ -61,30 +45,29 @@
                         <constraint firstAttribute="width" constant="20" id="upW-5s-Egy"/>
                     </constraints>
                 </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mir-Ev-2fN">
+                    <rect key="frame" x="85" y="54.5" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
-            <color key="backgroundColor" red="0.98823529409999999" green="0.92156862750000001" blue="0.83529411760000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="oZE-BR-fvS" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="01a-sp-L0H"/>
                 <constraint firstItem="3xd-7n-DwX" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="9u6-wq-ywK"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Gia-a0-MQ7" secondAttribute="trailing" constant="20" id="IZr-vE-Jpq"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="hEw-MV-VPC" secondAttribute="trailing" constant="20" id="Oeg-6K-s9c"/>
-                <constraint firstItem="EBd-xH-LtY" firstAttribute="top" secondItem="hEw-MV-VPC" secondAttribute="bottom" id="PPl-1p-S4i"/>
                 <constraint firstAttribute="trailing" secondItem="3xd-7n-DwX" secondAttribute="trailing" id="a9n-pd-YFf"/>
-                <constraint firstItem="EBd-xH-LtY" firstAttribute="leading" secondItem="hEw-MV-VPC" secondAttribute="leading" id="afE-N9-9j8"/>
+                <constraint firstItem="Mir-Ev-2fN" firstAttribute="leading" secondItem="oZE-BR-fvS" secondAttribute="trailing" constant="15" id="apE-Lc-zmc"/>
                 <constraint firstItem="3qj-IV-7rP" firstAttribute="centerX" secondItem="oZE-BR-fvS" secondAttribute="centerX" id="b5k-Jc-elI"/>
-                <constraint firstItem="hEw-MV-VPC" firstAttribute="leading" secondItem="oZE-BR-fvS" secondAttribute="trailing" constant="15" id="rRF-a1-B6Z"/>
-                <constraint firstItem="Gia-a0-MQ7" firstAttribute="top" secondItem="hEw-MV-VPC" secondAttribute="bottom" id="rmd-mf-X0D"/>
                 <constraint firstItem="oZE-BR-fvS" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="udb-fM-ltJ"/>
                 <constraint firstItem="3qj-IV-7rP" firstAttribute="centerY" secondItem="oZE-BR-fvS" secondAttribute="centerY" id="vP0-ng-ps9"/>
-                <constraint firstItem="hEw-MV-VPC" firstAttribute="centerY" secondItem="oZE-BR-fvS" secondAttribute="centerY" id="xjl-yi-LGv"/>
+                <constraint firstItem="Mir-Ev-2fN" firstAttribute="centerY" secondItem="oZE-BR-fvS" secondAttribute="centerY" id="yy4-fd-id0"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <connections>
                 <outlet property="btnPlay" destination="oZE-BR-fvS" id="wuq-wL-M9c"/>
-                <outlet property="lblDuration" destination="EBd-xH-LtY" id="BI0-zb-vry"/>
-                <outlet property="lblTotolDuration" destination="Gia-a0-MQ7" id="vFT-RZ-KbW"/>
-                <outlet property="slider" destination="hEw-MV-VPC" id="kHN-Hs-spR"/>
+                <outlet property="lblTitle" destination="Mir-Ev-2fN" id="IIQ-Qg-EUa"/>
             </connections>
             <point key="canvasLocation" x="62.318840579710148" y="-251.78571428571428"/>
         </view>
