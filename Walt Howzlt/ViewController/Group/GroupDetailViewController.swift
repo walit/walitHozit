@@ -89,7 +89,11 @@ extension GroupDetailViewController : UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "participantsTableViewCell", for: indexPath) as! participantsTableViewCell
         let item  = arrParticipats[indexPath.row] as? [String:String]
-        cell.lblName.text = item?["username"]
+        
+        cell.lblName.text = self.getName(number: item?["username"] ?? "")
+        if cell.lblName.text == "" {
+            cell.lblName.text = item?["username"]
+        }
         cell.lblStatus.text = item?["status"]
         let strImage = item?["avatar"]
         

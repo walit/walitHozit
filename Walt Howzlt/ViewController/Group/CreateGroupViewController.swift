@@ -13,17 +13,18 @@ class CreateGroupViewController: UIViewController {
     
     var arrContacts = [ContactModel]()
     var selectedContactArr = [ContactModel]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-    
-
+   
     override func viewDidLayoutSubviews() {
         self.addGradientWithColor()
          btnNext.layer.cornerRadius = btnNext.frame.size.width / 2
     }
+    
     @IBAction func btnBack(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }

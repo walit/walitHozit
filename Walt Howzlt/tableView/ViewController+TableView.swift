@@ -38,7 +38,11 @@ extension ViewController: UITableViewDelegate,UITableViewDataSource{
             str = "ChatTableViewCell"
             let cell = tableView.dequeueReusableCell(withIdentifier: str, for: indexPath) as! ChatTableViewCell
             cell.setChatListData(chatList: arrChatList[indexPath.row])
-            
+            cell.callbackImageTap = {
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "EditGroupImageViewController") as! EditGroupImageViewController
+                vc.groupImage = self.arrChatList[indexPath.row].thumb
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
             return cell
         }else{
             str = "SatusTableViewCell"

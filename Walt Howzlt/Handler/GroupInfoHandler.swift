@@ -36,7 +36,7 @@ class GroupInfoHandler {
         do {
             let postData = try JSONSerialization.data(withJSONObject: parameters, options: [])
             
-            let request = NSMutableURLRequest(url: NSURL(string: "http://walit.net/api/howzit/v1/GetGroupInfo")! as URL,
+            let request = NSMutableURLRequest(url: NSURL(string: "http://walit.net/api/howzit/v1/index.php/GetGroupInfo")! as URL,
                                               cachePolicy: .useProtocolCachePolicy,
                                               timeoutInterval: 10.0)
             request.httpMethod = "POST"
@@ -101,7 +101,7 @@ class GroupInfoHandler {
         do {
             let postData = try JSONSerialization.data(withJSONObject: parameters, options: [])
             
-            let request = NSMutableURLRequest(url: NSURL(string: "http://walit.net/api/howzit/v1/GroupRename")! as URL,
+            let request = NSMutableURLRequest(url: NSURL(string: "http://walit.net/api/howzit/v1/index.php/GroupRename")! as URL,
                                               cachePolicy: .useProtocolCachePolicy,
                                               timeoutInterval: 10.0)
             request.httpMethod = "POST"
@@ -167,12 +167,14 @@ class GroupInfoHandler {
             
             ] as [String : AnyObject]
         
-        self.callMultipartApi("http://walit.net/api/howzit/v1/GroupImageChange", param: parameters, imageArray: image, method: .post, header: headers, encodeType: .default, videoData: nil, imageNameArray: ["group_image"], location: true, completionHandler: {code,error,respose in
+        self.callMultipartApi("http://walit.net/api/howzit/v1/index.php/GroupImageChange", param: parameters, imageArray: image, method: .post, header: headers, encodeType: .default, videoData: nil, imageNameArray: ["group_image"], location: true, completionHandler: {code,error,respose in
             if code == 1{
                 let message  = respose?["message"].string
                  Miscellaneous.APPDELEGATE.window!.stopMyToastActivity()
+                
+               completion(true,"",respose!)
                 Miscellaneous.APPDELEGATE.window!.showAlertFor(alertTitle: "", alertMessage: message ?? "")
-                completion(true,"",respose!)
+                
                 
                 
             }
@@ -205,7 +207,7 @@ class GroupInfoHandler {
             
             :] as [String : AnyObject]
         
-        self.callMultipartApi("http://walit.net/api/howzit/v1/ProfileImageChange", param: [String:AnyObject](), imageArray: image, method: .post, header: headers, encodeType: .default, videoData: nil, imageNameArray: ["profile_image"], location: true, completionHandler: {code,error,respose in
+        self.callMultipartApi("http://walit.net/api/howzit/v1/index.php/ProfileImageChange", param: [String:AnyObject](), imageArray: image, method: .post, header: headers, encodeType: .default, videoData: nil, imageNameArray: ["profile_image"], location: true, completionHandler: {code,error,respose in
             if code == 1{
                 let message  = respose?["message"].string
                 Miscellaneous.APPDELEGATE.window!.stopMyToastActivity()
@@ -342,7 +344,7 @@ class GroupInfoHandler {
         do {
             let postData = try JSONSerialization.data(withJSONObject: parameters, options: [])
             
-            let request = NSMutableURLRequest(url: NSURL(string: "http://walit.net/api/howzit/v1/AddNewAdmin")! as URL,
+            let request = NSMutableURLRequest(url: NSURL(string: "http://walit.net/api/howzit/v1/index.php/AddNewAdmin")! as URL,
                                               cachePolicy: .useProtocolCachePolicy,
                                               timeoutInterval: 10.0)
             request.httpMethod = "POST"
@@ -404,7 +406,7 @@ class GroupInfoHandler {
 //            "member_id": member_id
 //            ] as [String : Any]
         
-        let request = NSMutableURLRequest(url: NSURL(string: "http://walit.net/api/howzit/v1/DismissAdmin?group_id=\(group_id)&member_id=\(member_id)")! as URL,
+        let request = NSMutableURLRequest(url: NSURL(string: "http://walit.net/api/howzit/v1/index.php/DismissAdmin?group_id=\(group_id)&member_id=\(member_id)")! as URL,
                                           cachePolicy: .useProtocolCachePolicy,
                                           timeoutInterval: 10.0)
         request.httpMethod = "GET"
@@ -461,7 +463,7 @@ class GroupInfoHandler {
         do {
             let postData = try JSONSerialization.data(withJSONObject: parameters, options: [])
             
-            let request = NSMutableURLRequest(url: NSURL(string: "http://walit.net/api/howzit/v1/GroupLeave")! as URL,
+            let request = NSMutableURLRequest(url: NSURL(string: "http://walit.net/api/howzit/v1/index.php/GroupLeave")! as URL,
                                               cachePolicy: .useProtocolCachePolicy,
                                               timeoutInterval: 10.0)
             request.httpMethod = "POST"
@@ -526,7 +528,7 @@ class GroupInfoHandler {
         do {
             let postData = try JSONSerialization.data(withJSONObject: parameters, options: [])
             
-            let request = NSMutableURLRequest(url: NSURL(string: "http://walit.net/api/howzit/v1/AddMemberInGroup")! as URL,
+            let request = NSMutableURLRequest(url: NSURL(string: "http://walit.net/api/howzit/v1/index.php/AddMemberInGroup")! as URL,
                                               cachePolicy: .useProtocolCachePolicy,
                                               timeoutInterval: 10.0)
             request.httpMethod = "POST"

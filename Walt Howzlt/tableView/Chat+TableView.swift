@@ -1,7 +1,6 @@
 //
 //  Chat+TableView.swift
 //  Walt Howzlt
-//
 //  Created by Kavita on 21/07/19.
 //  Copyright © 2019 Window. All rights reserved.
 //
@@ -12,7 +11,12 @@ import SafariServices
 import MessageUI
 import Contacts
 import ContactsUI
+import AVFoundation
+import AVKit
+import MapKit
+
 extension ChatViewController: UITableViewDelegate,UITableViewDataSource{
+   
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -37,9 +41,11 @@ extension ChatViewController: UITableViewDelegate,UITableViewDataSource{
     //        return cell
     //    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         if arrChatItem.count == 0{
             let str = "HelloTableViewCell"
             let cell = tableView.dequeueReusableCell(withIdentifier: str, for: indexPath) as! HelloTableViewCell
+            
             cell.callbackhello = {
                 self.sendHelloMessage()
             }
@@ -54,6 +60,7 @@ extension ChatViewController: UITableViewDelegate,UITableViewDataSource{
             else{
                 cell.imgUser.image = #imageLiteral(resourceName: "uploadUser")
             }
+            cell.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
             return cell
         }
         if arrChatItem[indexPath.row].message_type == "5"{
@@ -65,14 +72,19 @@ extension ChatViewController: UITableViewDelegate,UITableViewDataSource{
             }else{
                 cell.imgIncomming.image = jeremyGif
             }
-            
+            cell.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
             return cell
         }else if arrChatItem[indexPath.row].message_type == "1"{
             let str = "ChatViewTableViewCell"
             
             
             let cell = tableView.dequeueReusableCell(withIdentifier: str, for: indexPath) as! ChatViewTableViewCell
+            cell.selectionStyle = .blue
             cell.configureCell(chatItem: self.arrChatItem[indexPath.row])
+           cell.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
+            cell.callbackTapOnView = { str in
+                self.logtapOnMessage(indexPath: indexPath)
+             }
             return cell
         }else if arrChatItem[indexPath.row].message_type == "3"{
             if self.arrChatItem[indexPath.row].sender_id != Global.sharedInstance.UserID{
@@ -85,6 +97,7 @@ extension ChatViewController: UITableViewDelegate,UITableViewDataSource{
                 cell.callbackAddConatct = {
                     self.saveContact(chatItem: self.arrChatItem[indexPath.row])
                 }
+                cell.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
                 return cell
             }else{
                 let str = "ChatContactTableViewCell"
@@ -92,6 +105,7 @@ extension ChatViewController: UITableViewDelegate,UITableViewDataSource{
                 
                 let cell = tableView.dequeueReusableCell(withIdentifier: str, for: indexPath) as! ChatContactTableViewCell
                 cell.configureCell(chatItem: self.arrChatItem[indexPath.row])
+                cell.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
                 return cell
             }
            
@@ -101,20 +115,65 @@ extension ChatViewController: UITableViewDelegate,UITableViewDataSource{
             let str = "LocationTableViewCell"
             let cell = tableView.dequeueReusableCell(withIdentifier: str, for: indexPath) as! LocationTableViewCell
             cell.configureCell(item: self.arrChatItem[indexPath.row])
+            
+            cell.callbackMapView = {
+               
+                
+                let strImage = self.arrChatItem[indexPath.row].message
+                
+                let dict = self.convertToDictionary(text: strImage)
+                if dict == nil {return}
+                
+                let lat = Double((dict!["latitude"] as? String) ?? "") ?? 0.0
+                let long = Double((dict!["longitude"] as? String) ?? "") ?? 0.0
+                
+                let coordinates = CLLocationCoordinate2DMake(lat,long)
+                
+                let regionSpan =   MKCoordinateRegion(center: coordinates, latitudinalMeters: 1000, longitudinalMeters: 1000)
+                
+                let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
+                
+                let mapItem = MKMapItem(placemark: placemark)
+                
+                mapItem.name = dict!["address"] as? String
+                
+                mapItem.openInMaps(launchOptions:[
+                MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center)
+                ] as [String : Any])
+            }
+            cell.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
             return cell
             
         }else{
             let strImage = self.arrChatItem[indexPath.row].message
             let dict = convertToArryDictionary(text: strImage)
             let filetype = dict![0]["file_type"] as? String
-            
-             if filetype == "audio" || filetype == "recording"{
+            if filetype == "video" {
+                let str = "VideoTableViewCell"
+                let cell = tableView.dequeueReusableCell(withIdentifier: str, for: indexPath) as! VideoTableViewCell
+                cell.setCell(chatItem: self.arrChatItem[indexPath.row])
+                cell.callbackPlayVideo = {
+                    let urlstr = dict![0]["file_url"] as? String
+                    let videoURL = URL.init(string: urlstr ?? "")
+                    let player = AVPlayer(url: videoURL!)
+                    let vc = AVPlayerViewController()
+                    vc.player = player
+                    
+                    self.present(vc, animated: true) {
+                        vc.player?.play()
+                    }
+                }
+                cell.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
+                return cell
+            }
+            else if filetype == "audio" || filetype == "recording"{
                 let str = "AudioTableViewCell"
                 let cell = tableView.dequeueReusableCell(withIdentifier: str, for: indexPath) as! AudioTableViewCell
                 cell.cofigureCell(item: self.arrChatItem[indexPath.row])
                 cell.callbackPlay = {
                     self.playSound(index:indexPath.row)
                 }
+                cell.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
                 return cell
             }else if filetype == "photo"{
                 let str = "MultiImageTableViewCell"
@@ -128,6 +187,7 @@ extension ChatViewController: UITableViewDelegate,UITableViewDataSource{
                     vc.titlestr = self.userName
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
+                cell.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
                 return cell
             }else {
                 let str = "DocTableViewCell"
@@ -141,6 +201,7 @@ extension ChatViewController: UITableViewDelegate,UITableViewDataSource{
                     let vc = SFSafariViewController(url: url!)
                     self.present(vc, animated: true, completion: nil)
                 }
+                cell.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
                 return cell
             }
             
@@ -149,9 +210,12 @@ extension ChatViewController: UITableViewDelegate,UITableViewDataSource{
         
         
     }
+ 
+    
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if arrChatItem.count == 0 {
-            return 230
+            return tableView.frame.height
         }
         if arrChatItem[indexPath.row].message_type == "1"{
             return UITableView.automaticDimension
@@ -168,7 +232,9 @@ extension ChatViewController: UITableViewDelegate,UITableViewDataSource{
             if filetype == "audio" || filetype == "recording"{
                 return 60
             }else if filetype == "photo"{
-               return 200
+                return 200
+            }else if filetype == "video"{
+                return 200
             }else{
                 return 80
             }
@@ -179,7 +245,7 @@ extension ChatViewController: UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
         if arrChatItem.count == 0 {
-            return 230
+            return tableView.frame.height
         }
         if arrChatItem[indexPath.row].message_type == "1"{
             return UITableView.automaticDimension
@@ -203,8 +269,31 @@ extension ChatViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return UIView()
     }
-
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.message_id.append(arrChatItem[indexPath.row].message_id)
+        if message_id.count == 0  {return}
+        self.btnReply.isHidden = false
+        if self.message_id.contains(arrChatItem[indexPath.row].message_id){
+            return
+        }
+        messageCount.text = "\(self.message_id.count + 1)"
+        if message_id.count > 0 {
+            self.btnReply.isHidden = true
+            
+        }
+        self.message_id.append(arrChatItem[indexPath.row].message_id)
+        self.viewEditMessage.isHidden = false
+        self.selectedIndexPath.append(indexPath)
+    }
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        self.message_id.remove(at: indexPath.row)
+        messageCount.text = "\(self.message_id.count + 1)"
+        let index = self.selectedIndexPath.firstIndex(of: indexPath) ?? indexPath.row
+        self.selectedIndexPath.remove(at: index)
+    }
+    func logtapOnMessage(indexPath:IndexPath){
+       
+    }
 }
 extension ChatViewController : MFMessageComposeViewControllerDelegate{
     func sendMessage(){
@@ -250,4 +339,5 @@ extension ChatViewController{
         }
         return nil
     }
+   
 }

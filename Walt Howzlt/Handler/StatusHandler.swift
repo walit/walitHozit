@@ -37,7 +37,7 @@ class StatusHandler: NSObject {
             ] as [String : Any]
        
         if image == nil {
-            self.callMultipartApi("http://walit.net/api/howzit/v1/AddCurrentStatus", param: parameters as [String : AnyObject], imageArray: nil, method: .post, header: headers, encodeType: .default, videoData: nil, imageNameArray: [], location: true, completionHandler: {code,error,respose in
+            self.callMultipartApi("http://walit.net/api/howzit/v1/index.php/AddCurrentStatus", param: parameters as [String : AnyObject], imageArray: nil, method: .post, header: headers, encodeType: .default, videoData: nil, imageNameArray: [], location: true, completionHandler: {code,error,respose in
                 if code == 1{
                     //   let message  = respose?["message"].string
                     Miscellaneous.APPDELEGATE.window!.stopMyToastActivity()
@@ -50,7 +50,7 @@ class StatusHandler: NSObject {
                 
             })
         }else{
-            self.callMultipartApi("http://walit.net/api/howzit/v1/AddCurrentStatus", param: parameters as [String : AnyObject], imageArray: [image ?? UIImage()], method: .post, header: headers, encodeType: .default, videoData: nil, imageNameArray: ["status_image"], location: true, completionHandler: {code,error,respose in
+            self.callMultipartApi("http://walit.net/api/howzit/v1/index.php/AddCurrentStatus", param: parameters as [String : AnyObject], imageArray: [image ?? UIImage()], method: .post, header: headers, encodeType: .default, videoData: nil, imageNameArray: ["status_image"], location: true, completionHandler: {code,error,respose in
                 if code == 1{
                     //   let message  = respose?["message"].string
                     Miscellaneous.APPDELEGATE.window!.stopMyToastActivity()
@@ -178,7 +178,7 @@ class StatusHandler: NSObject {
             "Postman-Token": "d347f3d1-7e97-4823-b873-8989c64d5d66"
         ]
         
-        let request = NSMutableURLRequest(url: NSURL(string: "http://walit.net/api/howzit/v1/DeleteCurrentStatus?current_status_id=\(statusID)")! as URL,
+        let request = NSMutableURLRequest(url: NSURL(string: "http://walit.net/api/howzit/v1/index.php/DeleteCurrentStatus?current_status_id=\(statusID)")! as URL,
                                           cachePolicy: .useProtocolCachePolicy,
                                           timeoutInterval: 10.0)
         request.httpMethod = "GET"

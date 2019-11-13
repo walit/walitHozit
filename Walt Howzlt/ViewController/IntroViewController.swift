@@ -15,6 +15,10 @@ class IntroViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationWillEnterForeground), name: UIApplication.willEnterForegroundNotification
+            , object: nil)
+        
         keychain.synchronizable = true
         keychain.accessGroup = "Y3CL89H8DA.com.walitco.WalitHowzlt"
        // print(keychain.get("device_uuid")!)
@@ -38,7 +42,7 @@ class IntroViewController: UIViewController {
                 let image = dictLogin?[myStrings.KUSERIMAGE] as! String
                 Global.setUserImage(setUserID: image)
                 
-                let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "ViewController") as! ViewController
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }else{
@@ -55,18 +59,13 @@ class IntroViewController: UIViewController {
                             self.navigationController?.pushViewController(vc, animated: true)
                             
                         }else{
-                            //
-                            let url = URL(string: "walitapp://")
-                            
-                            if let url = url {
-                                if UIApplication.shared.canOpenURL(url) {
-                                    
-                                    UIApplication.shared.openURL(url)
-                                } else {
-                                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "SignINViewController") as! SignINViewController
-                                    self.navigationController?.pushViewController(vc, animated: true)
-                                }
+                            if self.isMAinAppExist(){
+                                self.redirectToMainAppForLogin()
+                            }else{
+                                let vc = self.storyboard?.instantiateViewController(withIdentifier: "SignINViewController") as! SignINViewController
+                                self.navigationController?.pushViewController(vc, animated: true)
                             }
+                                
                             
                             
                         }
@@ -103,4 +102,47 @@ class IntroViewController: UIViewController {
                 return
         }
      }
+    func isMAinAppExist() -> Bool{
+        let application =  UIApplication.shared;
+        if let url = URL.init(string: "walitapp://"){
+            return application.canOpenURL(url)
+        }
+        return false;
+    }
+    
+    func redirectToMainAppForLogin(){
+        let application =  UIApplication.shared;
+        if let url = URL.init(string: "walitapp://"){
+            if application.canOpenURL(url){
+                application.open(url, options: [:], completionHandler:nil);
+            }
+        }
+    }
+    
+    func showAppNotFoundAlert() {
+        let alert = UIAlertController(title: "Main application not found", message: "First install and loging it", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Exit", style: .default, handler: { _ in
+            exit(0);
+            //Cancel Action
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Install", style: .default, handler: {(_: UIAlertAction!) in
+            let application =  UIApplication.shared;
+            if let url = URL.init(string: "https://apps.apple.com/app/id1475413727"){
+                application.openURL(url);
+            }
+            
+        }));
+        
+        
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+   @objc func applicationWillEnterForeground(_ notification: NSNotification) {
+        self.viewDidLoad()
+    }
 }

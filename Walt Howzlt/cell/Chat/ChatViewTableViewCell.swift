@@ -17,7 +17,8 @@ class ChatViewTableViewCell: UITableViewCell {
     @IBOutlet weak var imgStatus: UIImageView!
     @IBOutlet weak var lblMessage: UILabel!
     @IBOutlet weak var lblTime: UILabel!
-  
+    var callbackTapOnView: ((String)->())?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -25,6 +26,10 @@ class ChatViewTableViewCell: UITableViewCell {
         viewReciver.clipsToBounds = true
         viewSender.layer.cornerRadius = 5
         viewSender.clipsToBounds = true
+        
+        let tapGesture = UILongPressGestureRecognizer(target: self, action: #selector(taponBubble(_ :)))
+        addGestureRecognizer(tapGesture)
+        
     }
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -36,7 +41,11 @@ class ChatViewTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
     func configureCell(chatItem:ChatModel){
+       
+        
+        
         self.lblMessage.text = chatItem.message
         self.lblTime.text = chatItem.date_time
         if chatItem.sender_id == Global.sharedInstance.UserID{
@@ -75,6 +84,14 @@ class ChatViewTableViewCell: UITableViewCell {
         } else {
             print("There was an error decoding the string")
         }
+        let name = getName(number: chatItem.display_name) == "" ? chatItem.display_name : getName(number: chatItem.display_name)
+        self.lblTime.text = name  + " " + (self.lblTime.text ?? "")
+        
+    }
+    @objc func taponBubble(_ gesture: UITapGestureRecognizer) {
+        let view = gesture.view
+        let tag = view?.tag
+        callbackTapOnView?("\(tag ?? 0)")
     }
 }
 

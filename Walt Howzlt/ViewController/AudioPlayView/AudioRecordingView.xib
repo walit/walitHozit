@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT" customClass="AudioRecordingView" customModule="Walt_Howzlt" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="630" height="104"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Cz-NB-sac">
+                    <rect key="frame" x="10" y="0.0" width="75" height="104"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="75" id="9jJ-Z1-g9n"/>
+                    </constraints>
+                    <state key="normal" image="error (1)"/>
+                    <connections>
+                        <action selector="btnCancel:" destination="i5M-Pr-FkT" eventType="touchUpInside" id="SeJ-bp-pHI"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Buu-Ip-FvN">
+                    <rect key="frame" x="545" y="0.0" width="75" height="104"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="75" id="jBd-xI-hdS"/>
+                    </constraints>
+                    <state key="normal" image="success"/>
+                    <connections>
+                        <action selector="btnOk:" destination="i5M-Pr-FkT" eventType="touchUpInside" id="5Mx-BB-hCh"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aTF-VY-3fj">
+                    <rect key="frame" x="120" y="32.5" width="88" height="39"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                    <color key="textColor" red="0.92549019610000005" green="0.41568627450000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="error (1)-1" translatesAutoresizingMaskIntoConstraints="NO" id="HaJ-4D-If6">
+                    <rect key="frame" x="490" y="47" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="3mg-WX-eQM"/>
+                        <constraint firstAttribute="width" constant="20" id="JFH-gL-Qyf"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="aTF-VY-3fj" firstAttribute="centerY" secondItem="8Cz-NB-sac" secondAttribute="centerY" id="3n7-gq-hfZ"/>
+                <constraint firstItem="Buu-Ip-FvN" firstAttribute="leading" secondItem="HaJ-4D-If6" secondAttribute="trailing" constant="35" id="6bc-Qt-3gq"/>
+                <constraint firstItem="Buu-Ip-FvN" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="7TQ-Q5-3XW"/>
+                <constraint firstAttribute="bottom" secondItem="8Cz-NB-sac" secondAttribute="bottom" id="7pP-gy-NHR"/>
+                <constraint firstItem="8Cz-NB-sac" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="AGm-Qa-Wog"/>
+                <constraint firstItem="8Cz-NB-sac" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="B96-fL-EO1"/>
+                <constraint firstItem="HaJ-4D-If6" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="LHC-xZ-WRF"/>
+                <constraint firstItem="Buu-Ip-FvN" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" constant="-10" id="Moq-uT-5Vk"/>
+                <constraint firstAttribute="bottom" secondItem="Buu-Ip-FvN" secondAttribute="bottom" id="ZSC-bQ-0mC"/>
+                <constraint firstItem="aTF-VY-3fj" firstAttribute="leading" secondItem="8Cz-NB-sac" secondAttribute="trailing" constant="35" id="spF-ot-dgA"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <connections>
+                <outlet property="imgBlink" destination="HaJ-4D-If6" id="TAO-aX-n8T"/>
+                <outlet property="lblDuration" destination="aTF-VY-3fj" id="lDX-N0-tU4"/>
+            </connections>
+            <point key="canvasLocation" x="207.24637681159422" y="300.66964285714283"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="error (1)" width="64" height="64"/>
+        <image name="error (1)-1" width="16" height="16"/>
+        <image name="success" width="64" height="64"/>
+    </resources>
+</document>

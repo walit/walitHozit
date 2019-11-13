@@ -28,11 +28,16 @@ class MultiImageTableViewCell: UITableViewCell {
     @IBOutlet weak var lblDate: UILabel!
     @IBOutlet weak var imgStatus: UIImageView!
     
+    @IBOutlet weak var viewConatiner: UIView!
     var callBack : (()->())?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        viewConatiner.layer.cornerRadius = 5
+        viewConatiner.clipsToBounds = true
+        viewConatiner.layer.borderColor = #colorLiteral(red: 0.9254901961, green: 0.4156862745, blue: 0.2, alpha: 1)
+        viewConatiner.layer.borderWidth = 2
     }
     @IBAction func btnViewAll(_ sender: Any) {
         callBack?()
@@ -177,6 +182,9 @@ class MultiImageTableViewCell: UITableViewCell {
         }else{
             self.imgStatus.image = UIImage(named: "ic_done_all_black_48dp")
         }
+        let name = getName(number: item.display_name) == "" ? item.display_name : getName(number: item.display_name)
+        
+        self.lblDate.text = name  + " " + (self.lblDate.text ?? "")
     }
     func incomming(){
         leadingConstaint.isActive = true;

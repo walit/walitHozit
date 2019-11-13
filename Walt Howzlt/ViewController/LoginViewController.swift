@@ -150,7 +150,7 @@ extension LoginViewController{
         do {
             let postData = try JSONSerialization.data(withJSONObject: parameters, options: [])
             
-            let request = NSMutableURLRequest(url: NSURL(string: "http://walit.net/api/howzit/v1/GetContacts")! as URL,
+            let request = NSMutableURLRequest(url: NSURL(string: "http://walit.net/api/howzit/v1/index.php/GetContacts")! as URL,
                                               cachePolicy: .useProtocolCachePolicy,
                                               timeoutInterval: 10.0)
             request.httpMethod = "POST"

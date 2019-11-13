@@ -22,6 +22,8 @@ class LoginHandler: NSObject {
         defaults.set(myLoginRecord, forKey: myStrings.KUDLOGINSTATUS)
         
     }
+    //http://dutimes.in/mobileapp/index.php/apis/login
+  
     
     func SignInHandler(deviceID:String,completion:@escaping (_ json: Bool, _ isDisclaimer: Bool, _ error: Error?)-> Void)
     {
@@ -108,7 +110,7 @@ class LoginHandler: NSObject {
         
         let postData = try? JSONSerialization.data(withJSONObject: parameters, options: [])
        
-        let request = NSMutableURLRequest(url: NSURL(string: "http://walit.net/api/walitmain/v1/UserLogin")! as URL,
+        let request = NSMutableURLRequest(url: NSURL(string: "http://walit.net/api/walitmain/v1/index.php/UserLogin")! as URL,
                                           cachePolicy: .useProtocolCachePolicy,
                                           timeoutInterval: 10.0)
         request.httpMethod = "POST"

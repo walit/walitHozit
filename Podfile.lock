@@ -75,6 +75,7 @@ PODS:
     - NVActivityIndicatorView/Presenter (= 4.6.1)
   - NVActivityIndicatorView/Presenter (4.6.1)
   - OpalImagePicker (2.0.0)
+  - PaginatedTableView (0.1.0)
   - Parchment (1.5.0)
   - Protobuf (3.7.0)
   - PryntTrimmerView (3.0.0)
@@ -103,6 +104,7 @@ DEPENDENCIES:
   - LocationPicker
   - NVActivityIndicatorView
   - OpalImagePicker
+  - PaginatedTableView
   - Parchment
   - SkyFloatingLabelTextField
   - Socket.IO-Client-Swift
@@ -131,6 +133,7 @@ SPEC REPOS:
     - nanopb
     - NVActivityIndicatorView
     - OpalImagePicker
+    - PaginatedTableView
     - Parchment
     - Protobuf
     - PryntTrimmerView
@@ -161,6 +164,7 @@ SPEC CHECKSUMS:
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   NVActivityIndicatorView: 4ca19fccc84595a78957336a086d00a49be6ce61
   OpalImagePicker: efc91612ef5b3849314801f68fddc26200da9435
+  PaginatedTableView: 14025b52a9f88bb1e9a87f31765eae7986ffb192
   Parchment: 5a8c9c73549a6d73a7c1b606c27246910d2e5720
   Protobuf: 7a877b7f3e5964e3fce995e2eb323dbc6831bb5a
   PryntTrimmerView: 53ac64053c7ce63cb3e27f54090f52da0734891d
@@ -172,6 +176,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
   YPImagePicker: 5dd3814b47b1208e9c8cc8f6ef77fe90db3723b6
 
-PODFILE CHECKSUM: ffcacf41102fc339ad7fd12ceb4e3cb9e03e79c9
+PODFILE CHECKSUM: 922b0f41288f72328df83b017c3be95991a0227e
 
 COCOAPODS: 1.6.1

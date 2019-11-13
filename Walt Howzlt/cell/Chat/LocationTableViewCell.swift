@@ -27,11 +27,26 @@ class LocationTableViewCell: UITableViewCell {
     @IBOutlet weak var bntIncomming: UIButton!
     
     @IBOutlet weak var btoutGoing: UIButton!
+    var callbackMapView:(()->())?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        imconmingView.layer.cornerRadius = 5
+        imconmingView.clipsToBounds = true
+        imconmingView.layer.borderColor = #colorLiteral(red: 0.9254901961, green: 0.4156862745, blue: 0.2, alpha: 1)
+        imconmingView.layer.borderWidth = 2
+        
+        outCommingView.layer.cornerRadius = 5
+        outCommingView.clipsToBounds = true
+        outCommingView.layer.borderColor = #colorLiteral(red: 0.9254901961, green: 0.4156862745, blue: 0.2, alpha: 1)
+        outCommingView.layer.borderWidth = 2
     }
-
+    
+    @IBAction func btnMapTapAction(_ sender: Any) {
+        callbackMapView?()
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
@@ -79,6 +94,10 @@ class LocationTableViewCell: UITableViewCell {
                 } else {
                     print("There was an error decoding the string")
                 }
+                let name = getName(number: item.display_name) == "" ? item.display_name : getName(number: item.display_name)
+                
+                self.lblInTime.text = name  + " " + (self.lblInTime.text ?? "")
+                self.lblOutTime.text =  self.lblInTime.text
             }else{
                 self.imconmingView.isHidden = false
                 outCommingView.isHidden = true
@@ -102,8 +121,7 @@ class LocationTableViewCell: UITableViewCell {
                 
                 if let url = URL(string: myURL!) {
                     self.imgIncomming.af_setImage(withURL: url)
-                }
-                else{
+                }else{
                     self.imgIncomming.image = #imageLiteral(resourceName: "uploadUser")
                 }
                 let dateFormatterGet = DateFormatter()

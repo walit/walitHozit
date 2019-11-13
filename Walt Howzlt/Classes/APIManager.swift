@@ -218,9 +218,9 @@ enum APIParameter {
     
     case UserAuth(deviceID: String)
     case GetRecentChat(ACCESSTOKEN: String)
-    case getStatus(ACCESSTOKEN: String)
+    case getStatus(other_user_ids:String)
     case GetContacts(contacts: [String : Any])
-    case GetMessages(receiver_user_id: String,group_id:String)
+    case GetMessages(receiver_user_id: String,group_id:String,page:String)
     case SendMessages(receiver_user_id: String,message: String,message_type: String,date_time: String,time_zone: String,is_read:String,message_id:String)
  
     func dictionary() -> Dictionary<String, AnyObject> {
@@ -235,18 +235,19 @@ enum APIParameter {
             var requestDictionary : Dictionary<String,String> = Dictionary()
             requestDictionary[StaticNameOfVariable.VACCESSTOKEN]   = ACCESSTOKEN;
             return requestDictionary as Dictionary<String, AnyObject>
-        case .getStatus(ACCESSTOKEN: let ACCESSTOKEN):
+        case .getStatus( other_user_ids: let other_user_ids):
             var requestDictionary : Dictionary<String,String> = Dictionary()
-            requestDictionary[StaticNameOfVariable.VACCESSTOKEN]   = ACCESSTOKEN;
+             requestDictionary["other_user_ids"] = other_user_ids;
             return requestDictionary as Dictionary<String, AnyObject>
         case .GetContacts(contacts: let contacts):
             var requestDictionary : Dictionary<String,Any> = Dictionary()
             requestDictionary[StaticNameOfVariable.VContacts]   = contacts;
             return requestDictionary as Dictionary<String, AnyObject>
-        case .GetMessages(receiver_user_id:  let receiver_user_id, group_id:  let group_id):
+        case .GetMessages(receiver_user_id:  let receiver_user_id, group_id:  let group_id,page : let page):
             var requestDictionary : Dictionary<String,Any> = Dictionary()
             requestDictionary[StaticNameOfVariable.VreceiverUserId]   = receiver_user_id;
              requestDictionary["group_id"]   = group_id;
+            requestDictionary["total_msg"] = page;
             return requestDictionary as Dictionary<String, AnyObject>
         case .SendMessages(receiver_user_id:  let receiver_user_id, message:  let message, message_type: let message_type, date_time: let date_time, time_zone: let time_zone,is_read:let is_read ,message_id:let message_id):
             var requestDictionary : Dictionary<String,Any> = Dictionary()

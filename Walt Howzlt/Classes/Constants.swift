@@ -50,8 +50,8 @@ struct Padding
 struct myURLs
 {
 
-    static let stagingURL = "http://walit.net/api/howzit/v1/"
-    static let liveURL = "http://walit.net/api/howzit/v1/"
+    static let stagingURL = "http://walit.net/api/howzit/v1/index.php/"
+    static let liveURL = "http://walit.net/api/howzit/v1/index.php/"
     
     static let baseSocketURL = "http://35.239.79.227:2021"
 }
@@ -62,7 +62,7 @@ struct ApiNames
     static let VGetContacts = "GetContacts"
     static let VGetMessages = "GetMessages"
     static let VSendMessage = "SendMessage"
-    static let VGetStatus = "GetCurrentStatus"
+    static let VGetStatus = "GetCurrentStatusNew"
 }
 
 var strUserName = ""

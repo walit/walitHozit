@@ -48,7 +48,8 @@ class ChatModel: NSObject {
     var message_type : String = ""
     var message : String = " "
     var is_read : String = ""
-    
+    var message_id : String = ""
+    var display_name : String = ""
     init (json : [String:JSON])
     {
         sender_id      = (json["sender_id"]?.stringValue)!
@@ -58,7 +59,11 @@ class ChatModel: NSObject {
         message_type   = (json["message_type"]?.stringValue)!
         message        = (json["message"]?.stringValue)!
         is_read        = (json["is_read"]?.stringValue)!
-        
+        if (json["username"]?.exists()) ?? false{
+            display_name     = (json["username"]?.stringValue)!
+        }
+       
+        message_id     = (json["message_id"]?.stringValue) ?? ""
     }
     
 }

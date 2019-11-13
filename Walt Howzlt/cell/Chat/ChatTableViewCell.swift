@@ -15,12 +15,16 @@ class ChatTableViewCell: UITableViewCell {
     @IBOutlet weak var lblMessage: UILabel!
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var imgUser: UIImageView!
+    
+    
+    var callbackImageTap: (()->())?
     override func awakeFromNib() {
         super.awakeFromNib()
     
         // Initialization code
     }
-     override func layoutSubviews() {
+    
+    override func layoutSubviews() {
         super.layoutSubviews()
         imgUser.layer.cornerRadius = imgUser.frame.size.height / 2
         imgUser.clipsToBounds = true
@@ -30,10 +34,14 @@ class ChatTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
     func setChatListData(chatList:ChatListModel){
         lblMessageCount.layer.cornerRadius = lblMessageCount.bounds.size.height / 2
         lblMessageCount.clipsToBounds = true
-        self.lblName.text = chatList.username
+        self.lblName.text = self.getName(number: chatList.username)
+        if self.lblName.text == "" {
+            self.lblName.text = chatList.username
+        }
         if chatList.message_type == "2"{
              self.lblMessage.text = "Photo"
         }else if chatList.message_type == "3"{
@@ -78,6 +86,9 @@ class ChatTableViewCell: UITableViewCell {
         } else {
             print("There was an error decoding the string")
         }
+      
     }
-    
+    @IBAction func btnImageTap(_ sender: Any) {
+        callbackImageTap?()
+    }
 }

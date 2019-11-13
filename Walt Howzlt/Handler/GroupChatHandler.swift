@@ -7,10 +7,10 @@
 //
 
 import UIKit
-
+import Alamofire
 class GroupChatHandler: NSObject {
   static let shared = GroupChatHandler()
-    func createGroup(groupName:String,groupmember:String,completion:@escaping ( _ success: Bool, _ error: Error?)-> Void)
+    func createGroup(groupName:String,groupmember:[String],selectedImage:UIImage,completion:@escaping ( _ success: Bool, _ error: Error?)-> Void)
     {
         
         
@@ -38,7 +38,7 @@ class GroupChatHandler: NSObject {
         do {
             let postData = try JSONSerialization.data(withJSONObject: parameters, options: [])
             
-            let request = NSMutableURLRequest(url: NSURL(string: "http://walit.net/api/howzit/v1/GroupCreate")! as URL,
+            let request = NSMutableURLRequest(url: NSURL(string: "http://walit.net/api/howzit/v1/index.php/GroupCreate")! as URL,
                                               cachePolicy: .useProtocolCachePolicy,
                                               timeoutInterval: 10.0)
             request.httpMethod = "POST"
@@ -50,24 +50,36 @@ class GroupChatHandler: NSObject {
                 
                 Miscellaneous.APPDELEGATE.window!.stopMyToastActivity()
                 
+                guard let dataResponse = data,
+                    error == nil else {
+                        print(error?.localizedDescription ?? "Response Error")
+                        return }
+                do{
+                    //here dataResponse received from a network request
+                    let jsonResponse = try JSONSerialization.jsonObject(with:
+                        dataResponse, options: [])
+                    print(jsonResponse) //Response result
+                    let json = jsonResponse as? [String:Any]
+                    let data = json?["data"] as? [String:Any]
+                    let group_id = data?["group_id"] as? String
+                    DispatchQueue.main.async {
+                       
+                        GroupInfoHandler.shared.uplaodImage(image: [selectedImage], group_id: group_id ?? "", completion: {_,_,json in
+                            print(json)
+                            completion(true, nil)
+                        })
+                    }
+                } catch let parsingError {
+                    print("Error", parsingError)
+                }
+                
+                
+                
                 if (error != nil) {
                     print(error!)
                 } else {
-                    
-                    
-//                    guard let content = data else {
-//                        print("not returning data")
-//                        return
-//                    }
-//                    guard let json = (try? JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers)) as? [String: Any] else {
-//                        print("Not containing JSON")
-//
-//                    }
-                 //   print(json)
-                    
-                    
-                    completion(true, nil)
-                }
+                   
+                 }
             })
             
             dataTask.resume()
@@ -76,4 +88,7 @@ class GroupChatHandler: NSObject {
             print(error)
         }
     }
+    
+    
+    
 }

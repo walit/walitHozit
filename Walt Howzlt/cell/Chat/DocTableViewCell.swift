@@ -87,6 +87,9 @@ class DocTableViewCell: UITableViewCell {
         }else{
             self.imgStatus.image = UIImage(named: "ic_done_all_black_48dp")
         }
+        let name = getName(number: chat.display_name) == "" ? chat.display_name : getName(number: chat.display_name)
+        
+        self.lblDate.text = name  + " " + (self.lblDate.text ?? "")
     }
     func convertToArryDictionary(text: String) -> [[String: Any]]? {
         let data = text.data(using: .utf8)!

@@ -25,4 +25,5 @@ pod 'Firebase/Messaging'
 pod 'ISEmojiView'
 pod 'AudioPlayerSwift'
 pod 'YPImagePicker'
+pod 'PaginatedTableView'
 end

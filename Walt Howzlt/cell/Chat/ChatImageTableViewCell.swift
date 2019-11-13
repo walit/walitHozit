@@ -71,6 +71,10 @@ class ChatImageTableViewCell: UITableViewCell {
                 } else {
                     print("There was an error decoding the string")
                 }
+                let name = getName(number: item.display_name) == "" ? item.display_name : getName(number: item.display_name)
+                
+                self.lblInTime.text = name  + " " + (self.lblInTime.text ?? "")
+                self.lblOutTime.text =  self.lblInTime.text
             }else{
                 self.imconmingView.isHidden = false
                 outCommingView.isHidden = true

@@ -53,6 +53,9 @@ class IncommingContactTableViewCell: UITableViewCell {
         } else {
             print("There was an error decoding the string")
         }
+        let name = getName(number: chatItem.display_name) == "" ? chatItem.display_name : getName(number: chatItem.display_name)
+        
+        self.lblTime.text = name  + " " + (self.lblTime.text ?? "")
     }
     @IBAction func btnInvite(_ sender: Any) {
        self.callbackInvite?()

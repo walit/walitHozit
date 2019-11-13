@@ -12,7 +12,8 @@ import SwiftyJSON
 
 class ChatHandler: NSObject {
     var arrChatList = [ChatModel]()
-    func chatHandler(reciverID:String,group_id:String,completion:@escaping (_ json: [ChatModel], _ success: Bool, _ error: Error?,_ isOnline:String,_ online_date_time:String)-> Void)
+    
+    func chatHandler(reciverID:String,group_id:String,page:String,completion:@escaping (_ json: [ChatModel], _ success: Bool, _ error: Error?,_ isOnline:String,_ online_date_time:String)-> Void)
     {
         
         if !Reachability.isConnectedToNetwork()
@@ -23,7 +24,7 @@ class ChatHandler: NSObject {
         let headers = [
             StaticNameOfVariable.VACCESSTOKEN: Global.sharedInstance.AccessToken
         ]
-        let param = APIParameter.GetMessages(receiver_user_id: reciverID,group_id:group_id).dictionary()
+        let param = APIParameter.GetMessages(receiver_user_id: reciverID,group_id:group_id,page:page).dictionary()
         var loader = true
         if arrChatList.count > 0 {
             loader = false
@@ -101,7 +102,7 @@ class ChatHandler: NSObject {
             let postData = try JSONSerialization.data(withJSONObject: parameters, options: [])
          
             
-            let request = NSMutableURLRequest(url: NSURL(string: "http://walit.net/api/howzit/v1/SendMessage")! as URL,
+            let request = NSMutableURLRequest(url: NSURL(string: "http://walit.net/api/howzit/v1/index.php/SendMessage")! as URL,
                                               cachePolicy: .useProtocolCachePolicy,
                                               timeoutInterval: 10.0)
             request.httpMethod = "POST"
@@ -173,7 +174,7 @@ class ChatHandler: NSObject {
         do {
             let postData = try JSONSerialization.data(withJSONObject: parameters, options: [])
         
-        let request = NSMutableURLRequest(url: NSURL(string: "http://walit.net/api/howzit/v1/SendMessage")! as URL,
+        let request = NSMutableURLRequest(url: NSURL(string: "http://walit.net/api/howzit/v1/index.php/SendMessage")! as URL,
                                           cachePolicy: .useProtocolCachePolicy,
                                           timeoutInterval: 10.0)
         request.httpMethod = "POST"
@@ -244,7 +245,7 @@ class ChatHandler: NSObject {
             "group_id":group_id
             ] as [String : AnyObject]
 
-        self.callMultipartApi("http://walit.net/api/howzit/v1/SendFiles", param: parameters, imageArray: image, method: .post, header: headers, encodeType: .default, videoData: nil, imageNameArray: ["uoload_file[]"], location: false, completionHandler: {code,error,respose in
+        self.callMultipartApi("http://walit.net/api/howzit/v1/index.php/SendFiles", param: parameters, imageArray: image, method: .post, header: headers, encodeType: .default, videoData: nil, imageNameArray: ["uoload_file[]"], location: false, completionHandler: {code,error,respose in
             Miscellaneous.APPDELEGATE.window!.stopMyToastActivity()
             if code == 1{
                   completion(true,"",respose!)
@@ -255,6 +256,46 @@ class ChatHandler: NSObject {
     
         
   }
+    
+    func uploadVideo(videoURL:URL,thumb:UIImage,reciverid:String,group_id:String,duration:String,completion:@escaping (_ isDisclaimer: Bool, _ error: String,_ json : JSON)-> Void){
+        
+        if !Reachability.isConnectedToNetwork()
+        {
+            Miscellaneous.APPDELEGATE.window!.showAlertFor(alertTitle: myMessages.ERROR, alertMessage: myMessages.INTERNET_CONNECTIVITY_FAIL)
+            return
+        }
+       
+        let headers = [
+            "content-type": "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+            "ACCESS-TOKEN": Global.sharedInstance.AccessToken,
+            "Content-Type": "multipart/form-data",
+            "cache-control": "no-cache",
+            "Postman-Token": "d347f3d1-7e97-4823-b873-8989c64d5d66"
+        ]
+        let messageId = Date().millisecondsSince1970
+        let timezone = Calendar.current.timeZone.abbreviation()!
+        let parameters = [
+            "receiver_user_id": reciverid,
+            "message_type": "2",
+            "date_time": self.dateFormat(),
+            "time_zone": "\(timezone)",
+            "message_id": "\(messageId)",
+            "group_id":group_id,
+            "duration" : "1"
+            ] as [String : AnyObject]
+        
+        self.callMultipartApiForVidoe("http://walit.net/api/howzit/v1/index.php/SendFiles", param: parameters, imageArray: [thumb], method: .post, header: headers, encodeType: .default, videoData: videoURL as NSURL, imageNameArray: ["video_thumb"], location: false, completionHandler: {code,error,respose in
+                Miscellaneous.APPDELEGATE.window!.stopMyToastActivity()
+            if code == 1{
+                completion(true,"",respose!)
+            }
+            
+            
+        })
+        
+        
+    }
+    
     func uploadFile(file:Data,reciverid:String,group_id:String,completion:@escaping (_ isDisclaimer: Bool, _ error: String,_ json : JSON)-> Void){
         
         if !Reachability.isConnectedToNetwork()
@@ -282,7 +323,7 @@ class ChatHandler: NSObject {
             "group_id":group_id
             ] as [String : AnyObject]
         
-        self.callMultipartForFileApi("http://walit.net/api/howzit/v1/SendFiles", param: parameters, imageArray: file, method: .post, header: headers, encodeType: .default, videoData: nil, imageNameArray: ["uoload_file[]"], location: false, completionHandler: {code,error,respose in
+        self.callMultipartForFileApi("http://walit.net/api/howzit/v1/index.php/SendFiles", param: parameters, imageArray: file, method: .post, header: headers, encodeType: .default, videoData: nil, imageNameArray: ["uoload_file[]"], location: false, completionHandler: {code,error,respose in
             Miscellaneous.APPDELEGATE.window!.stopMyToastActivity()
             if code == 1{
                 completion(true,"",respose!)
@@ -304,6 +345,7 @@ class ChatHandler: NSObject {
         
         
         let headers = [
+            
             "ACCESS-TOKEN": Global.sharedInstance.AccessToken,
             "Content-Type": "multipart/form-data",
             "cache-control": "no-cache",
@@ -323,7 +365,7 @@ class ChatHandler: NSObject {
             "group_id":group_id
             ] as [String : AnyObject]
         
-        self.callMultipartApi("http://walit.net/api/howzit/v1/SendLocation", param: parameters, imageArray: image, method: .post, header: headers, encodeType: .default, videoData: nil, imageNameArray: ["uoload_file"], location: true, completionHandler: {code,error,respose in
+        self.callMultipartApi("http://walit.net/api/howzit/v1/index.php/SendLocation", param: parameters, imageArray: image, method: .post, header: headers, encodeType: .default, videoData: nil, imageNameArray: ["uoload_file"], location: true, completionHandler: {code,error,respose in
             
             if code == 1{
                 completion(true,"",respose!)
@@ -423,7 +465,93 @@ class ChatHandler: NSObject {
             Miscellaneous.APPDELEGATE.window!.showAlertFor(alertTitle: myMessages.ERROR, alertMessage: myMessages.INTERNET_CONNECTIVITY_FAIL)
         }
     }
+    func callMultipartApiForVidoe(_ strApiName:String,
+                          param : [String : AnyObject],
+                          imageArray : [UIImage]?,
+                          method: HTTPMethod,
+                          header:[String : String]?,
+                          encodeType:URLEncoding,
+                          videoData:NSURL?,
+                          imageNameArray:[String]?,location :Bool,
+                          completionHandler:@escaping SOAPICompletionHandler){
+        print("Api Name \(strApiName)")
+        print("parameters \(param)")
+        
+        if Reachability.isConnectedToNetwork(){
+            
+            Miscellaneous.APPDELEGATE.window!.makeMyToastActivity()
+            
+            Alamofire.upload(multipartFormData: { (multipartFormData) in
+                
+                if(videoData != nil)
+                {
+                    var movieData: Data
+                    do {
+                        movieData = try NSData(contentsOfFile: (videoData?.relativePath!)!, options: NSData.ReadingOptions.alwaysMapped) as Data
+                        
+                    } catch _ {
+                        
+                        return
+                    }
+                   // multipartFormData.append(movieData, withName: "uoload_file[]")
+
+                    multipartFormData.append(movieData, withName: "uoload_file[]", fileName: "\(self.randomString(length: 8)).mov", mimeType: "video/mov")
+                    
+                }
+                if(imageArray != nil){
+                    
+                    for i in imageArray ?? [UIImage()]{
+                        multipartFormData.append(i.jpegData(compressionQuality: 0.1)!, withName:"video_thumb", fileName: "\(self.randomString(length: 8)).jpeg", mimeType: "image/jpeg")
+                    }
+                }
+                
+                
+                for (key, value) in param {
+                    multipartFormData.append(value.data(using: String.Encoding.utf8.rawValue)!, withName: key)
+                }
+            }, to:strApiName,headers: header)
+            { (result) in
+                
+                switch result {
+                case .success(let upload, _, _):
+                    
+                    upload.uploadProgress(closure: { (Progress) in
+                        // print("Upload Progress: \(Progress.fractionCompleted)")
+                    })
+                    
+                    upload.responseJSON { response in
+                        Miscellaneous.APPDELEGATE.window!.stopMyToastActivity()
+                        // print("response \(response)")
+                        
+                        if response.result.isSuccess {
+                            let jsonObject = JSON(response.result.value!)
+                            completionHandler(1, nil, jsonObject)
+                        }
+                        else{
+                            let error = response.result.error! as NSError
+                            completionHandler(0, error, nil)
+                        }
+                    }
+                    
+                case .failure(let encodingError):
+                    Miscellaneous.APPDELEGATE.window!.stopMyToastActivity()
+                    
+                    // print(encodingError)
+                    let error = encodingError as NSError
+                    completionHandler(0, error, nil)
+                }
+            }
+            
+        }else{
+            Miscellaneous.APPDELEGATE.window!.stopMyToastActivity()
+            Miscellaneous.APPDELEGATE.window!.showAlertFor(alertTitle: myMessages.ERROR, alertMessage: myMessages.INTERNET_CONNECTIVITY_FAIL)
+        }
+    }
     
+        
+        
+        
+        
     func randomString(length: Int) -> String {
         
         let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
@@ -459,7 +587,7 @@ class ChatHandler: NSObject {
                 
                 var movieData: Data
                 movieData = imageArray
-                multipartFormData.append(movieData, withName: "uoload_file[]", fileName: "\(self.randomString(length: 8)).mp3", mimeType: "audio/mpeg")
+                multipartFormData.append(movieData, withName: "uoload_file[]", fileName: "\(self.randomString(length: 8)).m4a", mimeType: "audio/mpeg")
                 
                 
                 for (key, value) in param {
@@ -530,7 +658,7 @@ class ChatHandler: NSObject {
             "group_id":group_id
             ] as [String : AnyObject]
         
-        self.callMultipartForDocFileApi("http://walit.net/api/howzit/v1/SendFiles", param: parameters, docData: file, method: .post, header: headers, encodeType: .default, fileName: name, fileNameextention: extention, completionHandler: {code,error,respose in
+        self.callMultipartForDocFileApi("http://walit.net/api/howzit/v1/index.php/SendFiles", param: parameters, docData: file, method: .post, header: headers, encodeType: .default, fileName: name, fileNameextention: extention, completionHandler: {code,error,respose in
             Miscellaneous.APPDELEGATE.window!.stopMyToastActivity()
             if code == 1{
                 completion(true,"",respose!)
@@ -653,7 +781,7 @@ class ChatHandler: NSObject {
         do {
             let postData = try JSONSerialization.data(withJSONObject: parameters, options: [])
             
-            let request = NSMutableURLRequest(url: NSURL(string: "http://walit.net/api/howzit/v1/SendContactNumber")! as URL,
+            let request = NSMutableURLRequest(url: NSURL(string: "http://walit.net/api/howzit/v1/index.php/SendContactNumber")! as URL,
                                               cachePolicy: .useProtocolCachePolicy,
                                               timeoutInterval: 10.0)
             request.httpMethod = "POST"
@@ -725,7 +853,7 @@ class ChatHandler: NSObject {
         do {
             let postData = try JSONSerialization.data(withJSONObject: parameters, options: [])
             
-            let request = NSMutableURLRequest(url: NSURL(string: "http://walit.net/api/howzit/v1/SendContactNumber")! as URL,
+            let request = NSMutableURLRequest(url: NSURL(string: "http://walit.net/api/howzit/v1/index.php/SendContactNumber")! as URL,
                                               cachePolicy: .useProtocolCachePolicy,
                                               timeoutInterval: 10.0)
             request.httpMethod = "POST"
@@ -762,7 +890,85 @@ class ChatHandler: NSObject {
             print(error)
         }
     }
-    
+    func clearChat(other_user_id:String, completion:@escaping (_ success: Bool, _ error: Error?)-> Void){
+        // http://walit.net/api/howzit/v1/ClearAllChat?other_user_id=4
+        let headers = [
+            StaticNameOfVariable.VACCESSTOKEN: Global.sharedInstance.AccessToken
+        ]
+        
+        let request = NSMutableURLRequest(url: NSURL(string: "http://walit.net/api/howzit/v1/index.php/ClearAllChat?other_user_id=\(other_user_id)")! as URL,
+                                          cachePolicy: .useProtocolCachePolicy,
+                                          timeoutInterval: 10.0)
+        request.httpMethod = "GET"
+        request.allHTTPHeaderFields = headers
+        
+        let session = URLSession.shared
+        let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
+            if (error != nil) {
+                //print(error)
+                completion(false,error)
+            } else {
+               // let httpResponse = response as? HTTPURLResponse
+                
+                completion(true,nil)
+            }
+        })
+        
+        dataTask.resume()
+        
+    }
+    func deleteChat(message_id:String,receiver_user_id:String,group_id:String, completion:@escaping (_ success: Bool, _ error: Error?)-> Void){
+        let headers = [
+            StaticNameOfVariable.VACCESSTOKEN: Global.sharedInstance.AccessToken
+        ]
+        let parameters = [
+            "group_id": group_id == "0" ? "" : group_id ,
+            "receiver_user_id": Global.sharedInstance.UserID,
+            "message_id": [message_id],
+            "delete_type":"1"
+            
+            ] as [String : Any]
+       do {
+        let postData = try JSONSerialization.data(withJSONObject: parameters, options: [])
+        
+        let request = NSMutableURLRequest(url: NSURL(string: "http://walit.net/api/howzit/v1/index.php/DeleteChat")! as URL,
+                                          cachePolicy: .useProtocolCachePolicy,
+                                          timeoutInterval: 10.0)
+        request.httpMethod = "POST"
+        request.allHTTPHeaderFields = headers
+        request.httpBody = postData as Data
+        
+        let session = URLSession.shared
+        let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
+            if (error != nil) {
+               
+            } else {
+                let httpResponse = response as? HTTPURLResponse
+                guard let dataResponse = data,
+                    error == nil else {
+                        print(error?.localizedDescription ?? "Response Error")
+                        return }
+                do{
+                    //here dataResponse received from a network request
+                    let jsonResponse = try JSONSerialization.jsonObject(with:
+                        dataResponse, options: [])
+                    print(jsonResponse)
+                    
+                } catch let parsingError {
+                    print("Error", parsingError)
+                    
+                }
+                
+              completion(true,nil)
+            }
+        })
+        
+        dataTask.resume()
+       }catch{
+        print(error)
+        }
+        
+    }
 }
 extension Date {
     var millisecondsSince1970:Int {

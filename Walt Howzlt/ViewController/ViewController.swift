@@ -30,18 +30,17 @@ class ViewController: UIViewController {
     var otherStatus = [OtherStatus]()
     var arrChatList = [ChatListModel]()
 
-    let manager = SocketManager.init(socketURL: URL(string:"http://132.148.145.112:2021")!, config: [.log(true), .compress])
+    let manager = SocketManager.init(socketURL: URL(string:"http://walit.net:3000")!, config: [.log(true), .compress])
     
     var socket:SocketIOClient!
     var firstTimeLoadData = true
-    
-   
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         initSocket()
         SetUI()
+       // let chat = ChatHandler()
+       
     }
     override func viewDidLayoutSubviews() {
         self.addGradientWithColor()
@@ -104,7 +103,10 @@ class ViewController: UIViewController {
         }
     }
     func addPhotoStatus(){
-        let picker = YPImagePicker()
+        var config = YPImagePickerConfiguration()
+        config.screens = [.photo,.library]
+        config.library.mediaType = .photo
+        let picker = YPImagePicker(configuration: config)
         picker.didFinishPicking { [unowned picker] items, _ in
             if let photo = items.singlePhoto {
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "CreateImageStatusViewController") as! CreateImageStatusViewController
@@ -257,7 +259,8 @@ extension ViewController{
         })
     }
     func getStatus(){
-        chatListHandler.getStatus(loader: false, completion: {otherStatus,myStatus,_,_  in
+        let ids =  getids()
+        chatListHandler.getStatus(loader: false,other_user_ids: ids ,completion: {otherStatus,myStatus,_,_  in
             DispatchQueue.main.async {
                 self.myStatus = myStatus
                 self.otherStatus = otherStatus
@@ -268,3 +271,81 @@ extension ViewController{
     }
 }
 
+extension UITableViewCell{
+    func getName(number:String)->String{
+        var arrContacts =  [ContactModel]()
+        if let json = UserDefaults.standard.value(forKey: "json") as? [String:Any]
+        {
+            let arrData = json["data"] as? NSArray
+            if arrData == nil { return "" }
+            for item in arrData!{
+                let dict = item as? [String:String]
+                let contact = ContactModel()
+                contact.other_user_id           = (dict?["other_user_id"] ?? "")
+                contact.name              = (dict?["other_user_name"] ?? "")
+                contact.phone             = (dict?["phone"] ?? "")
+                contact.avatar            = (dict?["avatar"] ?? "")
+                arrContacts.append(contact)
+            }
+        }
+        for item in arrContacts{
+            if item.phone == number{
+                return item.name
+            }
+        }
+         return ""
+    }
+    
+}
+extension UIViewController{
+    func getName(number:String)->String{
+        var arrContacts =  [ContactModel]()
+        if let json = UserDefaults.standard.value(forKey: "json") as? [String:Any]
+        {
+            let arrData = json["data"] as? NSArray
+            if arrData == nil { return "" }
+            for item in arrData!{
+                let dict = item as? [String:String]
+                let contact = ContactModel()
+                contact.other_user_id           = (dict?["other_user_id"] ?? "")
+                contact.name              = (dict?["other_user_name"] ?? "")
+                contact.phone             = (dict?["phone"] ?? "")
+                contact.avatar            = (dict?["avatar"] ?? "")
+                arrContacts.append(contact)
+            }
+        }
+        for item in arrContacts{
+            if item.phone == number{
+                return item.name
+            }
+        }
+        return ""
+    }
+    func getids()->String{
+        var arrContacts =  [ContactModel]()
+        if let json = UserDefaults.standard.value(forKey: "json") as? [String:Any]
+        {
+            let arrData = json["data"] as? NSArray
+            if arrData == nil { return "" }
+            for item in arrData!{
+                let dict = item as? [String:String]
+                let contact = ContactModel()
+                contact.other_user_id           = (dict?["other_user_id"] ?? "")
+                contact.name              = (dict?["other_user_name"] ?? "")
+                contact.phone             = (dict?["phone"] ?? "")
+                contact.avatar            = (dict?["avatar"] ?? "")
+                arrContacts.append(contact)
+            }
+        }
+        var ids = ""
+        
+        for (index, item) in arrContacts.enumerated(){
+            if index == 0 {
+                ids = item.other_user_id
+            }else{
+                ids = ids + "," + item.other_user_id
+            }
+        }
+        return ids
+    }
+}

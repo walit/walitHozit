@@ -101,6 +101,10 @@ class ChatContactTableViewCell: UITableViewCell {
             } else {
                 print("There was an error decoding the string")
             }
+//            let name = getName(number: chatItem.display_name) == "" ? chatItem.display_name : getName(number: chatItem.display_name)
+//            
+//            self.lblInTime.text = name  + " " + (self.lblInTime.text ?? "")
+//            self.lblOutTime.text =  self.lblInTime.text
         }
     }
     

@@ -19,9 +19,15 @@ import Photos
 import MediaPlayer
 import ISEmojiView
 import MobileCoreServices
+import  AVFoundation
+import PaginatedTableView
+import YPImagePicker
 
-class ChatViewController: UIViewController {
+class ChatViewController: UIViewController ,UIGestureRecognizerDelegate{
     
+    @IBOutlet weak var messageInputView: UIView!
+    
+    @IBOutlet weak var viewEditMessage: UIView!
     @IBOutlet weak var btnMikeImage: UIButton!
     @IBOutlet weak var lblUserName: UILabel!
     @IBOutlet weak var imgUser: UIImageView!
@@ -35,6 +41,12 @@ class ChatViewController: UIViewController {
     @IBOutlet weak var txtMesageView: NextGrowingTextView!
     @IBOutlet weak var lblStatus: UILabel!
 
+    @IBOutlet weak var messageCount: UILabel!
+    @IBOutlet weak var btnReply: UIButton!
+    @IBOutlet weak var btnCopy: UIButton!
+    @IBOutlet weak var btnDelete: UIButton!
+    
+    
     var keybordHeight : CGFloat = 0.0
     var iskeyBordTypeEmoji = false
     var nodata = false
@@ -47,17 +59,24 @@ class ChatViewController: UIViewController {
     var is_group = String()
     var userName = String()
     var image = String()
-    
+    var message_id = [String]()
+    var selectedIndexPath = [IndexPath]()
     var arrMessage = [String:[ChatModel]]()
     var sectionHeaderArray = [[String: Any]]()
-    
-    let manager = SocketManager.init(socketURL: URL(string:"http://132.148.145.112:2021")!, config: [.log(true), .compress])
+    var audioRecordingView : AudioRecordingView?
+    var page = 0
+    var isLoading = false
+    var moreData = true
+    let manager = SocketManager.init(socketURL: URL(string:"http://walit.net:3000")!, config: [.log(true), .compress])
     var socket:SocketIOClient!
     let recordingView = SKRecordView(frame: CGRect(x:0, y:UIScreen.main.bounds.height-100 , width:UIScreen.main.bounds.width , height:100))
+    let spinner = UIActivityIndicatorView(style: .gray)
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+     
         socket = manager.defaultSocket
         socket.connect()
         
@@ -66,25 +85,12 @@ class ChatViewController: UIViewController {
         setUI()
     }
     override func viewWillLayoutSubviews() {
-         self.scrollToBottom()
+       //  self.scrollToBottom()
     }
-    func setupRecordView()  {
-        recordingView.delegate = self
-        recordingView.recordingImages = [UIImage(named: "rec-1.png")!,UIImage(named: "rec-2.png")!,UIImage(named: "rec-3.png")!,UIImage(named: "rec-4.png")!,UIImage(named: "rec-5.png")!,UIImage(named: "rec-6.png")!]
-        recordingView.normalImage = UIImage(named: "baseline_mic_black_48")!
-        
-        view.addSubview(recordingView)
-        
-        let vConsts = NSLayoutConstraint(item:self.recordingView , attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1.0, constant: 0)
-        
-        let hConsts = NSLayoutConstraint(item: self.recordingView, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailing, multiplier: 1.0, constant: -10)
-        
-        
-        view.addConstraints([hConsts])
-        view.addConstraints([vConsts])
-        ///recordingView.setupRecordingView()
-    }
+    
     func setUI(){
+        messageCount.text = ""
+        viewEditMessage.isHidden = true
          setupChooseDropDown()
          tableView.backgroundView = UIImageView(image: UIImage(named: "chat_background"))
         viewAttacment.isHidden = true
@@ -93,6 +99,7 @@ class ChatViewController: UIViewController {
         txtMesageView.textView.delegate = self
         txtMesageView.backgroundColor = .clear
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissMyKeyboard))
+        tap.delegate = self
         tap.cancelsTouchesInView = true
         view.addGestureRecognizer(tap)
         self.txtMesageView.placeholderAttributedText = NSAttributedString(
@@ -102,12 +109,28 @@ class ChatViewController: UIViewController {
                 .foregroundColor: UIColor.gray
             ]
         )
+        
+        recodingViewSetUp()
+        
+        let longGesture = UILongPressGestureRecognizer(target: self, action: #selector(longTap(_:)))
+        longGesture.numberOfTouchesRequired = 1
+        longGesture.minimumPressDuration = 0.5
+        btnMike.addGestureRecognizer(longGesture)
+        btnMikeImage.addGestureRecognizer(longGesture)
         setData()
+        self.tableView.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
+    }
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        if touch.view?.isDescendant(of: self.tableView) == true {
+            return false
+        }
+        return true
     }
     func configureTableView(){
         tableView.estimatedRowHeight = 66
         tableView.rowHeight = UITableView.automaticDimension
         
+         self.tableView.register(UINib(nibName: "VideoTableViewCell", bundle: nil), forCellReuseIdentifier: "VideoTableViewCell")
         self.tableView.register(UINib(nibName: "MultiImageTableViewCell", bundle: nil), forCellReuseIdentifier: "MultiImageTableViewCell")
         
         self.tableView.register(UINib(nibName: "GifTableViewCell", bundle: nil), forCellReuseIdentifier: "GifTableViewCell")
@@ -134,7 +157,7 @@ class ChatViewController: UIViewController {
             print("Socket connected for \(String(describing: self.reciverID))")
             self.connectSocket()
         }
-       
+        dismissMyKeyboard()
         self.navigationController?.isNavigationBarHidden = true
         self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
@@ -230,7 +253,7 @@ class ChatViewController: UIViewController {
                                      "sender_id":dic["sender_id"]
                         ]).dictionary
                     let chatmodel = ChatModel(json: json!)
-                    self.arrChatItem.append(chatmodel)
+                    self.arrChatItem.insert(chatmodel, at: 0)
                     self.udpateData()
                 }
             }else{
@@ -243,7 +266,7 @@ class ChatViewController: UIViewController {
                                      "sender_id":dic["sender_id"]
                         ]).dictionary
                     let chatmodel = ChatModel(json: json!)
-                    self.arrChatItem.append(chatmodel)
+                    self.arrChatItem.insert(chatmodel, at: 0)
                     self.udpateData()
                 }
             }
@@ -270,19 +293,21 @@ class ChatViewController: UIViewController {
     }
 
     func setData(){
-       
-            lblUserName.text = userName
-            let strImage = image
-            print(strImage)
-            let myURL = strImage.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-            
-            if let url = URL(string: myURL!) {
-                self.imgUser.af_setImage(withURL: url)
-            }
-            else{
-                self.imgUser.image = #imageLiteral(resourceName: "uploadUser")
-            }
         
+        lblUserName.text = self.getName(number:userName)
+        if lblUserName.text == "" {
+            lblUserName.text = userName
+        }
+        let strImage = image
+        print(strImage)
+        let myURL = strImage.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        
+        if let url = URL(string: myURL!) {
+            self.imgUser.af_setImage(withURL: url)
+        }
+        else{
+            self.imgUser.image = #imageLiteral(resourceName: "uploadUser")
+        }
     }
     func scrollToBottom(){
         
@@ -302,26 +327,50 @@ class ChatViewController: UIViewController {
         
         chooseDropDown.dataSource = [
             "View Info",
-            
+            "Clear Chat"
         ]
         
         // Action triggered on selection
         chooseDropDown.selectionAction = { [weak self] (index, item) in
             self?.chooseButton.setTitle(item, for: .normal)
-            if self?.is_group == "1"{
-                let vc = self?.storyboard?.instantiateViewController(withIdentifier: "GroupDetailViewController") as! GroupDetailViewController
-                vc.groupID = self?.group_id ?? ""
-                self?.navigationController?.pushViewController(vc, animated: true)
+            if index == 0{
+                if self?.is_group == "1"{
+                    let vc = self?.storyboard?.instantiateViewController(withIdentifier: "GroupDetailViewController") as! GroupDetailViewController
+                    vc.groupID = self?.group_id ?? ""
+                    self?.navigationController?.pushViewController(vc, animated: true)
+                }else{
+                    let vc = self?.storyboard?.instantiateViewController(withIdentifier: "UserInfoViewController") as! UserInfoViewController
+                    vc.userID = self?.reciverID ?? ""
+                    self?.navigationController?.pushViewController(vc, animated: true)
+                }
             }else{
-                let vc = self?.storyboard?.instantiateViewController(withIdentifier: "UserInfoViewController") as! UserInfoViewController
-                vc.userID = self?.reciverID ?? ""
-                self?.navigationController?.pushViewController(vc, animated: true)
+                self?.clearChat()
             }
+         
             
         }
     }
     //MARK: IBAction
     
+    @IBAction func btnBackEdit(_ sender: Any) {
+        self.viewEditMessage.isHidden = true
+    }
+    @IBAction func btnDelete(_ sender: Any) {
+        self.deleteMessage()
+    }
+    @IBAction func btnCopyAction(_ sender: Any) {
+        self.viewEditMessage.isHidden = true
+        var message = ""
+        for iten in selectedIndexPath {
+           message += "\n"
+           message += self.arrChatItem[iten.row].message
+        }
+       UIPasteboard.general.string = message
+        
+    }
+    @IBAction func btnReplyAction(_ sender: Any) {
+        self.viewEditMessage.isHidden = true
+    }
     
     @IBAction func btnShowMenu(_ sender: Any) {
         chooseDropDown.show()
@@ -340,6 +389,7 @@ class ChatViewController: UIViewController {
     }
     @IBAction func btnAudio(_ sender: Any) {
          viewAttacment.isHidden = true
+            self.openVideo()
         
     }
     @IBAction func btnCamera(_ sender: Any) {
@@ -347,8 +397,9 @@ class ChatViewController: UIViewController {
         openCamera()
     }
     @IBAction func btnLocation(_ sender: Any) {
-         viewAttacment.isHidden = true
+            viewAttacment.isHidden = true
             getlocation()
+        
     }
     @IBAction func btnContacts(_ sender: Any) {
          viewAttacment.isHidden = true
@@ -420,8 +471,86 @@ class ChatViewController: UIViewController {
 }
 // MARK: API Calling
 extension ChatViewController{
+    func deleteMessage(){
+        
+       
+        let alert = UIAlertController(title: "Delete Message", message: "Delete 1 message?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Delete for me", style: UIAlertAction.Style.destructive, handler: { action in
+            
+            // do something like...
+            self.deleteForMe()
+            self.viewEditMessage.isHidden = true
+        }))
+        alert.addAction(UIAlertAction(title: "Delete for everyone", style: UIAlertAction.Style.destructive, handler: { action in
+            
+            // do something like...
+            self.deleteForEveryOne()
+             self.viewEditMessage.isHidden = true
+        }))
+        alert.addAction(UIAlertAction(title: "Cancle", style: UIAlertAction.Style.destructive, handler: { action in
+            self.viewEditMessage.isHidden = true
+            
+        }))
+        self.present(alert, animated: true, completion: nil)
+        
+        
+    }
+    
+    func deleteForMe(){
+     
+        var messageids = ""
+        for item in message_id{
+            messageids =  messageids + "," + item
+        }
+        let dict = [
+            "sender_id" : Global.sharedInstance.UserID,
+            "receiver_id" : self.reciverID,
+            "message_id" : messageids,     "delete_type":"1"
+            ] as [String: Any]
+        
+        socket.emit("delete message", dict)
+        self.arrChatItem.remove(at: selectedIndexPath[0].row)
+        self.tableView.reloadData()
+        chatHandler.deleteChat(message_id: self.message_id[0], receiver_user_id: self.reciverID, group_id:self.group_id ,completion : {_,_ in
+            
+        })
+        
+    }
+    
+    func deleteForEveryOne(){
+        var messageids = ""
+        for item in message_id{
+            messageids =  messageids + "," + item
+        }
+        let dict = [
+            "sender_id" : Global.sharedInstance.UserID,
+            "receiver_id" : self.reciverID,
+            "message_id" : messageids
+            ] as [String: Any]
+        
+        socket.emit("delete message", dict)
+        self.arrChatItem.remove(at: selectedIndexPath[0].row)
+        self.tableView.reloadData()
+        chatHandler.deleteChat(message_id: self.message_id[0], receiver_user_id: self.reciverID, group_id:self.group_id ,completion : {_,_ in
+            
+        })
+    }
+    func clearChat(){
+        chatHandler.clearChat(other_user_id: self.reciverID, completion: {_,_ in
+            DispatchQueue.main.async {
+                self.arrChatItem.removeAll()
+                self.tableView.reloadData()
+            }
+        })
+    }
     func getMessage(){
-        chatHandler.chatHandler(reciverID:self.reciverID,group_id: self.group_id , completion: {arrMessage,_,_,isOnline,online_date_time  in
+         isLoading = true
+        
+        
+        chatHandler.chatHandler(reciverID:self.reciverID,group_id: self.group_id ,page: "\(self.arrChatItem.count)", completion: {arrMessage,_,_,isOnline,online_date_time  in
+            self.isLoading = false
+            self.spinner.stopAnimating()
+           
             if self.group_id == "0" {
                 if isOnline == "Online"{
                     self.lblStatus.text = isOnline
@@ -440,10 +569,14 @@ extension ChatViewController{
             }
         
             if arrMessage.count > 0 {
-               self.arrChatItem = arrMessage
+               self.arrChatItem.append(contentsOf: arrMessage.reversed())
+               self.moreData = true
+              
             }else{
+                self.moreData = false
                 self.nodata = true
             }
+           
             self.udpateData()
         })
     }
@@ -463,7 +596,8 @@ extension ChatViewController{
                              "sender_id":Global.sharedInstance.UserID
                 ]).dictionary
             let chatmodel = ChatModel(json: json!)
-            self.arrChatItem.append(chatmodel)
+            self.arrChatItem.insert(chatmodel, at: 0)
+            
             self.udpateData()
         })
     }
@@ -505,24 +639,30 @@ extension ChatViewController: UITextFieldDelegate{
                               "time_zone": "\(timezone)","is_read": "0",
                               "message_id":message_id,
                               "is_group" : self.group_id == "0" ? "0" : "1", "sender_id":Global.sharedInstance.UserID,
-                              "group_id":self.group_id
+                              "group_id":self.group_id,
+                              
             ]).dictionary
             let chatmodel = ChatModel(json: json!)
-            self.arrChatItem.append(chatmodel)
+            self.arrChatItem.insert(chatmodel, at: 0)
             self.udpateData()
          })
         
  }
     func udpateData(){
-
         DispatchQueue.main.async {
-            self.tableView.reloadData()
-            if self.arrChatItem.count > 0 {
-                let indexPath = IndexPath(row: self.arrChatItem.count-1, section: 0)
-                self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
-            }
-            
+             self.tableView.reloadData()
         }
+       
+        if page  == 1{
+            DispatchQueue.main.async {
+                if self.arrChatItem.count > 0 {
+                    let indexPath = IndexPath(row: 0, section: 0)
+                    self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+                }
+                
+            }
+        }
+       
     }
     func uploadImage(images:[UIImage]){
         chatHandler.uploadImage(image:images, reciverid: self.reciverID,group_id:self.group_id , completion: { rsult,error,json   in
@@ -541,7 +681,7 @@ extension ChatViewController: UITextFieldDelegate{
                     ]).dictionary
                 
                 let chatmodel = ChatModel(json: json!)
-                self.arrChatItem.append(chatmodel)
+                self.arrChatItem.insert(chatmodel, at: 0)
                 self.udpateData()
             }
         })
@@ -566,9 +706,33 @@ extension ChatViewController: UITextFieldDelegate{
                                  "sender_id":Global.sharedInstance.UserID
                     ]).dictionary
                 let chatmodel = ChatModel(json: json!)
-                self.arrChatItem.append(chatmodel)
+                self.arrChatItem.insert(chatmodel, at: 0)
                 self.udpateData()
             }
+        })
+    }
+    func sendVideo(videoUrl:URL,vidoeThumb:UIImage){
+        
+        chatHandler.uploadVideo(videoURL: videoUrl, thumb: vidoeThumb, reciverid: self.reciverID, group_id: self.group_id, duration: "1", completion: { rsult,error,json   in
+            print(json)
+            let data = json["data"].dictionary
+            let message = data?["message"]!.string
+            DispatchQueue.main.async {
+                let timezone = Calendar.current.timeZone.abbreviation()!
+                let json = JSON(["receiver_id":self.reciverID,
+                                 "message": message,
+                                 "message_type": "2",
+                                 "group_id":self.group_id,
+                                 "date_time": self.dateFormat(),
+                                 "time_zone": "\(timezone)","is_read": "0",
+                                 "sender_id":Global.sharedInstance.UserID
+                    ]).dictionary
+                let chatmodel = ChatModel(json: json!)
+                self.arrChatItem.insert(chatmodel, at: 0)
+                self.udpateData()
+            
+            }
+            
         })
     }
 }
@@ -623,6 +787,24 @@ extension ChatViewController:UIImagePickerControllerDelegate,UINavigationControl
     }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
          picker.dismiss(animated: true, completion: nil)
+    }
+    func openVideo(){
+        var config = YPImagePickerConfiguration()
+        config.screens = [.video,.library]
+        config.library.mediaType = .video
+        
+        let picker = YPImagePicker(configuration: config)
+        picker.didFinishPicking { [unowned picker] items, _ in
+            if let video = items.singleVideo {
+                print(video.fromCamera)
+                print(video.thumbnail)
+                
+                self.sendVideo(videoUrl: video.url,vidoeThumb:video.thumbnail)
+                
+            }
+            picker.dismiss(animated: true, completion: nil)
+        }
+        present(picker, animated: true, completion: nil)
     }
     
     func getlocation(){
@@ -717,7 +899,34 @@ extension ChatViewController:UIImagePickerControllerDelegate,UINavigationControl
         myCustomView.clipsToBounds = true
         self.view.addSubview(myCustomView)
     }
-    
+    func recodingViewSetUp(){
+        audioRecordingView = .fromNib()
+        audioRecordingView?.callbackFinish = { filedata in
+            self.sendAudioMessage(file: filedata)
+        }
+        audioRecordingView?.clipsToBounds = true
+        audioRecordingView?.frame = CGRect(x: 0, y: self.view.frame.size.height - 120, width: self.view.frame.width, height: 100)
+        self.view.addSubview(audioRecordingView!)
+        audioRecordingView?.isHidden = true
+        view.bringSubviewToFront(self.audioRecordingView!)
+    }
+  
+    @objc func longTap(_ sender: UIGestureRecognizer){
+        print("Long tap")
+        if sender.state == .ended {
+            print("UIGestureRecognizerStateEnded")
+            //Do Whatever You want on End of Gesture
+            self.audioRecordingView?.setupRecording()
+            self.audioRecordingView?.isHidden = false
+        }
+        else if sender.state == .began {
+            print("UIGestureRecognizerStateBegan.")
+            let systemSoundID: SystemSoundID = 1005
+            // to play sound
+            AudioServicesPlaySystemSound (systemSoundID)
+            //Do Whatever You want on Began of Gesture
+        }
+    }
 }
    //MARK:- contact picker
 extension ChatViewController: CNContactPickerDelegate{
@@ -770,7 +979,7 @@ extension ChatViewController: CNContactPickerDelegate{
                                  "sender_id":Global.sharedInstance.UserID
                     ]).dictionary
                 let chatmodel = ChatModel(json: json!)
-                self.arrChatItem.append(chatmodel)
+                self.arrChatItem.insert(chatmodel, at: 0)
                 self.udpateData()
             }
         })
@@ -786,14 +995,14 @@ extension ChatViewController: CNContactPickerDelegate{
                 
                 let json = JSON(["receiver_id":self.reciverID,
                                  "message": message,
-                                 "message_type": "3",
+                                 "message_type": "2",
                                  "group_id":self.group_id,
                                  "date_time": self.dateFormat(),
                                  "time_zone": "\(timezone)","is_read": "0",
                                  "sender_id":Global.sharedInstance.UserID
                     ]).dictionary
                 let chatmodel = ChatModel(json: json!)
-                self.arrChatItem.append(chatmodel)
+                self.arrChatItem.insert(chatmodel, at: 0)
                 self.udpateData()
             }
             
@@ -817,7 +1026,7 @@ extension ChatViewController: CNContactPickerDelegate{
                                  "sender_id":Global.sharedInstance.UserID
                     ]).dictionary
                 let chatmodel = ChatModel(json: json!)
-                self.arrChatItem.append(chatmodel)
+                self.arrChatItem.insert(chatmodel, at: 0)
                 self.udpateData()
             }
         })
@@ -888,35 +1097,16 @@ extension ChatViewController : UITextViewDelegate{
         }
     }
 }
-extension ChatViewController:SKRecordViewDelegate{
-    func SKRecordViewDidSelectRecord(_ sender: SKRecordView, button: UIView) {
-        sender.state = .none
-        sender.setupRecordButton(UIImage(named: "baseline_mic_black_48")!)
-        recordingView.audioRecorder?.stop()
-        recordingView.recordButton.imageView?.stopAnimating()
-        
-        print("Cancelled")
+extension ChatViewController {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if (((scrollView.contentOffset.y + scrollView.frame.size.height) > scrollView.contentSize.height ) && !isLoading && moreData){
+            self.isLoading = true
+            spinner.startAnimating()
+            spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(44))
+            
+            self.tableView.tableFooterView = spinner
+            self.tableView.tableFooterView?.isHidden = false
+            self.getMessage()
+        }
     }
-    
-    func SKRecordViewDidStopRecord(_ sender: SKRecordView, button: UIView) {
-        sender.state = .recording
-        sender.setupRecordButton(UIImage(named: "rec-1.png")!)
-        sender.audioRecorder?.record()
-        recordingView.recordButton.imageView?.startAnimating()
-        
-        print("Began " + NSUUID().uuidString)
-    }
-    
-    func SKRecordViewDidCancelRecord(_ sender: SKRecordView, button: UIView) {
-        recordingView.audioRecorder?.stop()
-        
-        sender.state = .none
-        sender.setupRecordButton(UIImage(named: "baseline_mic_black_48")!)
-        print(recordingView.getFileURL())
-        recordingView.recordButton.imageView?.stopAnimating()
-        
-        print("Done")
-    }
-    
-    
 }
