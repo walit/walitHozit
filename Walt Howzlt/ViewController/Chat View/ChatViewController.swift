@@ -59,7 +59,7 @@ class ChatViewController: UIViewController ,UIGestureRecognizerDelegate{
     var is_group = String()
     var userName = String()
     var image = String()
-    var message_id = [String]()
+    var message_id = [String]() /// Holds the selected object from the array
     var selectedIndexPath = [IndexPath]()
     var arrMessage = [String:[ChatModel]]()
     var sectionHeaderArray = [[String: Any]]()
@@ -132,6 +132,8 @@ class ChatViewController: UIViewController ,UIGestureRecognizerDelegate{
         
          self.tableView.register(UINib(nibName: "VideoTableViewCell", bundle: nil), forCellReuseIdentifier: "VideoTableViewCell")
         self.tableView.register(UINib(nibName: "MultiImageTableViewCell", bundle: nil), forCellReuseIdentifier: "MultiImageTableViewCell")
+        
+        self.tableView.register(UINib(nibName: "ChatImageTableViewCell", bundle: nil), forCellReuseIdentifier: "ChatImageTableViewCell")
         
         self.tableView.register(UINib(nibName: "GifTableViewCell", bundle: nil), forCellReuseIdentifier: "GifTableViewCell")
         
@@ -242,7 +244,7 @@ class ChatViewController: UIViewController ,UIGestureRecognizerDelegate{
             print("socket", item)
             
             let dic = item as! NSDictionary
-            
+            print("dic = \(dic)")
             if dic["is_group"] as? String == "1" {
                 if  dic["group_id"] as? String == self.group_id{
                     let json = JSON(["receiver_id":dic["receiver_id"],
@@ -250,7 +252,13 @@ class ChatViewController: UIViewController ,UIGestureRecognizerDelegate{
                                      "message_type": dic["message_type"],
                                      "date_time": dic["date_time"],
                                      "time_zone": dic["time_zone"],"is_read": dic["is_read"],
-                                     "sender_id":dic["sender_id"]
+                                     "sender_id":dic["sender_id"],
+                                     "thumb_url": dic["thumb_url"],
+                                     "duration": dic["duration"],
+                                     "file_name": dic["file_name"],
+                                     "file_size": dic["file_size"],
+                                     "file_type": dic["file_type"],
+                                     "file_url": dic["file_url"],
                         ]).dictionary
                     let chatmodel = ChatModel(json: json!)
                     self.arrChatItem.insert(chatmodel, at: 0)
@@ -263,7 +271,13 @@ class ChatViewController: UIViewController ,UIGestureRecognizerDelegate{
                                      "message_type": dic["message_type"],
                                      "date_time": dic["date_time"],
                                      "time_zone": dic["time_zone"],"is_read": dic["is_read"],
-                                     "sender_id":dic["sender_id"]
+                                     "sender_id":dic["sender_id"],
+                                     "thumb_url": dic["thumb_url"],
+                                     "duration": dic["duration"],
+                                     "file_name": dic["file_name"],
+                                     "file_size": dic["file_size"],
+                                     "file_type": dic["file_type"],
+                                     "file_url": dic["file_url"],
                         ]).dictionary
                     let chatmodel = ChatModel(json: json!)
                     self.arrChatItem.insert(chatmodel, at: 0)
@@ -426,6 +440,7 @@ class ChatViewController: UIViewController ,UIGestureRecognizerDelegate{
       txtMesageView.textView.text  = txtMesageView.textView.text?.trimmingCharacters(in: .whitespaces)
         if (txtMesageView.textView.text?.count)! > 0{
            
+            
             let timezone = Calendar.current.timeZone.abbreviation()!
             print(timezone)
               let messageId = Date().millisecondsSince1970
@@ -439,14 +454,14 @@ class ChatViewController: UIViewController ,UIGestureRecognizerDelegate{
                 
                 "message_id" : messageId,
                 
-                "message_type" : 1,
+                "message_type" : MessageType.Text,
                 
                 "receiver_id" : self.reciverID,
                 
                 "sender_id" : Global.sharedInstance.UserID,
                 
                 "time_zone" : "IST",
-               
+                "is_block": 0,
                 "is_group" : self.group_id == "0" ? "0" : "1",
                 "group_id":self.group_id,
                 ] as? [String: Any]
@@ -634,12 +649,15 @@ extension ChatViewController: UITextFieldDelegate{
             let message_id = json["message_id"] as? String
             let json = JSON(["receiver_id":receiver_id,
                              "message": message,
-                              "message_type": "1",
+                             "message_type": MessageType.Text,
                               "date_time": self.dateFormat(),
-                              "time_zone": "\(timezone)","is_read": "0",
-                              "message_id":message_id,
-                              "is_group" : self.group_id == "0" ? "0" : "1", "sender_id":Global.sharedInstance.UserID,
+                              "time_zone": "\(timezone)",
+                              "is_read": "0",
+                              "message_id":message_id as Any,
+                              "is_group" : self.group_id == "0" ? "0" : "1",
+                              "sender_id":Global.sharedInstance.UserID,
                               "group_id":self.group_id,
+                              "is_block": 0,
                               
             ]).dictionary
             let chatmodel = ChatModel(json: json!)
@@ -664,7 +682,39 @@ extension ChatViewController: UITextFieldDelegate{
         }
        
     }
-    func uploadImage(images:[UIImage]){
+    
+    func uploadImageOneByOne(image:UIImage, indexing: Int = 0) {
+        let fileName = "\(indexing) image"
+        chatHandler.uploadImageOneByOne(image: image, reciverid: self.reciverID, group_id: self.group_id, videoThumb: "", fileName: fileName, fileDuration: 0) { rsult,messageId,json, dictMD in
+           
+            print(json)
+            let data = json["data"].dictionary
+            let message = data?["message"]!.string
+            DispatchQueue.main.async {
+                              let timezone = Calendar.current.timeZone.abbreviation()!
+                              let json = JSON(["receiver_id":self.reciverID,
+                                               "message": message,
+                                               "message_type": MessageType.Image,
+                                               "group_id":self.group_id,
+                                               "date_time": self.dateFormat(),
+                                               "time_zone": "\(timezone)","is_read": "0",
+                                               "thumb_url": data?["thumb_url"]!.string,
+                                               "file_url": data?["file_url"]!.string,
+                                               "file_name": dictMD["file_name"],
+                                               "file_type": dictMD["file_type"],
+                                               "file_size": dictMD["file_size"] as! Int,
+                                               "duration": dictMD["duration"] as! Int,
+                                               "sender_id":Global.sharedInstance.UserID
+                                  ]).dictionary
+                              
+                              let chatmodel = ChatModel(json: json!)
+                              self.arrChatItem.insert(chatmodel, at: 0)
+                              self.udpateData()
+            }
+          }
+       }
+    
+    func uploadImage(images:[UIImage]) {
         chatHandler.uploadImage(image:images, reciverid: self.reciverID,group_id:self.group_id , completion: { rsult,error,json   in
             print(json)
             let data = json["data"].dictionary
@@ -711,7 +761,7 @@ extension ChatViewController: UITextFieldDelegate{
             }
         })
     }
-    func sendVideo(videoUrl:URL,vidoeThumb:UIImage){
+    func sendVideo(videoUrl:URL,vidoeThumb:UIImage, videoDuration: Int = 0){
         
         chatHandler.uploadVideo(videoURL: videoUrl, thumb: vidoeThumb, reciverid: self.reciverID, group_id: self.group_id, duration: "1", completion: { rsult,error,json   in
             print(json)
@@ -765,7 +815,32 @@ extension ChatViewController:UIImagePickerControllerDelegate,UINavigationControl
                                              let selectedImage  = self.getUIImage(asset: item)
                                                 arr.append(selectedImage!)
                                             }
-                                            self.uploadImage(images: arr)
+                                            
+                                            
+                                            if arr.count == 1 {
+                                                self.uploadImageOneByOne(image: arr[0])
+                                            } else {
+                                                /// Here a loop runs of an array and send images on server one by one.
+                                                let queue = OperationQueue()
+                                                for i in 0..<arr.count {
+                                                    let operation1 = BlockOperation(block: {
+                                                        
+                                                        OperationQueue.main.addOperation({
+                                                            self.uploadImageOneByOne(image: arr[i], indexing: i )
+                                                        })
+                                                    })
+                                                    operation1.completionBlock = {
+                                                        print("image uploaded by queue")
+                                                    }
+                                                    queue.addOperation(operation1)
+                                                }
+                                            }
+                                            
+                                            
+                                            
+                                            
+                                            
+//                                            self.uploadImage(images: arr)
                                             imagePicker.dismiss(animated: true, completion: nil)
         }, cancel: {
              imagePicker.dismiss(animated: true, completion: nil)
@@ -783,7 +858,8 @@ extension ChatViewController:UIImagePickerControllerDelegate,UINavigationControl
             //self.imgUser.image = selectedImage!
             picker.dismiss(animated: true, completion: nil)
         }
-        self.uploadImage(images: [selectedImage ?? UIImage()])
+        self.uploadImageOneByOne(image: selectedImage!, indexing: 0)
+       // self.uploadImage(images: [selectedImage ?? UIImage()])
     }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
          picker.dismiss(animated: true, completion: nil)
@@ -798,8 +874,12 @@ extension ChatViewController:UIImagePickerControllerDelegate,UINavigationControl
             if let video = items.singleVideo {
                 print(video.fromCamera)
                 print(video.thumbnail)
+                let asset = AVAsset(url: video.url)
+
+                let duration = asset.duration
+                let durationTime = CMTimeGetSeconds(duration)
                 
-                self.sendVideo(videoUrl: video.url,vidoeThumb:video.thumbnail)
+                self.sendVideo(videoUrl: video.url,vidoeThumb:video.thumbnail, videoDuration: Int(durationTime))
                 
             }
             picker.dismiss(animated: true, completion: nil)
@@ -835,7 +915,6 @@ extension ChatViewController:UIImagePickerControllerDelegate,UINavigationControl
         locationPicker.completion = { location in
             // do some awesome stuff with location
             self.navigationController?.setNavigationBarHidden(true, animated: true)
-            
             self.mapScreenshow(lat: location?.location.coordinate.latitude ?? 0.0, long: location?.location.coordinate.longitude ?? 0.0,address:location?.address ?? "")
         }
         
@@ -876,19 +955,16 @@ extension ChatViewController:UIImagePickerControllerDelegate,UINavigationControl
       
     }
     
-    func playSound(index:Int){
-        let strImage = self.arrChatItem[index].message
+    func playSound(fileUrl: String, fileName: String) {
+      
         let imageview =  UIImageView.init(frame: self.view.frame)
         imageview.backgroundColor = UIColor.darkGray
         imageview.alpha = 0.5
         imageview.isUserInteractionEnabled = true
         self.view.addSubview(imageview)
-        let dict = convertToArryDictionary(text: strImage)
-        if dict == nil {return}
-        let file_url = dict?[0]["file_url"] as! String
-        let fileName = dict?[0]["file_name"] as! String
+
         let myCustomView: AudioPlayView = .fromNib()
-        myCustomView.url = file_url
+        myCustomView.url = fileUrl
         myCustomView.strFileName = fileName
         myCustomView.initPlayerView()
         myCustomView.callBackFinishPlay = {
@@ -899,11 +975,13 @@ extension ChatViewController:UIImagePickerControllerDelegate,UINavigationControl
         myCustomView.clipsToBounds = true
         self.view.addSubview(myCustomView)
     }
+    
     func recodingViewSetUp(){
         audioRecordingView = .fromNib()
-        audioRecordingView?.callbackFinish = { filedata in
-            self.sendAudioMessage(file: filedata)
+        audioRecordingView?.callbackFinish = { fileData, duration in
+            self.sendAudioMessage(file: fileData, duration: duration)
         }
+
         audioRecordingView?.clipsToBounds = true
         audioRecordingView?.frame = CGRect(x: 0, y: self.view.frame.size.height - 120, width: self.view.frame.width, height: 100)
         self.view.addSubview(audioRecordingView!)
@@ -984,22 +1062,29 @@ extension ChatViewController: CNContactPickerDelegate{
             }
         })
     }
-    func sendAudioMessage(file:Data){
+    func sendAudioMessage(file:Data, duration: Int = 0){
         
         let timezone = Calendar.current.timeZone.abbreviation()!
         
-        chatHandler.uploadFile(file: file, reciverid: self.reciverID, group_id: self.group_id, completion: {_,_,json in
+        chatHandler.uploadRecordAudioFile(file: file, reciverid: self.reciverID, group_id: self.group_id, duration: duration, completion: {_,_,json in
+            
             let data = json["data"].dictionary
+            print("data = \(data)")
             let message = data?["message"]!.string
             DispatchQueue.main.async {
                 
                 let json = JSON(["receiver_id":self.reciverID,
                                  "message": message,
-                                 "message_type": "2",
+                                 "message_type": MessageType.Recording,
                                  "group_id":self.group_id,
                                  "date_time": self.dateFormat(),
                                  "time_zone": "\(timezone)","is_read": "0",
-                                 "sender_id":Global.sharedInstance.UserID
+                                 "sender_id":Global.sharedInstance.UserID,
+                                 "file_name": data?["file_name"]!.string,
+                                 "file_size": data?["file_size"]!.string,
+                                 "file_type": data?["file_type"]!.string,
+                                 "file_url": data?["file_url"]!.string,
+                                 "duration": data?["duration"]!.string
                     ]).dictionary
                 let chatmodel = ChatModel(json: json!)
                 self.arrChatItem.insert(chatmodel, at: 0)

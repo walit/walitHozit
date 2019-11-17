@@ -16,13 +16,14 @@ class AudioRecordingView: UIView ,AVAudioRecorderDelegate{
     
     @IBOutlet weak var lblDuration: UILabel!
     @IBOutlet weak var imgBlink: UIImageView!
-    var callbackFinish: ((Data)->())?
+    var callbackFinish: ((Data, Int)->())?
     var audioFilename : URL?
     var timeMin = 0
     var timeSec = 0
     weak var timer: Timer?
     
     func setupRecording(){
+        
         resetTimerToZero()
         resetTimerAndLabel()
         
@@ -45,8 +46,14 @@ class AudioRecordingView: UIView ,AVAudioRecorderDelegate{
         }
     }
     func loadRecordingUI() {
-            startRecording()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            // your code here
+            self.startRecording()
             self.startTimer()
+        }
+           
+        
+            
     }
     func startRecording() {
         audioFilename = getDocumentsDirectory().appendingPathComponent("recording.m4a")
@@ -61,6 +68,7 @@ class AudioRecordingView: UIView ,AVAudioRecorderDelegate{
         do {
             audioRecorder = try AVAudioRecorder(url: audioFilename!, settings: settings)
             audioRecorder.delegate = self
+            
             audioRecorder.record()
             
            
@@ -87,7 +95,10 @@ class AudioRecordingView: UIView ,AVAudioRecorderDelegate{
         self.finishRecording(success: true)
         do {
             let data = try Data.init(contentsOf: audioFilename!)
-            callbackFinish?(data)
+            let audioAsset = AVURLAsset.init(url: audioFilename!, options: nil)
+            let duration = audioAsset.duration
+            let durationInSeconds = CMTimeGetSeconds(duration)
+            callbackFinish?(data, Int(durationInSeconds))
         }catch{
             print("error")
         }

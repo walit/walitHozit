@@ -75,8 +75,6 @@ class LoginHandler: NSObject {
                         completion(false, false, nil)
                     }
                    
-                    
-                    
                 }
                 else
                 {

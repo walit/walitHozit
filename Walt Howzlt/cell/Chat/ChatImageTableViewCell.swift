@@ -48,8 +48,8 @@ class ChatImageTableViewCell: UITableViewCell {
                 }
                 let strImage = item.message
              
-                let dict = convertToArryDictionary(text: strImage)
-                let url = dict![0]["file_url"] as! String
+               // let dict = convertToArryDictionary(text: strImage)
+                let url = item.file_url//dict![0]["file_url"] as! String
                 let myURL = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
                 
                 if let url = URL(string: myURL!) {
@@ -90,8 +90,8 @@ class ChatImageTableViewCell: UITableViewCell {
                 let strImage = item.message
 //                strImage = String(strImage.dropLast())
 //                strImage = String(strImage.dropFirst())
-                let dict = convertToArryDictionary(text: strImage)
-                let url = dict![0]["file_url"] as! String
+               // let dict = convertToArryDictionary(text: strImage)
+                let url = item.file_url
                 let myURL = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
                 
                 if let url = URL(string: myURL!) {

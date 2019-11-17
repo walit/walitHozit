@@ -45,7 +45,6 @@ class AudioTableViewCell: UITableViewCell {
         if item.message_type == "2" {
             if item.sender_id != Global.sharedInstance.UserID{
                 
-               
                 let strImage = item.message
                 
                 let dict = convertToArryDictionary(text: strImage)
@@ -80,6 +79,34 @@ class AudioTableViewCell: UITableViewCell {
             }
        }
    }
+    
+    func setAudioRecordingData(obChat: ChatModel) {
+        print("obChat. = \(obChat.file_name)\n obChat. = \(obChat.file_url)")
+        if obChat.message_type == MessageType.Recording {
+            if obChat.sender_id != Global.sharedInstance.UserID {
+                self.lblFileName.text = obChat.file_name
+                self.lblSize.text = obChat.file_size
+                self.lblDate.text = obChat.date_time
+                leadingConstaint.priority = UILayoutPriority(rawValue: 999)
+                 trailingConstaint.priority = UILayoutPriority(rawValue: 250)
+                imgStatus.isHidden = true
+            } else {
+                self.imgStatus.isHidden = false
+                               if obChat.is_read == "1"{
+                                   self.imgStatus.image = UIImage(named: "ic_done_black_1024dp")
+                               }else if obChat.is_read == "2" {
+                                   self.imgStatus.image = UIImage(named: "right")
+                               }else{
+                                   self.imgStatus.image = UIImage(named: "ic_done_all_black_48dp")
+                               }
+                self.lblFileName.text = obChat.file_name
+                self.lblSize.text = obChat.file_size
+                self.lblDate.text = obChat.date_time
+                leadingConstaint.priority = UILayoutPriority(rawValue: 250)
+                trailingConstaint.priority = UILayoutPriority(rawValue: 999)
+            }
+        }
+    }
     
     @IBAction func btnPlay(_ sender: Any) {
         callbackPlay?()

@@ -30,7 +30,7 @@ class ChatListHandler: NSObject {
             
             if json != nil
             {
-                print(json!)
+                print("json! = \(json)")
                 let json : JSON = json!
                 let code = json.dictionaryValue[StaticNameOfVariable.Vcode]?.intValue
                 let status = json.dictionaryValue[StaticNameOfVariable.VStatus]?.string

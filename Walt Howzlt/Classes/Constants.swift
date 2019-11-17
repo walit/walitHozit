@@ -47,14 +47,36 @@ struct Padding
 
 }
 
+
+struct MessageType {
+    static let Text = "1" // Done
+    static let Image = "2" // Done
+    static let Contact = "3" // Done
+    static let Location = "4" // Done
+    static let HowzIt = "5"
+    static let ChatReply = "6"
+    static let StatusReply = "7"
+    static let Audio = "8" // Done
+    static let Video = "9"
+    static let Recording = "10" // Done
+    static let Document = "11"
+    
+}
+
 struct myURLs
 {
 
-    static let stagingURL = "http://walit.net/api/howzit/v1/index.php/"
-    static let liveURL = "http://walit.net/api/howzit/v1/index.php/"
+   // static let stagingURL = "http://walit.net/api/howzit/v1/index.php/"
+    //static let liveURL = "http://walit.net/api/howzit/v1/index.php/"
+    static let stagingURL = "http://walit.net/api/howzit/v2/index.php/"
+    static let liveURL = "http://walit.net/api/howzit/v2/index.php/"
+    
     
     static let baseSocketURL = "http://35.239.79.227:2021"
 }
+
+let BaseUrl = myURLs.stagingURL
+
 struct ApiNames
 {
     static let VUserAuth = "UserAuth"
@@ -161,9 +183,7 @@ extension UIViewController {
             gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
             theView.layer.insertSublayer(gradientLayer, at: 0)
         }
-        
     }
-    
 }
 
 
@@ -207,7 +227,6 @@ extension NSObject {
              UIApplication.shared.endIgnoringInteractionEvents()
             Global.sharedInstance.activityIndicatorView.stopAnimating()
         }
-        
     }
     
     

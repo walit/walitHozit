@@ -147,6 +147,40 @@ extension ChatViewController: UITableViewDelegate,UITableViewDataSource{
         }else{
             let strImage = self.arrChatItem[indexPath.row].message
             let dict = convertToArryDictionary(text: strImage)
+            
+            print("self.arrChatItem[indexPath.row]. = \(self.arrChatItem[indexPath.row].message_type)")
+            
+            /// Managing with other type:
+            
+            if self.arrChatItem[indexPath.row].message_type == MessageType.Image {
+                 let str = "MultiImageTableViewCell"
+                let cell = tableView.dequeueReusableCell(withIdentifier: str, for: indexPath) as! MultiImageTableViewCell
+                               cell.configureCell(item: self.arrChatItem[indexPath.row])
+                               cell.callBack = {
+                                   let strImage = self.arrChatItem[indexPath.row].message
+                                   let dict = self.convertToArryDictionary(text: strImage)
+                                   let vc = self.storyboard?.instantiateViewController(withIdentifier: "ImageViewViewController")as! ImageViewViewController
+                                   vc.imageview = dict ?? [[String:Any]]()
+                                   vc.titlestr = self.userName
+                                   self.navigationController?.pushViewController(vc, animated: true)
+                               }
+                               cell.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
+                               return cell
+            } else if self.arrChatItem[indexPath.row].message_type == MessageType.Recording {
+                let str = "AudioTableViewCell"
+                let cell = tableView.dequeueReusableCell(withIdentifier: str, for: indexPath) as! AudioTableViewCell
+                cell.setAudioRecordingData(obChat: self.arrChatItem[indexPath.row])
+                //cell.cofigureCell(item: self.arrChatItem[indexPath.row])
+                cell.callbackPlay = {
+                    self.playSound(fileUrl: self.arrChatItem[indexPath.row].file_url, fileName: self.arrChatItem[indexPath.row].file_name)
+                }
+                cell.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
+                return cell
+            }
+            
+            
+            print("dict = \(dict)")
+          /*  if dict != nil {
             let filetype = dict![0]["file_type"] as? String
             if filetype == "video" {
                 let str = "VideoTableViewCell"
@@ -204,11 +238,11 @@ extension ChatViewController: UITableViewDelegate,UITableViewDataSource{
                 cell.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
                 return cell
             }
-            
+            } */
            
         }
         
-        
+        return UITableViewCell()
     }
  
     
@@ -226,19 +260,31 @@ extension ChatViewController: UITableViewDelegate,UITableViewDataSource{
         }else if arrChatItem[indexPath.row].message_type == "5"{
             return 100
         }else{
+            /*
             let strImage = self.arrChatItem[indexPath.row].message
             let dict = convertToArryDictionary(text: strImage)
-            let filetype = dict![0]["file_type"] as? String
-            if filetype == "audio" || filetype == "recording"{
-                return 60
-            }else if filetype == "photo"{
+            if dict != nil {
+                    let filetype = dict![0]["file_type"] as? String
+                    if filetype == "audio" || filetype == "recording"{
+                        return 60
+                    }else if filetype == "photo"{
+                        return 200
+                    }else if filetype == "video"{
+                        return 200
+                    }else{
+                        return 80
+                    }
+            } else {
+                return 0
+            }
+            return 0 */
+            if self.arrChatItem[indexPath.row].message_type == MessageType.Image {
                 return 200
-            }else if filetype == "video"{
-                return 200
-            }else{
+            } else if self.arrChatItem[indexPath.row].message_type == MessageType.Recording {
                 return 80
             }
-           
+            
+            return 0
         }
         
     }
@@ -286,11 +332,19 @@ extension ChatViewController: UITableViewDelegate,UITableViewDataSource{
         self.selectedIndexPath.append(indexPath)
     }
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        self.message_id.remove(at: indexPath.row)
+        print("self.message_id = \(self.message_id), indexPath.row = \(indexPath.row)")
+        for i in 0..<self.message_id.count {
+            if self.message_id[i] == arrChatItem[indexPath.row].message_id {
+                print("self.message_id[i] = \(self.message_id[i]),  arrChatItem[indexPath.row].message_id = \( arrChatItem[indexPath.row].message_id), self.selectedIndexPath = \(self.selectedIndexPath)")
+                self.message_id.remove(at: i)
+              //  self.selectedIndexPath.remove(at: i)
+                break
+            }
+        }
+        
         messageCount.text = "\(self.message_id.count + 1)"
-        let index = self.selectedIndexPath.firstIndex(of: indexPath) ?? indexPath.row
-        self.selectedIndexPath.remove(at: index)
     }
+    
     func logtapOnMessage(indexPath:IndexPath){
        
     }

@@ -101,8 +101,8 @@ class ChatHandler: NSObject {
         do {
             let postData = try JSONSerialization.data(withJSONObject: parameters, options: [])
          
-            
-            let request = NSMutableURLRequest(url: NSURL(string: "http://walit.net/api/howzit/v1/index.php/SendMessage")! as URL,
+            let apiName = String(format: "%@SendMessage", BaseUrl)
+            let request = NSMutableURLRequest(url: NSURL(string: apiName)! as URL,
                                               cachePolicy: .useProtocolCachePolicy,
                                               timeoutInterval: 10.0)
             request.httpMethod = "POST"
@@ -173,8 +173,8 @@ class ChatHandler: NSObject {
             ] as [String : Any]
         do {
             let postData = try JSONSerialization.data(withJSONObject: parameters, options: [])
-        
-        let request = NSMutableURLRequest(url: NSURL(string: "http://walit.net/api/howzit/v1/index.php/SendMessage")! as URL,
+            let BaseUrl = myURLs.stagingURL + "SendMessage"
+        let request = NSMutableURLRequest(url: NSURL(string: BaseUrl)! as URL,
                                           cachePolicy: .useProtocolCachePolicy,
                                           timeoutInterval: 10.0)
         request.httpMethod = "POST"
@@ -218,10 +218,66 @@ class ChatHandler: NSObject {
         dateFormatterGet.timeZone = TimeZone(abbreviation: "UTC")
         return dateFormatterGet.string(from: Date())
     }
+    
+    func uploadImageOneByOne(image: UIImage ,reciverid:String,group_id:String, videoThumb: String = "", fileName: String = "", fileDuration: Int = 0 ,completion:@escaping (_ isDisclaimer: Bool, _ error: String,_ json : JSON, _ fileMetaData : NSDictionary)-> Void){
+          
+        let imgData = NSData(data: image.jpegData(compressionQuality: 1)!)
+        let imageSize: Int = imgData.count
+        let strFileSize: String = String(format: "%d KB",(imgData.count / 2000))
+          if !Reachability.isConnectedToNetwork() {
+              Miscellaneous.APPDELEGATE.window!.showAlertFor(alertTitle: myMessages.ERROR, alertMessage: myMessages.INTERNET_CONNECTIVITY_FAIL)
+              return
+          }
+          
+          let headers = [
+              "ACCESS-TOKEN": Global.sharedInstance.AccessToken,
+              "Content-Type": "multipart/form-data",
+              "cache-control": "no-cache",
+              "Postman-Token": "d347f3d1-7e97-4823-b873-8989c64d5d66"
+          ]
+          let messageId = Date().millisecondsSince1970
+          let timezone = Calendar.current.timeZone.abbreviation()!
+          
+        print("fileName = \(fileName), messageId = \(messageId)")
+        
+          let params = ["message_id": "\(messageId)",
+              "receiver_user_id": reciverid,
+              "message_type": MessageType.Image,
+              "group_id": group_id,
+              "date_time": self.dateFormat(),
+              "time_zone": "\(timezone)",
+              "video_thumb": videoThumb,
+              "file_name": "\(fileName)\(messageId)",
+              "file_type": "png",
+              "file_size": strFileSize,
+              "duration": "\(fileDuration)"
+            ] as [String : Any]
+          
+          let apiName = String(format: "%@SendFiles", BaseUrl)
+        self.callMultipartApi(apiName, param: params as [String : AnyObject], imageArray: [image], method: .post, header: headers, encodeType: .default, videoData: nil, imageNameArray: ["upload_file"], location: false, completionHandler: {code,error,respose in
+            
+            
+              Miscellaneous.APPDELEGATE.window!.stopMyToastActivity()
+              if code == 1{
+                let dictMD = NSMutableDictionary()
+                dictMD.setValue(params["file_name"], forKey: "file_name")
+                dictMD.setValue("png", forKey: "file_type")
+                dictMD.setValue(imageSize, forKey: "file_size")
+                dictMD.setValue(fileDuration, forKey: "duration")
+                dictMD.setValue("", forKey: "thumb_url")
+                
+                    completion(true,"",respose!, dictMD)
+              }
+              
+              
+              })
+      
+          
+    }
+    
     func uploadImage(image:[UIImage],reciverid:String,group_id:String,completion:@escaping (_ isDisclaimer: Bool, _ error: String,_ json : JSON)-> Void){
         
-        if !Reachability.isConnectedToNetwork()
-        {
+        if !Reachability.isConnectedToNetwork() {
             Miscellaneous.APPDELEGATE.window!.showAlertFor(alertTitle: myMessages.ERROR, alertMessage: myMessages.INTERNET_CONNECTIVITY_FAIL)
             return
         }
@@ -236,6 +292,14 @@ class ChatHandler: NSObject {
         ]
         let messageId = Date().millisecondsSince1970
         let timezone = Calendar.current.timeZone.abbreviation()!
+        
+        let params = ["message_id": "\(messageId)",
+            "receiver_user_id": reciverid,
+            "message_type": MessageType.Image,
+            "group_id": group_id,
+            
+        ]
+        
         let parameters = [
             "receiver_user_id": reciverid,
             "message_type": "2",
@@ -244,8 +308,8 @@ class ChatHandler: NSObject {
             "message_id": "\(messageId)",
             "group_id":group_id
             ] as [String : AnyObject]
-
-        self.callMultipartApi("http://walit.net/api/howzit/v1/index.php/SendFiles", param: parameters, imageArray: image, method: .post, header: headers, encodeType: .default, videoData: nil, imageNameArray: ["uoload_file[]"], location: false, completionHandler: {code,error,respose in
+        let apiName = String(format: "%@SendFiles", BaseUrl)
+        self.callMultipartApi(apiName, param: parameters, imageArray: image, method: .post, header: headers, encodeType: .default, videoData: nil, imageNameArray: ["uoload_file[]"], location: false, completionHandler: {code,error,respose in
             Miscellaneous.APPDELEGATE.window!.stopMyToastActivity()
             if code == 1{
                   completion(true,"",respose!)
@@ -296,6 +360,49 @@ class ChatHandler: NSObject {
         
     }
     
+    
+    func uploadRecordAudioFile(file:Data,reciverid:String,group_id:String, duration: Int = 0,completion:@escaping (_ isDisclaimer: Bool, _ error: String,_ json : JSON)-> Void){
+        if !Reachability.isConnectedToNetwork()
+               {
+                   Miscellaneous.APPDELEGATE.window!.showAlertFor(alertTitle: myMessages.ERROR, alertMessage: myMessages.INTERNET_CONNECTIVITY_FAIL)
+                   return
+               }
+               let fileName = "audio"
+               let imgData = NSData(data: file)
+                      let imageSize: Int = imgData.count
+                      let strFileSize: String = String(format: "%d KB",(imgData.count / 2000))
+               
+               let headers = [
+                   "ACCESS-TOKEN": Global.sharedInstance.AccessToken,
+                   "Content-Type": "multipart/form-data",
+                   "cache-control": "no-cache",
+                   "Postman-Token": "d347f3d1-7e97-4823-b873-8989c64d5d66"
+               ]
+               let messageId = Date().millisecondsSince1970
+               let timezone = Calendar.current.timeZone.abbreviation()!
+               let parameters = [
+                   "receiver_user_id": reciverid,
+                   "message_type": MessageType.Recording,
+                   "date_time": self.dateFormat(),
+                   "time_zone": "\(timezone)",
+                   "message_id": "\(messageId)",
+                   "group_id":group_id,
+                   "file_name": "\(fileName)\(messageId)",
+                   "file_type": "m4a",
+                   "file_size": strFileSize,
+                   "duration": "\(duration)"
+                   ] as [String : AnyObject]
+               
+               let apiName = String(format: "%@SendFiles", BaseUrl)
+               self.callMultipartForFileApi(apiName, param: parameters, imageArray: file, method: .post, header: headers, encodeType: .default, videoData: nil, imageNameArray: ["upload_file"], location: false, completionHandler: {code,error,respose in
+                   Miscellaneous.APPDELEGATE.window!.stopMyToastActivity()
+                   if code == 1{
+                       completion(true,"",respose!)
+                   }
+                   
+        })
+    }
+    
     func uploadFile(file:Data,reciverid:String,group_id:String,completion:@escaping (_ isDisclaimer: Bool, _ error: String,_ json : JSON)-> Void){
         
         if !Reachability.isConnectedToNetwork()
@@ -323,6 +430,7 @@ class ChatHandler: NSObject {
             "group_id":group_id
             ] as [String : AnyObject]
         
+        let apiName = String(format: "%@SendFiles", BaseUrl)
         self.callMultipartForFileApi("http://walit.net/api/howzit/v1/index.php/SendFiles", param: parameters, imageArray: file, method: .post, header: headers, encodeType: .default, videoData: nil, imageNameArray: ["uoload_file[]"], location: false, completionHandler: {code,error,respose in
             Miscellaneous.APPDELEGATE.window!.stopMyToastActivity()
             if code == 1{
@@ -334,6 +442,7 @@ class ChatHandler: NSObject {
         
         
     }
+    
     func uploadlocationImage(image:[UIImage],lat:Double,long:Double,address:String,reciverid:String,group_id:String,completion:@escaping (_ isDisclaimer: Bool, _ error: String,_ json : JSON)-> Void){
         
         if !Reachability.isConnectedToNetwork()
@@ -365,7 +474,8 @@ class ChatHandler: NSObject {
             "group_id":group_id
             ] as [String : AnyObject]
         
-        self.callMultipartApi("http://walit.net/api/howzit/v1/index.php/SendLocation", param: parameters, imageArray: image, method: .post, header: headers, encodeType: .default, videoData: nil, imageNameArray: ["uoload_file"], location: true, completionHandler: {code,error,respose in
+        let apiName = String(format: "%@SendLocation",BaseUrl)
+        self.callMultipartApi(apiName, param: parameters, imageArray: image, method: .post, header: headers, encodeType: .default, videoData: nil, imageNameArray: [], location: true, completionHandler: {code,error,respose in
             
             if code == 1{
                 completion(true,"",respose!)
@@ -410,23 +520,28 @@ class ChatHandler: NSObject {
                 if location {
                     if(imageArray != nil){
                         
-                        for i in imageArray ?? [UIImage()]{
+                       /* for i in imageArray ?? [UIImage()]{
+                           
                             multipartFormData.append(i.jpegData(compressionQuality: 0.1)!, withName:"uoload_file", fileName: "\(self.randomString(length: 8)).jpeg", mimeType: "image/jpeg")
-                        }
+                        } */
                     }
                 }else{
                     if(imageArray != nil){
-                        
+                         
                         for i in imageArray ?? [UIImage()]{
-                            multipartFormData.append(i.jpegData(compressionQuality: 0.1)!, withName:"uoload_file[]", fileName: "\(self.randomString(length: 8)).jpeg", mimeType: "image/jpeg")
+                            print("image data count = \(i.jpegData(compressionQuality: 0.1)?.count)")
+                            multipartFormData.append(i.jpegData(compressionQuality: 0.1)!, withName:(imageNameArray?[0])!, fileName: "\(self.randomString(length: 8)).jpeg", mimeType: "image/jpeg")
                         }
                     }
                 }
-              
                 
                 for (key, value) in param {
+                    print("\(key) = \(value)")
                     multipartFormData.append(value.data(using: String.Encoding.utf8.rawValue)!, withName: key)
                 }
+                
+                
+                
             }, to:strApiName,headers: header)
             { (result) in
                 
@@ -444,8 +559,7 @@ class ChatHandler: NSObject {
                         if response.result.isSuccess {
                             let jsonObject = JSON(response.result.value!)
                             completionHandler(1, nil, jsonObject)
-                        }
-                        else{
+                        } else{
                             let error = response.result.error! as NSError
                             completionHandler(0, error, nil)
                         }
@@ -465,6 +579,7 @@ class ChatHandler: NSObject {
             Miscellaneous.APPDELEGATE.window!.showAlertFor(alertTitle: myMessages.ERROR, alertMessage: myMessages.INTERNET_CONNECTIVITY_FAIL)
         }
     }
+    
     func callMultipartApiForVidoe(_ strApiName:String,
                           param : [String : AnyObject],
                           imageArray : [UIImage]?,
@@ -587,7 +702,7 @@ class ChatHandler: NSObject {
                 
                 var movieData: Data
                 movieData = imageArray
-                multipartFormData.append(movieData, withName: "uoload_file[]", fileName: "\(self.randomString(length: 8)).m4a", mimeType: "audio/mpeg")
+                multipartFormData.append(movieData, withName: "upload_file", fileName: "\(self.randomString(length: 8)).m4a", mimeType: "audio/mpeg")
                 
                 
                 for (key, value) in param {
@@ -605,8 +720,8 @@ class ChatHandler: NSObject {
                     
                     upload.responseJSON { response in
                         Miscellaneous.APPDELEGATE.window!.stopMyToastActivity()
-                        // print("response \(response)")
-                        
+                         print("response \(response)")
+                        let jsonObject = JSON(response.result.value!)
                         if response.result.isSuccess {
                             let jsonObject = JSON(response.result.value!)
                             completionHandler(1, nil, jsonObject)
@@ -619,7 +734,6 @@ class ChatHandler: NSObject {
                     
                 case .failure(let encodingError):
                     Miscellaneous.APPDELEGATE.window!.stopMyToastActivity()
-                    
                     // print(encodingError)
                     let error = encodingError as NSError
                     completionHandler(0, error, nil)
@@ -780,8 +894,8 @@ class ChatHandler: NSObject {
         print(parameters)
         do {
             let postData = try JSONSerialization.data(withJSONObject: parameters, options: [])
-            
-            let request = NSMutableURLRequest(url: NSURL(string: "http://walit.net/api/howzit/v1/index.php/SendContactNumber")! as URL,
+            let apiName = "\(BaseUrl)SendContactNumber"
+            let request = NSMutableURLRequest(url: NSURL(string: apiName)! as URL,
                                               cachePolicy: .useProtocolCachePolicy,
                                               timeoutInterval: 10.0)
             request.httpMethod = "POST"

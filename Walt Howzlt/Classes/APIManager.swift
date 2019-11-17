@@ -30,8 +30,8 @@ class APIManager: NSObject {
                        isLoader:Bool,
                        completionHandler:@escaping SOAPICompletionHandler) {
         
-        print("Api Name \(strApiName)")
-        print("parameters \(param)")
+        print("*************\nApi Name \(strApiName), \nparameters \(param)")
+        print("")
         
         if isLoader == true {
             // For Activity Indicator

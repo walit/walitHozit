@@ -66,7 +66,6 @@ class LoginViewController: UIViewController {
     @IBAction func btnLogin(_ sender: Any) {
         viewLoader.isHidden = false
         imgbg.isHidden = false
-        
         self.getContactsAccess()
         
     }
@@ -86,7 +85,6 @@ class LoginViewController: UIViewController {
 
 
 extension LoginViewController{
-    
     
     func getContactsAccess(){
         requestAccess { (responce) in
@@ -143,7 +141,6 @@ extension LoginViewController{
         }
         
         let parameters = ["contacts": jsonToString(json: str as AnyObject)]
-        
         
         print(parameters)
         

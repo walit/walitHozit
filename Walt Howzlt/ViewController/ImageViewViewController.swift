@@ -49,9 +49,7 @@ class ImageViewViewController: UIViewController ,UIScrollViewDelegate{
         // txtMessage.isUserInteractionEnabled = false
     }
     func setImage(url:String) -> URL?{
-        
-        let myURL = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-        
+        let myURL = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)        
         if let url = URL(string: myURL!) {
             return url
         }
@@ -96,6 +94,23 @@ extension ImageViewViewController: UICollectionViewDelegate,UICollectionViewData
         return CGSize(width: collectionView.frame.size.width, height: collectionView.frame.size.height / 2)
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ZoomImageViewController")as! ZoomImageViewController
+        if arrMedia.count > 0 {
+                       let url = arrMedia[indexPath.item]
+                       imageOuter.af_setImage(withURL: self.setImage(url: url as! String)!)
+            for i in 0..<arrMedia.count {
+                vc.arrImages.add(arrMedia[i])
+            }
+        }else{
+                       let url = imageview[indexPath.item]["file_url"] as! String
+                       imageOuter.af_setImage(withURL: self.setImage(url: url)!)
+            for i in 0..<imageview.count {
+                vc.arrImages.add(imageview[i]["file_url"] as! String)
+            }
+        }
+            vc.imgView = imageOuter.image
+            self.navigationController?.pushViewController(vc, animated: true)
+        /*
         if self.scrollviewOter.isHidden == true{
             self.scrollviewOter.isHidden = false
             collectionView.isHidden = true
@@ -109,7 +124,7 @@ extension ImageViewViewController: UICollectionViewDelegate,UICollectionViewData
             }
         }else{
             self.scrollviewOter.isHidden = true
-        }
+        } */
     }
     
     

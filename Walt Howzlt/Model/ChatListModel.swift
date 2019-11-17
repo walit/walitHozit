@@ -23,11 +23,13 @@ class ChatListModel: NSObject {
     var thumb = String()
     init (json : [String:JSON])
     {
+        print("json = \(json)")
+        
         thumb = (json["thumb"]?.stringValue)!
-        username       = (json["username"]?.stringValue)!
+       // username       = (json["username"]?.stringValue)!
         avatar         = (json["avatar"]?.stringValue)!
         unread_count   = (json["unread_count"]?.stringValue)!
-        last_time      = (json["last_time"]?.stringValue)!
+     //   last_time      = (json["last_time"]?.stringValue)!
         
         time_zone      = (json["time_zone"]?.stringValue)!
         receiver_id    = (json["receiver_id"]?.stringValue)!
@@ -50,6 +52,15 @@ class ChatModel: NSObject {
     var is_read : String = ""
     var message_id : String = ""
     var display_name : String = ""
+    var file_size: String = ""
+    var thumb_url: String = ""
+    var file_type: String = ""
+    var file_name: String = ""
+    var file_url: String = ""
+    var duration: String = ""
+    
+    
+    
     init (json : [String:JSON])
     {
         sender_id      = (json["sender_id"]?.stringValue)!
@@ -63,6 +74,24 @@ class ChatModel: NSObject {
             display_name     = (json["username"]?.stringValue)!
         }
        
+        if (message_type == MessageType.Image)  {
+            file_size = (json["file_size"]?.stringValue)!
+           // thumb_url = (json["thumb_url"]?.stringValue)!
+            file_type = (json["file_type"]?.stringValue)!
+            file_name = (json["file_name"]?.stringValue)!
+            file_url = (json["file_url"]?.stringValue)!
+            duration = (json["duration"]?.stringValue)!
+        }
+        
+        if  (message_type == MessageType.Recording) {
+            file_size = (json["file_size"]?.stringValue)!
+          //  thumb_url = (json["thumb_url"]?.stringValue)!
+            file_type = (json["file_type"]?.stringValue)!
+            file_name = (json["file_name"]?.stringValue)!
+            file_url = (json["file_url"]?.stringValue)!
+            duration = (json["duration"]?.stringValue)!
+        }
+        
         message_id     = (json["message_id"]?.stringValue) ?? ""
     }
     

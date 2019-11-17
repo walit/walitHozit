@@ -1,0 +1,968 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "049AD397-F88C-447E-B46A-B46E43F76838"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "690145D1-C694-4382-8F33-83491DD2A977"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/ViewController/Chat View/ChatViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "441"
+            endingLineNumber = "441"
+            landmarkName = "btnSendMessage(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F00E4A74-1366-49A7-9938-F669C098A46B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/ViewController/Chat View/ChatViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "444"
+            endingLineNumber = "444"
+            landmarkName = "btnSendMessage(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9C0CAB1C-5DE6-46A7-A253-33EE51997B5E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/ViewController/Chat View/ChatViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "471"
+            endingLineNumber = "471"
+            landmarkName = "btnSendMessage(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0BD42A32-E4F2-4AD1-BFC7-929A8F056F83"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/ViewController/Chat View/ChatViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "674"
+            endingLineNumber = "674"
+            landmarkName = "udpateData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4638AA63-D958-49F7-9CC1-20684A9CB749"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/ViewController/Chat View/ChatViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "675"
+            endingLineNumber = "675"
+            landmarkName = "udpateData()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "4638AA63-D958-49F7-9CC1-20684A9CB749 - a9b9ee9fb23eece"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Walt_Howzlt.ChatViewController.udpateData() -&gt; ()"
+                  moduleName = "Walt Howzlt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/GKJ/IOS%20PROJECTS/HOWZ%20IT/Howz%20It/Walt%20Howzlt/ViewController/Chat%20View/ChatViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "661"
+                  endingLineNumber = "661"
+                  offsetFromSymbolStart = "609">
+               </Location>
+               <Location
+                  uuid = "4638AA63-D958-49F7-9CC1-20684A9CB749 - 1efa273dc0476f9"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 () -&gt; () in Walt_Howzlt.ChatViewController.udpateData() -&gt; ()"
+                  moduleName = "Walt Howzlt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/GKJ/IOS%20PROJECTS/HOWZ%20IT/Howz%20It/Walt%20Howzlt/ViewController/Chat%20View/ChatViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "662"
+                  endingLineNumber = "662"
+                  offsetFromSymbolStart = "108">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3C456E06-F3EB-4ADF-A7FE-355D9AEA411C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/Handler/ChatHandler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "250"
+            endingLineNumber = "250"
+            landmarkName = "uploadImageOneByOne(image:reciverid:group_id:videoThumb:fileName:fileDuration:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BF0DDA18-7B68-4A80-980B-4E697E6058F7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/Handler/ChatHandler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "243"
+            endingLineNumber = "243"
+            landmarkName = "uploadImageOneByOne(image:reciverid:group_id:videoThumb:fileName:fileDuration:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "22D7A0E9-8CC2-4823-B3BB-89DC21615130"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/ViewController/Chat View/ChatViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "843"
+            endingLineNumber = "843"
+            landmarkName = "openGallery()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2379A4A5-8497-4732-AACA-4310E1B78282"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/ViewController/Chat View/ChatViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "721"
+            endingLineNumber = "721"
+            landmarkName = "uploadImage(images:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0E2037DD-87FA-462C-B0CA-DF36623D6282"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/ViewController/Chat View/ChatViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "722"
+            endingLineNumber = "722"
+            landmarkName = "uploadImage(images:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "0E2037DD-87FA-462C-B0CA-DF36623D6282 - a602653f9da63704"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Bool, Swift.String, SwiftyJSON.JSON) -&gt; () in Walt_Howzlt.ChatViewController.uploadImage(images: Swift.Array&lt;__C.UIImage&gt;) -&gt; ()"
+                  moduleName = "Walt Howzlt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/GKJ/IOS%20PROJECTS/HOWZ%20IT/Howz%20It/Walt%20Howzlt/ViewController/Chat%20View/ChatViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "722"
+                  endingLineNumber = "722"
+                  offsetFromSymbolStart = "1747">
+               </Location>
+               <Location
+                  uuid = "0E2037DD-87FA-462C-B0CA-DF36623D6282 - 2606595148b68050"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #1 (Swift.Bool, Swift.String, SwiftyJSON.JSON) -&gt; () in Walt_Howzlt.ChatViewController.uploadImage(images: Swift.Array&lt;__C.UIImage&gt;) -&gt; ()"
+                  moduleName = "Walt Howzlt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/GKJ/IOS%20PROJECTS/HOWZ%20IT/Howz%20It/Walt%20Howzlt/ViewController/Chat%20View/ChatViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "723"
+                  endingLineNumber = "723"
+                  offsetFromSymbolStart = "298">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7B20DC1F-DC33-4D84-9E43-0EDF02E40BE7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/Handler/ChatHandler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "263"
+            endingLineNumber = "263"
+            landmarkName = "uploadImageOneByOne(image:reciverid:group_id:videoThumb:fileName:fileDuration:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "97391910-0340-4747-B3FA-969CAC12E5E8"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/ViewController/Chat View/ChatViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "706"
+            endingLineNumber = "706"
+            landmarkName = "uploadImageOneByOne(image:indexing:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "58D6497A-72AE-45FE-A620-54AF4FDDE392"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/ViewController/Chat View/ChatViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "704"
+            endingLineNumber = "704"
+            landmarkName = "uploadImageOneByOne(image:indexing:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "477E0417-F352-4709-ABF2-074BD7344880"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/ViewController/Chat View/ChatViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "705"
+            endingLineNumber = "705"
+            landmarkName = "uploadImageOneByOne(image:indexing:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "ED7D1F11-3CD9-437E-9464-D38588ABA82F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/ViewController/Chat View/ChatViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "690"
+            endingLineNumber = "690"
+            landmarkName = "uploadImageOneByOne(image:indexing:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "52AF28D2-79BA-4136-878B-779E50048F11"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/Handler/ChatHandler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "496"
+            endingLineNumber = "496"
+            landmarkName = "callMultipartApi(_:param:imageArray:method:header:encodeType:videoData:imageNameArray:location:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E2B28FE0-40B3-424F-AF90-3E7BD9F6945B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/Handler/ChatHandler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "497"
+            endingLineNumber = "497"
+            landmarkName = "callMultipartApi(_:param:imageArray:method:header:encodeType:videoData:imageNameArray:location:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B61821FA-E502-4CEE-8BBE-42BE27382F82"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/Handler/ChatHandler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "257"
+            endingLineNumber = "257"
+            landmarkName = "uploadImageOneByOne(image:reciverid:group_id:videoThumb:fileName:fileDuration:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "B61821FA-E502-4CEE-8BBE-42BE27382F82 - 721fe15afa24c17a"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Walt_Howzlt.ChatHandler.uploadImageOneByOne(image: __C.UIImage, reciverid: Swift.String, group_id: Swift.String, videoThumb: Swift.String, fileName: Swift.String, fileDuration: Swift.Int, completion: (Swift.Bool, Swift.String, SwiftyJSON.JSON, __C.NSDictionary) -&gt; ()) -&gt; ()"
+                  moduleName = "Walt Howzlt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/GKJ/IOS%20PROJECTS/HOWZ%20IT/Howz%20It/Walt%20Howzlt/Handler/ChatHandler.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "257"
+                  endingLineNumber = "257"
+                  offsetFromSymbolStart = "6654">
+               </Location>
+               <Location
+                  uuid = "B61821FA-E502-4CEE-8BBE-42BE27382F82 - 35ac6e533aa6bc43"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Int, Swift.Optional&lt;__C.NSError&gt;, Swift.Optional&lt;SwiftyJSON.JSON&gt;) -&gt; () in Walt_Howzlt.ChatHandler.uploadImageOneByOne(image: __C.UIImage, reciverid: Swift.String, group_id: Swift.String, videoThumb: Swift.String, fileName: Swift.String, fileDuration: Swift.Int, completion: (Swift.Bool, Swift.String, SwiftyJSON.JSON, __C.NSDictionary) -&gt; ()) -&gt; ()"
+                  moduleName = "Walt Howzlt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/GKJ/IOS%20PROJECTS/HOWZ%20IT/Howz%20It/Walt%20Howzlt/Handler/ChatHandler.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "260"
+                  endingLineNumber = "260"
+                  offsetFromSymbolStart = "492">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DCD97A1C-07D8-4DA2-A16F-CDAC361E351C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/Handler/ChatHandler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "501"
+            endingLineNumber = "501"
+            landmarkName = "callMultipartApi(_:param:imageArray:method:header:encodeType:videoData:imageNameArray:location:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5A319383-919D-4F74-B2B7-2DDDAB05C596"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/Handler/ChatHandler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "531"
+            endingLineNumber = "531"
+            landmarkName = "callMultipartApi(_:param:imageArray:method:header:encodeType:videoData:imageNameArray:location:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E0DD25B1-F2B8-41A2-99AE-7CCB7155BAB2"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/Handler/ChatHandler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "538"
+            endingLineNumber = "538"
+            landmarkName = "callMultipartApi(_:param:imageArray:method:header:encodeType:videoData:imageNameArray:location:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "65994658-B581-4955-9445-3896373624D0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/Handler/ChatHandler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "261"
+            endingLineNumber = "261"
+            landmarkName = "uploadImageOneByOne(image:reciverid:group_id:videoThumb:fileName:fileDuration:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9BC4D04C-CECB-41FD-8A32-0FCDD7BA2BFA"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/Handler/ChatHandler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "559"
+            endingLineNumber = "559"
+            landmarkName = "callMultipartApi(_:param:imageArray:method:header:encodeType:videoData:imageNameArray:location:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A0931A7A-7674-451D-A438-1873901B59B6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/Handler/ChatHandler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "547"
+            endingLineNumber = "547"
+            landmarkName = "callMultipartApi(_:param:imageArray:method:header:encodeType:videoData:imageNameArray:location:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "31E4BEB4-B1F8-4A5A-B539-ACBDF530B03C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/Handler/ChatHandler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "546"
+            endingLineNumber = "546"
+            landmarkName = "callMultipartApi(_:param:imageArray:method:header:encodeType:videoData:imageNameArray:location:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D95069DF-8156-4F56-8CF9-0D03BC0B433D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/Handler/ChatHandler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "549"
+            endingLineNumber = "549"
+            landmarkName = "callMultipartApi(_:param:imageArray:method:header:encodeType:videoData:imageNameArray:location:completionHandler:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "D95069DF-8156-4F56-8CF9-0D03BC0B433D - cc3d774bb116611f"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Alamofire.SessionManager.MultipartFormDataEncodingResult) -&gt; () in Walt_Howzlt.ChatHandler.callMultipartApi(_: Swift.String, param: Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;, imageArray: Swift.Optional&lt;Swift.Array&lt;__C.UIImage&gt;&gt;, method: Alamofire.HTTPMethod, header: Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.String&gt;&gt;, encodeType: Alamofire.URLEncoding, videoData: Swift.Optional&lt;__C.NSURL&gt;, imageNameArray: Swift.Optional&lt;Swift.Array&lt;Swift.String&gt;&gt;, location: Swift.Bool, completionHandler: (Swift.Int, Swift.Optional&lt;__C.NSError&gt;, Swift.Optional&lt;SwiftyJSON.JSON&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Walt Howzlt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/GKJ/IOS%20PROJECTS/HOWZ%20IT/Howz%20It/Walt%20Howzlt/Handler/ChatHandler.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "501"
+                  endingLineNumber = "501"
+                  offsetFromSymbolStart = "358">
+               </Location>
+               <Location
+                  uuid = "D95069DF-8156-4F56-8CF9-0D03BC0B433D - c8d257ba4799eba5"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__C.NSProgress) -&gt; () in closure #2 (Alamofire.SessionManager.MultipartFormDataEncodingResult) -&gt; () in Walt_Howzlt.ChatHandler.callMultipartApi(_: Swift.String, param: Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;, imageArray: Swift.Optional&lt;Swift.Array&lt;__C.UIImage&gt;&gt;, method: Alamofire.HTTPMethod, header: Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.String&gt;&gt;, encodeType: Alamofire.URLEncoding, videoData: Swift.Optional&lt;__C.NSURL&gt;, imageNameArray: Swift.Optional&lt;Swift.Array&lt;Swift.String&gt;&gt;, location: Swift.Bool, completionHandler: (Swift.Int, Swift.Optional&lt;__C.NSError&gt;, Swift.Optional&lt;SwiftyJSON.JSON&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Walt Howzlt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/GKJ/IOS%20PROJECTS/HOWZ%20IT/Howz%20It/Walt%20Howzlt/Handler/ChatHandler.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "503"
+                  endingLineNumber = "503"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "83F2F893-2F3A-4FB4-AE42-8316407F50B6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/Handler/ChatHandler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "553"
+            endingLineNumber = "553"
+            landmarkName = "callMultipartApi(_:param:imageArray:method:header:encodeType:videoData:imageNameArray:location:completionHandler:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "83F2F893-2F3A-4FB4-AE42-8316407F50B6 - cc3d774bb116611f"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Alamofire.SessionManager.MultipartFormDataEncodingResult) -&gt; () in Walt_Howzlt.ChatHandler.callMultipartApi(_: Swift.String, param: Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;, imageArray: Swift.Optional&lt;Swift.Array&lt;__C.UIImage&gt;&gt;, method: Alamofire.HTTPMethod, header: Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.String&gt;&gt;, encodeType: Alamofire.URLEncoding, videoData: Swift.Optional&lt;__C.NSURL&gt;, imageNameArray: Swift.Optional&lt;Swift.Array&lt;Swift.String&gt;&gt;, location: Swift.Bool, completionHandler: (Swift.Int, Swift.Optional&lt;__C.NSError&gt;, Swift.Optional&lt;SwiftyJSON.JSON&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Walt Howzlt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/GKJ/IOS%20PROJECTS/HOWZ%20IT/Howz%20It/Walt%20Howzlt/Handler/ChatHandler.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "509"
+                  endingLineNumber = "509"
+                  offsetFromSymbolStart = "479">
+               </Location>
+               <Location
+                  uuid = "83F2F893-2F3A-4FB4-AE42-8316407F50B6 - e0b65512ae257513"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Alamofire.DataResponse&lt;Any&gt;) -&gt; () in closure #2 (Alamofire.SessionManager.MultipartFormDataEncodingResult) -&gt; () in Walt_Howzlt.ChatHandler.callMultipartApi(_: Swift.String, param: Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;, imageArray: Swift.Optional&lt;Swift.Array&lt;__C.UIImage&gt;&gt;, method: Alamofire.HTTPMethod, header: Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.String&gt;&gt;, encodeType: Alamofire.URLEncoding, videoData: Swift.Optional&lt;__C.NSURL&gt;, imageNameArray: Swift.Optional&lt;Swift.Array&lt;Swift.String&gt;&gt;, location: Swift.Bool, completionHandler: (Swift.Int, Swift.Optional&lt;__C.NSError&gt;, Swift.Optional&lt;SwiftyJSON.JSON&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Walt Howzlt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/GKJ/IOS%20PROJECTS/HOWZ%20IT/Howz%20It/Walt%20Howzlt/Handler/ChatHandler.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "510"
+                  endingLineNumber = "510"
+                  offsetFromSymbolStart = "168">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "19510671-2A13-413A-A79F-0D519EC3022A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/Handler/ChatHandler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "555"
+            endingLineNumber = "555"
+            landmarkName = "callMultipartApi(_:param:imageArray:method:header:encodeType:videoData:imageNameArray:location:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "86E9DEC2-0A1F-49BD-BB0F-2C57681D7327"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/Handler/ChatHandler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "567"
+            endingLineNumber = "567"
+            landmarkName = "callMultipartApi(_:param:imageArray:method:header:encodeType:videoData:imageNameArray:location:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "25CEA887-036D-4E8F-B567-B12742327C00"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/Handler/ChatHandler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "570"
+            endingLineNumber = "570"
+            landmarkName = "callMultipartApi(_:param:imageArray:method:header:encodeType:videoData:imageNameArray:location:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A99EA883-40FF-4131-89AB-8E4365413BCC"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/Handler/ChatHandler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "523"
+            endingLineNumber = "523"
+            landmarkName = "callMultipartApi(_:param:imageArray:method:header:encodeType:videoData:imageNameArray:location:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "81BA1A6D-AB9F-40E8-A103-F41524B63F55"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/Handler/ChatHandler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "541"
+            endingLineNumber = "541"
+            landmarkName = "callMultipartApi(_:param:imageArray:method:header:encodeType:videoData:imageNameArray:location:completionHandler:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "81BA1A6D-AB9F-40E8-A103-F41524B63F55 - a941fc7e7e5bbf6b"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Walt_Howzlt.ChatHandler.callMultipartApi(_: Swift.String, param: Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;, imageArray: Swift.Optional&lt;Swift.Array&lt;__C.UIImage&gt;&gt;, method: Alamofire.HTTPMethod, header: Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.String&gt;&gt;, encodeType: Alamofire.URLEncoding, videoData: Swift.Optional&lt;__C.NSURL&gt;, imageNameArray: Swift.Optional&lt;Swift.Array&lt;Swift.String&gt;&gt;, location: Swift.Bool, completionHandler: (Swift.Int, Swift.Optional&lt;__C.NSError&gt;, Swift.Optional&lt;SwiftyJSON.JSON&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Walt Howzlt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/GKJ/IOS%20PROJECTS/HOWZ%20IT/Howz%20It/Walt%20Howzlt/Handler/ChatHandler.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "499"
+                  endingLineNumber = "499"
+                  offsetFromSymbolStart = "2142">
+               </Location>
+               <Location
+                  uuid = "81BA1A6D-AB9F-40E8-A103-F41524B63F55 - b7400b52dca9f729"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Alamofire.MultipartFormData) -&gt; () in Walt_Howzlt.ChatHandler.callMultipartApi(_: Swift.String, param: Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;, imageArray: Swift.Optional&lt;Swift.Array&lt;__C.UIImage&gt;&gt;, method: Alamofire.HTTPMethod, header: Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.String&gt;&gt;, encodeType: Alamofire.URLEncoding, videoData: Swift.Optional&lt;__C.NSURL&gt;, imageNameArray: Swift.Optional&lt;Swift.Array&lt;Swift.String&gt;&gt;, location: Swift.Bool, completionHandler: (Swift.Int, Swift.Optional&lt;__C.NSError&gt;, Swift.Optional&lt;SwiftyJSON.JSON&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Walt Howzlt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/GKJ/IOS%20PROJECTS/HOWZ%20IT/Howz%20It/Walt%20Howzlt/Handler/ChatHandler.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "499"
+                  endingLineNumber = "499"
+                  offsetFromSymbolStart = "6617">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0E8E20C6-7D92-4038-A0E3-FA6D248EE532"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/ViewController/Chat View/Chat+TableView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C107DA9A-9835-46D3-9544-65E4ABE83C45"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/ViewController/Chat View/ChatViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "247"
+            endingLineNumber = "247"
+            landmarkName = "receiveMessage(items:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0D963F65-5B60-4683-B8D3-6F40CE05B658"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/Handler/ChatHandler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "400"
+            endingLineNumber = "400"
+            landmarkName = "uploadRecordAudioFile(file:reciverid:group_id:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4E1944D4-AB26-41F0-8D14-3C0AC601C0AB"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/Handler/ChatHandler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "717"
+            endingLineNumber = "717"
+            landmarkName = "callMultipartForFileApi(_:param:imageArray:method:header:encodeType:videoData:imageNameArray:location:completionHandler:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "4E1944D4-AB26-41F0-8D14-3C0AC601C0AB - 349261f574e9bf0c"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Alamofire.SessionManager.MultipartFormDataEncodingResult) -&gt; () in Walt_Howzlt.ChatHandler.callMultipartForFileApi(_: Swift.String, param: Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;, imageArray: Foundation.Data, method: Alamofire.HTTPMethod, header: Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.String&gt;&gt;, encodeType: Alamofire.URLEncoding, videoData: Swift.Optional&lt;__C.NSURL&gt;, imageNameArray: Swift.Optional&lt;Swift.Array&lt;Swift.String&gt;&gt;, location: Swift.Bool, completionHandler: (Swift.Int, Swift.Optional&lt;__C.NSError&gt;, Swift.Optional&lt;SwiftyJSON.JSON&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Walt Howzlt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/GKJ/IOS%20PROJECTS/HOWZ%20IT/Howz%20It/Walt%20Howzlt/Handler/ChatHandler.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "711"
+                  endingLineNumber = "711"
+                  offsetFromSymbolStart = "358">
+               </Location>
+               <Location
+                  uuid = "4E1944D4-AB26-41F0-8D14-3C0AC601C0AB - 4428ac7de4d38d09"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__C.NSProgress) -&gt; () in closure #2 (Alamofire.SessionManager.MultipartFormDataEncodingResult) -&gt; () in Walt_Howzlt.ChatHandler.callMultipartForFileApi(_: Swift.String, param: Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;, imageArray: Foundation.Data, method: Alamofire.HTTPMethod, header: Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.String&gt;&gt;, encodeType: Alamofire.URLEncoding, videoData: Swift.Optional&lt;__C.NSURL&gt;, imageNameArray: Swift.Optional&lt;Swift.Array&lt;Swift.String&gt;&gt;, location: Swift.Bool, completionHandler: (Swift.Int, Swift.Optional&lt;__C.NSError&gt;, Swift.Optional&lt;SwiftyJSON.JSON&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Walt Howzlt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/GKJ/IOS%20PROJECTS/HOWZ%20IT/Howz%20It/Walt%20Howzlt/Handler/ChatHandler.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "713"
+                  endingLineNumber = "713"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A789397A-ECF0-4B0D-A7B5-04678DE0201D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/Handler/ChatHandler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "725"
+            endingLineNumber = "725"
+            landmarkName = "callMultipartForFileApi(_:param:imageArray:method:header:encodeType:videoData:imageNameArray:location:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "85DB64D3-07EF-4480-B0A8-702C35D2EB2D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/Handler/ChatHandler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "730"
+            endingLineNumber = "730"
+            landmarkName = "callMultipartForFileApi(_:param:imageArray:method:header:encodeType:videoData:imageNameArray:location:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6837B8B2-EFEC-4738-86A5-F0A6F151E851"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/Handler/ChatHandler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "695"
+            endingLineNumber = "695"
+            landmarkName = "callMultipartForFileApi(_:param:imageArray:method:header:encodeType:videoData:imageNameArray:location:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FEAF31C4-D455-4543-A8F9-AE8BCC2068DF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/Handler/ChatHandler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "694"
+            endingLineNumber = "694"
+            landmarkName = "callMultipartForFileApi(_:param:imageArray:method:header:encodeType:videoData:imageNameArray:location:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3113D98B-50EA-473D-A2F8-6C13AAA36AAC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/Handler/ChatHandler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "723"
+            endingLineNumber = "723"
+            landmarkName = "callMultipartForFileApi(_:param:imageArray:method:header:encodeType:videoData:imageNameArray:location:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FF73A261-3C98-4F8A-A35D-E6BFA0F31521"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/ViewController/Chat View/Chat+TableView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "171"
+            endingLineNumber = "171"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0AE07A3F-79CE-4EEA-B06A-C14CD7DDFF09"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/cell/Chat/AudioTableViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "setAudioRecordingData(obChat:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0B975EC6-B5F4-46F4-8EC1-BA24751739FB"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/cell/Chat/AudioTableViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
+            landmarkName = "setAudioRecordingData(obChat:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "44C95C00-5E7B-4D94-B334-20A80D93D6CF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/cell/Chat/AudioTableViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "setAudioRecordingData(obChat:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "79754947-9DFC-4E4C-949C-750DB04E9962"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walt Howzlt/ViewController/Chat View/ChatViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1071"
+            endingLineNumber = "1071"
+            landmarkName = "sendAudioMessage(file:duration:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

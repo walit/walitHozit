@@ -56,7 +56,17 @@ class MultiImageTableViewCell: UITableViewCell {
         }
         btnCount.isHidden = true
         let strImage = item.message
+        self.img1.isHidden = true
+        self.img2.isHidden = true
+        self.img3.isHidden = true
+        self.img4Width =  self.img4Width.setMultiplier(multiplier: 1)
+        self.img4Height = self.img4Height.setMultiplier(multiplier: 1)
+        let url = item.file_url
+        print(" item.file_url = \( item.file_url)")
+          self.img4.af_setImage(withURL: self.setImage(url: url)!)
+          self.img4.isHidden = false
         
+        /*
         let dict = convertToArryDictionary(text: strImage)
         if dict == nil {return }
         self.img1.isHidden = true
@@ -160,7 +170,7 @@ class MultiImageTableViewCell: UITableViewCell {
             self.img2.isHidden = false
             self.img1.isHidden = false
            
-        }
+        } */
 
         let dateFormatterGet = DateFormatter()
         dateFormatterGet.dateFormat = "yyyy-MM-dd HH:mm:ss"

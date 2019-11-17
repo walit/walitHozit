@@ -54,6 +54,8 @@ class LocationTableViewCell: UITableViewCell {
     }
     func configureCell(item :ChatModel){
         if item.message_type == "4" {
+            print("item.message = \(item.message)")
+            
             if item.sender_id != Global.sharedInstance.UserID{
                 self.outCommingView.isHidden = false
                 imconmingView.isHidden = true
@@ -70,7 +72,7 @@ class LocationTableViewCell: UITableViewCell {
                 
                 let dict = convertToDictionary(text: strImage)
                 if dict == nil {return}
-                let url = dict!["file_url"] as! String
+                let url = item.file_url//dict!["file_url"] as! String
                 
                 let myURL = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
                 
@@ -78,7 +80,7 @@ class LocationTableViewCell: UITableViewCell {
                     self.imgOutGoing.af_setImage(withURL: url)
                 }
                 else{
-                    self.imgOutGoing.image = #imageLiteral(resourceName: "uploadUser")
+                   // self.imgOutGoing.image = #imageLiteral(resourceName: "uploadUser")
                 }
                 self.lblLocationOut.text = (dict!["address"] as! String)
                 let dateFormatterGet = DateFormatter()
@@ -95,7 +97,6 @@ class LocationTableViewCell: UITableViewCell {
                     print("There was an error decoding the string")
                 }
                 let name = getName(number: item.display_name) == "" ? item.display_name : getName(number: item.display_name)
-                
                 self.lblInTime.text = name  + " " + (self.lblInTime.text ?? "")
                 self.lblOutTime.text =  self.lblInTime.text
             }else{
@@ -115,14 +116,17 @@ class LocationTableViewCell: UITableViewCell {
                 
                 let dict = convertToDictionary(text: strImage)
                 if dict == nil {return}
-                let url = dict!["file_url"] as! String
+                let url = item.file_url
                 self.lblLocationIn.text = dict!["address"] as? String
                 let myURL = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-                
+            //    self.imgIncomming.af_setImage(withURL: URL(string: item.file_url)!)
                 if let url = URL(string: myURL!) {
                     self.imgIncomming.af_setImage(withURL: url)
                 }else{
-                    self.imgIncomming.image = #imageLiteral(resourceName: "uploadUser")
+                    if self.imgIncomming != nil {
+                      // self.imgIncomming.image = #imageLiteral(resourceName: "uploadUser")
+                    }
+                 
                 }
                 let dateFormatterGet = DateFormatter()
                 dateFormatterGet.dateFormat = "yyyy-MM-dd HH:mm:ss"

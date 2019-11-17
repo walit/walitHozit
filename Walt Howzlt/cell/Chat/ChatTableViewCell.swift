@@ -49,7 +49,7 @@ class ChatTableViewCell: UITableViewCell {
         }else if chatList.message_type == "4"{
             let strImage = chatList.message
             let dict = convertToDictionary(text: strImage)
-            self.lblMessage.text = dict!["address"] as? String
+            self.lblMessage.text = chatList.message//dict!["address"] as? String
         }else{
              self.lblMessage.text = chatList.message
         }
@@ -62,7 +62,7 @@ class ChatTableViewCell: UITableViewCell {
             self.imgUser.af_setImage(withURL: url)
         }
         else{
-            self.imgUser.image = #imageLiteral(resourceName: "uploadUser")
+            self.imgUser.image = #imageLiteral(resourceName: "030-folder.png")
         }
         
         if Int(chatList.unread_count)! > 0 {
